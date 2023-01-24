@@ -1,5 +1,6 @@
 package org.mifos.mobile.ui.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.*
@@ -16,6 +17,7 @@ import org.mifos.mobile.api.local.PreferencesHelper
 import org.mifos.mobile.models.accounts.loan.LoanWithAssociations
 import org.mifos.mobile.presenters.LoanAccountsDetailPresenter
 import org.mifos.mobile.ui.activities.base.BaseActivity
+import org.mifos.mobile.ui.activities.mpesa.MpesaActivity
 import org.mifos.mobile.ui.enums.AccountType
 import org.mifos.mobile.ui.enums.ChargeType
 import org.mifos.mobile.ui.enums.LoanState
@@ -179,8 +181,9 @@ class LoanAccountsDetailFragment : BaseFragment(), LoanAccountsDetailView {
      */
     @OnClick(R.id.btn_make_payment)
     fun onMakePaymentClicked() {
-        (activity as BaseActivity?)?.replaceFragment(SavingsMakeTransferFragment.newInstance(loanId, loanWithAssociations?.summary?.totalOutstanding,
-                Constants.TRANSFER_PAY_TO), true, R.id.container)
+        activity?.startActivity(Intent(context, MpesaActivity::class.java))
+//        (activity as BaseActivity?)?.replaceFragment(SavingsMakeTransferFragment.newInstance(loanId, loanWithAssociations?.summary?.totalOutstanding,
+//                Constants.TRANSFER_PAY_TO), true, R.id.container)
     }
 
     /**

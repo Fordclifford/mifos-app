@@ -324,44 +324,6 @@
                 </com.google.android.material.card.MaterialCardView>
 
             </GridLayout>
-            <LinearLayout
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:padding="@dimen/Mifos.DesignSystem.Spacing.CardInnerPaddingLarger">
-
-                <TextView
-                    android:layout_gravity="center"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:text="@string/need_help"
-                    style="@style/Mifos.DesignSystem.TextStyle.Body"/>
-
-                <LinearLayout
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:autoLink="phone"
-                        android:gravity="end"
-                        android:layout_height="wrap_content"
-                        android:layout_width="match_parent"
-                        android:text="@string/help_line_number"
-                        style="@style/Mifos.DesignSystem.TextStyle.Link"/>
-
-                    <TextView
-                        android:autoLink="email"
-                        android:gravity="end"
-                        android:layout_height="wrap_content"
-                        android:layout_width="match_parent"
-                        android:text="@string/contact_email"
-                        style="@style/Mifos.DesignSystem.TextStyle.Link"/>
-
-                </LinearLayout>
-
-            </LinearLayout>
 
         </LinearLayout>
 

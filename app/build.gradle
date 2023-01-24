@@ -4,6 +4,7 @@ apply plugin: 'com.google.android.gms.oss-licenses-plugin'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
 
 apply from: '../config/quality/quality.gradle'
 
@@ -44,6 +45,10 @@ android {
         }
     }
 
+    buildFeatures {
+        dataBinding true
+        viewBinding true
+    }
 
     sourceSets {
         def commonTestDir = 'src/commonTest/java'
@@ -98,7 +103,9 @@ dependencies {
     implementation "androidx.vectordrawable:vectordrawable:$rootProject.vectorDrawablesVersion"
     implementation "com.google.android.gms:play-services-oss-licenses:$rootProject.oss_licenses"
     implementation "com.isseiaoki:simplecropview:$rootProject.cropviewVersion"
-
+    implementation 'androidx.core:core-ktx:1.8.0'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'androidx.activity:activity-ktx:1.5.1'
 
     //Square dependencies
     implementation("com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion") {
@@ -119,6 +126,14 @@ dependencies {
     implementation "com.google.dagger:dagger:$rootProject.daggerVersion"
     compileOnly 'javax.annotation:jsr250-api:1.0' 
     compileOnly 'com.github.pengrad:jdk9-deps:1.0'  //Required by Dagger2
+
+    implementation("com.google.dagger:hilt-android:2.42")
+    kapt("com.google.dagger:hilt-android-compiler:2.42")
+    kapt("androidx.hilt:hilt-compiler:1.0.0")
+
+    implementation 'androidx.room:room-ktx:2.4.3'
+    kapt "androidx.room:room-compiler:2.4.3"
+    implementation 'androidx.fragment:fragment-ktx:1.5.2'
 
     //Butter Knife
     implementation "com.jakewharton:butterknife:$butterKnifeVersion"
@@ -145,7 +160,7 @@ dependencies {
 
     //TableView
     implementation "com.evrencoskun.library:tableview:$rootProject.tableViewVersion"
-
+    implementation 'com.github.f0ris.sweetalert:library:1.5.1'
     // Unit tests dependencies
     testImplementation "junit:junit:$rootProject.jUnitVersion"
     testImplementation "org.mockito:mockito-core:$rootProject.mockitoVersion"

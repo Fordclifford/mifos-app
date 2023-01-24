@@ -17,3 +17,6 @@
 #}
 
 -keep class * extends com.raizlabs.android.dbflow.config.DatabaseHolder { *; }
+-keep class cn.pedant.SweetAlert.Rotate3dAnimation {
+    public <init>(...);
+ }

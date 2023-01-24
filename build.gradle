@@ -19,6 +19,8 @@ buildscript {
     }
 
     dependencies {
+        classpath("com.google.dagger:hilt-android-gradle-plugin:2.42")
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.5.2"
         classpath "com.android.tools.build:gradle:$gradleVersion"
         classpath "com.google.firebase:firebase-crashlytics-gradle:$crashlyticsGradleVersion"
         classpath 'com.google.android.gms:oss-licenses-plugin:0.10.5'
@@ -45,8 +47,8 @@ task clean(type: Delete) {
 ext {
     // Sdk and tools
     minSdkVersion = 22
-    targetSdkVersion = 31
-    compileSdkVersion = 31
+    targetSdkVersion = 32
+    compileSdkVersion = 32
 
     // App dependencies
     supportLibraryVersion = '1.4.2'
@@ -59,7 +61,7 @@ ext {
     retrofitVersion = '2.2.0'
     okHttp3Version = '3.6.0'
     butterKnifeVersion = '8.0.1'
-    dbflowVersion = '4.1.2'
+    dbflowVersion = '4.0.2'
     playServicesVersion = '17.0.0'
     firebaseMessagingVersion = '21.0.1'
     oss_licenses = '17.0.0'

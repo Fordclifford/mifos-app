@@ -15,7 +15,7 @@
             android:layout_width="@dimen/Mifos.DesignSystem.Size.LogoImageSize"
             android:layout_height="@dimen/Mifos.DesignSystem.Size.LogoImageSize"
             android:layout_marginTop="@dimen/Mifos.DesignSystem.Size.LogoImageVerticalMargin"
-            app:srcCompat="@mipmap/mifos_icon" />
+            app:srcCompat="@drawable/logo" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -61,123 +61,6 @@
                     android:layout_marginStart="@dimen/Mifos.DesignSystem.Spacing.marginBetweenItemsSmall"
                     tools:text="3.4.0" />
 
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/about_website_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/Mifos.DesignSystem.Spacing.marginBetweenItemsSmall"
-            style="@style/Mifos.DesignSystem.Components.Cards.NoBorderOrBackground"
-            app:contentPadding="@dimen/Mifos.DesignSystem.Spacing.CardInnerPaddingLarge">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_website" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/Mifos.DesignSystem.Spacing.BetweenCardImageTitle"
-                    android:layout_weight="1"
-                    android:text="@string/official_website"/>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/about_licenses_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/Mifos.DesignSystem.Spacing.marginBetweenItemsSmall"
-            style="@style/Mifos.DesignSystem.Components.Cards.NoBorderOrBackground"
-            app:contentPadding="@dimen/Mifos.DesignSystem.Spacing.CardInnerPaddingLarge">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_law_icon" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="@dimen/Mifos.DesignSystem.Spacing.BetweenCardImageTitle"
-                    android:layout_weight="1"
-                    android:text="@string/licenses" />
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/about_privacy_policy_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:contentPadding="@dimen/Mifos.DesignSystem.Spacing.CardInnerPaddingLarge"
-            android:layout_marginTop="@dimen/Mifos.DesignSystem.Spacing.marginBetweenItemsSmall"
-            style="@style/Mifos.DesignSystem.Components.Cards.NoBorderOrBackground">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_privacy_policy" />
-
-                <TextView
-                    android:id="@+id/forum_text"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/Mifos.DesignSystem.Spacing.BetweenCardImageTitle"
-                    android:layout_weight="1"
-                    android:text="@string/privacy_policy"/>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/about_sources_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:contentPadding="@dimen/Mifos.DesignSystem.Spacing.CardInnerPaddingLarge"
-            android:layout_marginTop="@dimen/Mifos.DesignSystem.Spacing.marginBetweenItemsSmall"
-            style="@style/Mifos.DesignSystem.Components.Cards.NoBorderOrBackground">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_source_code" />
-
-                <TextView
-                    android:id="@+id/sources_text"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/Mifos.DesignSystem.Spacing.BetweenCardImageTitle"
-                    android:layout_weight="1"
-                    android:text="@string/sources" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 

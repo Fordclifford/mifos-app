@@ -5,6 +5,7 @@ import android.content.Context
 
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.migration.DisableInstallInCheck
 
 import org.mifos.mobile.injection.ActivityContext
 
@@ -13,6 +14,7 @@ import org.mifos.mobile.injection.ActivityContext
  * @since 08/07/16
  */
 @Module
+@DisableInstallInCheck
 class ActivityModule(private val activity: Activity) {
     @Provides
     fun providesActivity(): Activity {

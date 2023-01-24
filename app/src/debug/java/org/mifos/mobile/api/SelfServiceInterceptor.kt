@@ -32,6 +32,6 @@ class SelfServiceInterceptor(private val tenant: String?, private val authToken:
     companion object {
         const val HEADER_TENANT = "Fineract-Platform-TenantId"
         const val HEADER_AUTH = "Authorization"
-        const val DEFAULT_TENANT = "mobile"
+        const val DEFAULT_TENANT = "default"
     }
 }

@@ -5,6 +5,7 @@ import android.content.Context
 
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.migration.DisableInstallInCheck
 
 import org.mifos.mobile.api.BaseApiManager
 import org.mifos.mobile.api.local.PreferencesHelper
@@ -17,6 +18,7 @@ import javax.inject.Singleton
  * @since 08/07/16
  */
 @Module
+@DisableInstallInCheck
 class ApplicationModule(private val application: Application) {
     @Provides
     fun provideApplication(): Application {

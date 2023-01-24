@@ -2,20 +2,15 @@
 package org.mifos.mobile.ui.fragments
 
 import android.animation.LayoutTransition
-import android.annotation.SuppressLint
 import android.content.*
 import android.graphics.Bitmap
 import android.os.Build
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.*
-import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 
-import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
@@ -23,8 +18,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
 import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
-import com.google.android.material.badge.BadgeDrawable
-import com.google.android.material.badge.BadgeUtils
 import com.google.android.material.imageview.ShapeableImageView
 
 import org.mifos.mobile.R
