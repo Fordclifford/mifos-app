@@ -52,7 +52,7 @@ ext {
 
     // App dependencies
     supportLibraryVersion = '1.4.2'
-    designLibraryVersion = '1.6.1'
+    designLibraryVersion = '1.7.0'
     daggerVersion = '2.42'
     recyclerViewVersion = '1.2.1'
     vectorDrawablesVersion = '1.1.0'
