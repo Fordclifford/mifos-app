@@ -32,14 +32,14 @@ class MpesaActivity : AppCompatActivity() {
                     "1",
                     "RHHRR",
                 )
+                print("Mpesa input $model")
                 viewModel.stkpush(model)
 
                 viewModel.mpesa_response.observe(this){
+                    println("RESPPP $it")
+                    dialog.dismiss()
                     if (it != null){
-                        dialog.dismiss()
                         Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
-                    }else{
-                        dialog.dismiss();
                     }
                 }
             }

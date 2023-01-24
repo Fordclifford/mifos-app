@@ -17,7 +17,7 @@ class MainViewModel @Inject constructor(private val repository: MainRepository) 
     fun stkpush(mpesa: Mpesa) {
         viewModelScope.launch {
             val response = repository.stkpush(mpesa)
-            println("Resp $response")
+            println("Resp on function $response")
             if (response is Resource.Success<*>) {
                 mpesa_response.postValue(response.data)
 

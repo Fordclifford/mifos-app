@@ -26,19 +26,30 @@ class RetrofitInstance {
     @Provides
     fun getRetrofit(): RetrofitInterface {
         val okHttpClient: OkHttpClient?
+        val logging = HttpLoggingInterceptor()
+// set your desired log level
+// set your desired log level
+        logging.level = HttpLoggingInterceptor.Level.BODY
 
-        val interceptor = HttpLoggingInterceptor()
-        interceptor.level = HttpLoggingInterceptor.Level.BODY
+        val httpClient = OkHttpClient.Builder()
+// add your other interceptors …
+
+// add logging as last interceptor
+// add your other interceptors …
+
+// add logging as last interceptor
+        httpClient.addInterceptor(logging) //
 
         okHttpClient = OkHttpClient.Builder()
             .readTimeout(60, TimeUnit.SECONDS)
             .connectTimeout(60, TimeUnit.SECONDS)
-            .addInterceptor(interceptor)
+            .addInterceptor(logging)
             .build()
 
         return Retrofit.Builder()
             .baseUrl(Constants.ROUTE_URL)
             .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(SynchronousCallAdapterFactory.create())
             .client(okHttpClient)
             .build()
             .create(RetrofitInterface::class.java)
