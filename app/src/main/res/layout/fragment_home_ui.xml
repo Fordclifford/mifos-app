@@ -534,35 +534,6 @@
                     android:textColor="@color/black"
                     android:textSize="14sp"/>
 
-                <LinearLayout
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/row_padding_right"
-                    android:layout_marginRight="@dimen/row_padding_right"
-                    android:layout_width="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:autoLink="phone"
-                        android:gravity="end"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/divider_margin"
-                        android:layout_width="match_parent"
-                        android:text="@string/help_line_number"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                        android:textColor="@color/black"
-                        android:textStyle="bold"/>
-
-                    <TextView
-                        android:autoLink="email"
-                        android:gravity="end"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/divider_margin"
-                        android:layout_width="match_parent"
-                        android:text="@string/contact_email"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                        android:textColor="@color/black"/>
-
-                </LinearLayout>
 
             </LinearLayout>
 

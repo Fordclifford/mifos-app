@@ -11,6 +11,8 @@ import com.raizlabs.android.dbflow.config.FlowConfig
 import com.raizlabs.android.dbflow.config.FlowManager
 
 import com.google.firebase.crashlytics.FirebaseCrashlytics
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.HiltAndroidApp
 import org.mifos.mobile.api.local.PreferencesHelper
 
 import org.mifos.mobile.injection.component.ApplicationComponent
@@ -25,6 +27,7 @@ import java.util.*
  * @author ishan
  * @since 08/07/16
  */
+@HiltAndroidApp
 class MifosSelfServiceApp : MultiDexApplication() {
     private var applicationComponent: ApplicationComponent? = null
 

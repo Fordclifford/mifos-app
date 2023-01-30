@@ -16,7 +16,7 @@ class BaseURL {
     }
 
     companion object {
-        const val API_ENDPOINT = "fynarfin.io/fynams"
+        const val API_ENDPOINT = "apps.kibeti.co.ke:8443"
         const val API_PATH = "/fineract-provider/api/v1/self/"
         const val PROTOCOL_HTTPS = "https://"
     }

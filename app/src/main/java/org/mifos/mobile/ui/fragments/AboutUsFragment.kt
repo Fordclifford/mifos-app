@@ -51,30 +51,6 @@ class AboutUsFragment : BaseFragment() {
         return rootView
     }
 
-    @OnClick(R.id.about_website_container)
-    fun showWebsite(){
-        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(websiteLink)))
-    }
-
-    @OnClick(R.id.about_licenses_container)
-    fun showOpenSourceLicenses() {
-        startActivity(Intent(activity, OssLicensesMenuActivity::class.java))
-    }
-
-    @OnClick(R.id.about_privacy_policy_container)
-    fun showPrivacyPolicy() {
-        startActivity(Intent(activity, PrivacyPolicyActivity::class.java))
-    }
-
-    @OnClick(R.id.about_sources_container)
-    fun showSourceCode() {
-        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(sourceCodeLink)))
-    }
-
-    @OnClick(R.id.self_license_container)
-    fun showSelfLicense() {
-        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(licenseLink)))
-    }
 
     companion object {
         @kotlin.jvm.JvmStatic
