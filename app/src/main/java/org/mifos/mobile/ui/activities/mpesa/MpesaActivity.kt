@@ -40,6 +40,8 @@ class MpesaActivity : AppCompatActivity() {
                     if (it != null){
                         dialog.dismiss()
                         Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
+                    }else{
+//                        startActivity(Intent(this, HomeActivity::class.java))
                     }
                 }
             }
@@ -57,8 +59,6 @@ class MpesaActivity : AppCompatActivity() {
         }else{
             binding.PhoneNumber.error = ""
         }
-
-
         return valid
     }
 }
