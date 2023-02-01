@@ -587,6 +587,23 @@
     <string name="no_app_to_support_action">There is no application that support this action</string>
     <string name="theme">Theme</string>
     <string name="change_app_theme">Change the application theme</string>
+    <string name="id_number">ID Number</string>
+    <string name="kra_pin">KRA Pin No.</string>
+    <string name="next">Next</string>
+    <string name="choose_file">Choose File</string>
+    <string name="uploadDescription">Profile Photo</string>
+    <string name="upload_id_back">Back Side</string>
+    <string name="middle_name">Middle Name</string>
+    <string name="is_dependent">Dependent?</string>
+    <string name="dob">Date of Birth</string>
+    <string name="pick_date">Pick DOB</string>
+    <string name="verification">Verification Code</string>
+    <string name="otp_code_text">Verification Code</string>
+    <string name="otp_description_text">We\'ve just sent the OTP code via Email to</string>
+    <string name="verify_code">Verify</string>
+    <string name="confirm">Confirm</string>
+    <string name="resend">Resend OTP</string>
+    <string name="uploading">Uploading</string>
 
     <string-array name="languages" translatable="false">
         <item>English</item>

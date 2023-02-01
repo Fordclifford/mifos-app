@@ -13,8 +13,10 @@ import android.widget.*
 import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
+import kotlinx.android.synthetic.main.fragment_registration.*
 
 import org.mifos.mobile.R
+import org.mifos.mobile.models.register.IdentifierPayload
 import org.mifos.mobile.models.register.RegisterPayload
 import org.mifos.mobile.presenters.RegistrationPresenter
 import org.mifos.mobile.ui.activities.base.BaseActivity
@@ -31,8 +33,12 @@ import javax.inject.Inject
  */
 class RegistrationFragment : BaseFragment(), RegistrationView {
     @JvmField
-    @BindView(R.id.et_account_number)
-    var etAccountNumber: EditText? = null
+    @BindView(R.id.et_id_number)
+    var idNumber: EditText? = null
+
+    @JvmField
+    @BindView(R.id.et_kra_pin)
+    var kraPin: EditText? = null
 
     @JvmField
     @BindView(R.id.et_username)
@@ -62,9 +68,6 @@ class RegistrationFragment : BaseFragment(), RegistrationView {
     @BindView(R.id.et_confirm_password)
     var etConfirmPassword: EditText? = null
 
-    @JvmField
-    @BindView(R.id.rg_verification_mode)
-    var rgVerificationMode: RadioGroup? = null
 
     @JvmField
     @Inject
@@ -134,34 +137,42 @@ class RegistrationFragment : BaseFragment(), RegistrationView {
 
     @OnClick(R.id.btn_register)
     fun registerClicked() {
-        if (areFieldsValidated()) {
-            val radioButton = rgVerificationMode?.checkedRadioButtonId?.let { rootView?.findViewById<RadioButton>(it) }
-            val payload = RegisterPayload()
-            payload.accountNumber = etAccountNumber?.text.toString()
-            payload.authenticationMode = radioButton?.text.toString()
-            payload.email = etEmail?.text.toString()
-            payload.firstName = etFirstName?.text.toString()
-            payload.lastName = etLastName?.text.toString()
-            payload.mobileNumber = etPhoneNumber?.text.toString()
-            if (etPassword?.text.toString() != etConfirmPassword?.text.toString()) {
-                Toaster.show(rootView, getString(R.string.error_password_not_match))
-                return
-            } else {
-                payload.password = etPassword?.text.toString()
-            }
-            payload.password = etPassword?.text.toString()
-            payload.username = etUsername?.text.toString().replace(" ", "")
-            if (Network.isConnected(context)) {
-                presenter?.registerUser(payload)
-            } else {
-                Toaster.show(rootView, getString(R.string.no_internet_connection))
-            }
-        }
+        (activity as BaseActivity?)?.replaceFragment(PassportPhotoUploadFragment.newInstance(), true, R.id.container)
+//        if (areFieldsValidated()) {
+//            val payload = RegisterPayload()
+//            val idPayload= IdentifierPayload("1")
+//            val kraPayload = IdentifierPayload("15")
+//            idPayload.documentKey=idNumber?.text.toString()
+//            kraPayload.documentKey = kraPin?.text.toString()
+//            payload.email = etEmail?.text.toString()
+//            payload.firstName = etFirstName?.text.toString()
+//            payload.lastName = etLastName?.text.toString()
+//            payload.mobileNumber = etPhoneNumber?.text.toString()
+//            if (etPassword?.text.toString() != etConfirmPassword?.text.toString()) {
+//                Toaster.show(rootView, getString(R.string.error_password_not_match))
+//                return
+//            } else {
+//                payload.password = etPassword?.text.toString()
+//            }
+//            payload.password = etPassword?.text.toString()
+//            payload.username = etUsername?.text.toString().replace(" ", "")
+//            if (Network.isConnected(context)) {
+//              presenter?.registerUser(kraPayload,idPayload,payload)
+//
+//            } else {
+//                Toaster.show(rootView, getString(R.string.no_internet_connection))
+//            }
+//        }
     }
 
+
     private fun areFieldsValidated(): Boolean {
-        if (etAccountNumber?.text.toString().trim { it <= ' ' }.isEmpty()) {
-            Toaster.show(rootView, getString(R.string.error_validation_blank, getString(R.string.account_number)))
+        if (kraPin?.text.toString().trim { it <= ' ' }.isEmpty()) {
+            Toaster.show(rootView, getString(R.string.error_validation_blank, getString(R.string.kra_pin)))
+            return false
+        }
+        if (idNumber?.text.toString().trim { it <= ' ' }.isEmpty()) {
+            Toaster.show(rootView, getString(R.string.error_validation_blank, getString(R.string.id_number)))
             return false
         } else if (etUsername?.text.toString().trim { it <= ' ' }.isEmpty()) {
             Toaster.show(rootView, getString(R.string.error_validation_blank, getString(R.string.username)))
@@ -204,7 +215,7 @@ class RegistrationFragment : BaseFragment(), RegistrationView {
     }
 
     override fun showRegisteredSuccessfully() {
-        (activity as BaseActivity?)?.replaceFragment(RegistrationVerificationFragment.newInstance(), true, R.id.container)
+        (activity as BaseActivity?)?.replaceFragment(PassportPhotoUploadFragment.newInstance(), true, R.id.container)
     }
 
     override fun showError(msg: String?) {

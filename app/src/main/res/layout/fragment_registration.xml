@@ -11,17 +11,7 @@
     android:layout_marginHorizontal="@dimen/Mifos.DesignSystem.Spacing.screenHorizontalMargin"
     android:layout_marginVertical="@dimen/Mifos.DesignSystem.Spacing.screenVerticalMargin">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/Mifos.DesignSystem.Spacing.marginBetweenItemsSmall"
-        android:layout_width="match_parent">
 
-        <com.google.android.material.textfield.TextInputEditText android:hint="@string/account_number"
-                  android:id="@+id/et_account_number"
-                  android:inputType="text"
-                  android:layout_height="wrap_content"
-                  android:layout_width="match_parent"/>
-    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_height="wrap_content"
@@ -68,6 +58,30 @@
             android:hint="@string/phone_number"
             android:id="@+id/et_phone_number"
             android:inputType="number"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/Mifos.DesignSystem.Spacing.marginBetweenItemsSmall"
+        android:layout_width="match_parent">
+
+        <com.google.android.material.textfield.TextInputEditText android:hint="@string/id_number"
+            android:id="@+id/et_id_number"
+            android:inputType="text"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/Mifos.DesignSystem.Spacing.marginBetweenItemsSmall"
+        android:layout_width="match_parent">
+
+        <com.google.android.material.textfield.TextInputEditText android:hint="@string/kra_pin"
+            android:id="@+id/et_kra_pin"
+            android:inputType="text"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"/>
     </com.google.android.material.textfield.TextInputLayout>
@@ -139,34 +153,34 @@
         android:layout_width="match_parent"
         android:orientation="horizontal">
 
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:text="@string/verification_mode"/>
+<!--        <TextView-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:text="@string/verification_mode"/>-->
 
-        <RadioGroup
-            android:id="@+id/rg_verification_mode"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:orientation="horizontal">
+<!--        <RadioGroup-->
+<!--            android:id="@+id/rg_verification_mode"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:orientation="horizontal">-->
 
-            <RadioButton
-                android:checked="true"
-                android:id="@+id/rb_email"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/Mifos.DesignSystem.Spacing.marginBetweenItemsSmall"
-                android:layout_width="wrap_content"
-                android:text="@string/rb_email"/>
+<!--            <RadioButton-->
+<!--                android:checked="true"-->
+<!--                android:id="@+id/rb_email"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginEnd="@dimen/Mifos.DesignSystem.Spacing.marginBetweenItemsSmall"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:text="@string/rb_email"/>-->
 
-            <RadioButton
-                android:id="@+id/rb_mobile"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="@string/rb_mobile"/>
+<!--            <RadioButton-->
+<!--                android:id="@+id/rb_mobile"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:text="@string/rb_mobile"/>-->
 
-        </RadioGroup>
+<!--        </RadioGroup>-->
 
     </LinearLayout>
 

@@ -6,9 +6,9 @@ import org.mifos.mobile.api.ApiEndPoints
 import org.mifos.mobile.models.Page
 import org.mifos.mobile.models.client.Client
 import org.mifos.mobile.models.client.ClientAccounts
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import org.mifos.mobile.models.guarantor.GuarantorApplicationPayload
+import org.mifos.mobile.models.register.IdentifierPayload
+import retrofit2.http.*
 
 /**
  * @author Vishwajeet
@@ -33,6 +33,12 @@ interface ClientService {
             @Path(CLIENT_ID) clientId: Long?,
             @Query("fields") accountType: String?
     ): Observable<ClientAccounts?>?
+
+    @GET(ApiEndPoints.CLIENTS + "/{clientId}/identifiers")
+    fun createIdentifier(
+        @Path("CLIENT_ID") clientId: Long?,
+        @Body payload: IdentifierPayload?
+    ): Observable<ResponseBody?>?
 
     companion object {
         const val CLIENT_ID = "clientId"

@@ -32,6 +32,7 @@ import org.mifos.mobile.models.notification.NotificationUserDetail
 import org.mifos.mobile.models.payload.LoansPayload
 import org.mifos.mobile.models.payload.LoginPayload
 import org.mifos.mobile.models.payload.TransferPayload
+import org.mifos.mobile.models.register.IdentifierPayload
 import org.mifos.mobile.models.register.RegisterPayload
 import org.mifos.mobile.models.register.UserVerify
 import org.mifos.mobile.models.templates.account.AccountOptionsTemplate
@@ -192,6 +193,10 @@ class DataManager @Inject constructor(
 
     fun registerUser(registerPayload: RegisterPayload?): Observable<ResponseBody?>? {
         return baseApiManager.registrationApi?.registerUser(registerPayload)
+    }
+
+    fun createIdentifier(clientIdentifier: Long?,identifierPayload: IdentifierPayload?): Observable<ResponseBody?>? {
+        return baseApiManager.clientsApi?.createIdentifier(clientIdentifier,identifierPayload)
     }
 
     fun verifyUser(userVerify: UserVerify?): Observable<ResponseBody?>? {
