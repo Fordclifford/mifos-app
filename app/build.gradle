@@ -161,7 +161,7 @@ dependencies {
     //TableView
     implementation "com.evrencoskun.library:tableview:$rootProject.tableViewVersion"
     implementation 'com.chaos.view:pinview:1.4.3'
-    implementation 'com.github.f0ris.sweetalert:library:1.5.1'
+    implementation 'com.github.f0ris.sweetalert:library:1.6.2'
     // Unit tests dependencies
     testImplementation "junit:junit:$rootProject.jUnitVersion"
     testImplementation "org.mockito:mockito-core:$rootProject.mockitoVersion"
