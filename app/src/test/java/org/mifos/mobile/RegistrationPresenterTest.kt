@@ -66,7 +66,7 @@ class RegistrationPresenterTest {
         presenter?.registerUser(registerPayload)
         Mockito.verify(view)?.showProgress()
         Mockito.verify(view)?.hideProgress()
-        Mockito.verify(view)?.showRegisteredSuccessfully()
+        Mockito.verify(view)?.showRegisteredSuccessfully(clientId)
         Mockito.verify(view, Mockito.never())?.showError("")
     }
 
@@ -77,7 +77,7 @@ class RegistrationPresenterTest {
         presenter?.registerUser(registerPayload)
         Mockito.verify(view)?.showProgress()
         Mockito.verify(view)?.hideProgress()
-        Mockito.verify(view, Mockito.never())?.showRegisteredSuccessfully()
+        Mockito.verify(view, Mockito.never())?.showRegisteredSuccessfully(clientId)
         Mockito.verify(view)?.showError("")
     }
 }

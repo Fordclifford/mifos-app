@@ -6,6 +6,6 @@ import org.mifos.mobile.ui.views.base.MVPView
  * Created by dilpreet on 31/7/17.
  */
 interface RegistrationView : MVPView {
-    fun showRegisteredSuccessfully()
+    fun showRegisteredSuccessfully(clientId: Long)
     fun showError(msg: String?)
 }

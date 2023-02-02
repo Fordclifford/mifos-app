@@ -7,5 +7,7 @@ import org.mifos.mobile.ui.views.base.MVPView
  */
 interface PassportUploadView : MVPView {
     fun showUploadedSuccessfully()
+    fun checkPermissionAndRequest()
     fun showError(msg: String?)
+    fun getExternalStorageDocument()
 }

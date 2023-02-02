@@ -1,14 +1,15 @@
 package org.mifos.mobile.api.services
 
 import io.reactivex.Observable
+import okhttp3.MultipartBody
 import okhttp3.ResponseBody
 import org.mifos.mobile.api.ApiEndPoints
 import org.mifos.mobile.models.Page
 import org.mifos.mobile.models.client.Client
 import org.mifos.mobile.models.client.ClientAccounts
-import org.mifos.mobile.models.guarantor.GuarantorApplicationPayload
 import org.mifos.mobile.models.register.IdentifierPayload
 import retrofit2.http.*
+import java.util.ArrayList
 
 /**
  * @author Vishwajeet
@@ -34,11 +35,17 @@ interface ClientService {
             @Query("fields") accountType: String?
     ): Observable<ClientAccounts?>?
 
-    @GET(ApiEndPoints.CLIENTS + "/{clientId}/identifiers")
+    @POST(ApiEndPoints.CLIENTS + "/{clientId}/createidentifier")
     fun createIdentifier(
-        @Path("CLIENT_ID") clientId: Long?,
-        @Body payload: IdentifierPayload?
+        @Path(CLIENT_ID) clientId: Long?,
+        @Body payload: ArrayList<IdentifierPayload?>
     ): Observable<ResponseBody?>?
+
+    @Multipart
+    @POST(ApiEndPoints.CLIENTS + "/{clientId}/images")
+     fun createImage(
+        @Path(CLIENT_ID) clientId: Long?,
+        @Part body: MultipartBody.Part?): Observable<ResponseBody?>?
 
     companion object {
         const val CLIENT_ID = "clientId"

@@ -15,6 +15,7 @@ object ApiEndPoints {
     const val ACCOUNT_TRANSFER = "accounttransfers"
     const val BENEFICIARIES = "beneficiaries"
     const val REGISTRATION = "registration"
+    const val CLIENT_USER_REGISTRATION = "clients/createuser"
     const val DEVICE = "device"
     const val USER = "user"
 }

@@ -8,4 +8,8 @@ import org.mifos.mobile.ui.views.base.MVPView
 interface ClientIdUploadView : MVPView {
     fun showUploadedSuccessfully()
     fun showError(msg: String?)
+    fun checkPermissionAndRequestBack()
+    fun checkPermissionAndRequestFront()
+    fun getExternalStorageDocumentFront()
+    fun getExternalStorageDocumentBack()
 }

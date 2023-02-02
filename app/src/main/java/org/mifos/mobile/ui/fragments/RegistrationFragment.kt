@@ -16,8 +16,11 @@ import butterknife.OnClick
 import kotlinx.android.synthetic.main.fragment_registration.*
 
 import org.mifos.mobile.R
+import org.mifos.mobile.api.BaseApiManager
+import org.mifos.mobile.api.BaseURL
+import org.mifos.mobile.api.SelfServiceInterceptor
+import org.mifos.mobile.models.register.ClientUserRegisterPayload
 import org.mifos.mobile.models.register.IdentifierPayload
-import org.mifos.mobile.models.register.RegisterPayload
 import org.mifos.mobile.presenters.RegistrationPresenter
 import org.mifos.mobile.ui.activities.base.BaseActivity
 import org.mifos.mobile.ui.fragments.base.BaseFragment
@@ -81,6 +84,7 @@ class RegistrationFragment : BaseFragment(), RegistrationView {
     @BindView(R.id.password_strength)
     var strengthView: TextView? = null
     private var rootView: View? = null
+    var clientId:Long?=null
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
@@ -137,32 +141,36 @@ class RegistrationFragment : BaseFragment(), RegistrationView {
 
     @OnClick(R.id.btn_register)
     fun registerClicked() {
-        (activity as BaseActivity?)?.replaceFragment(PassportPhotoUploadFragment.newInstance(), true, R.id.container)
-//        if (areFieldsValidated()) {
-//            val payload = RegisterPayload()
-//            val idPayload= IdentifierPayload("1")
-//            val kraPayload = IdentifierPayload("15")
-//            idPayload.documentKey=idNumber?.text.toString()
-//            kraPayload.documentKey = kraPin?.text.toString()
-//            payload.email = etEmail?.text.toString()
-//            payload.firstName = etFirstName?.text.toString()
-//            payload.lastName = etLastName?.text.toString()
-//            payload.mobileNumber = etPhoneNumber?.text.toString()
-//            if (etPassword?.text.toString() != etConfirmPassword?.text.toString()) {
-//                Toaster.show(rootView, getString(R.string.error_password_not_match))
-//                return
-//            } else {
-//                payload.password = etPassword?.text.toString()
-//            }
-//            payload.password = etPassword?.text.toString()
-//            payload.username = etUsername?.text.toString().replace(" ", "")
-//            if (Network.isConnected(context)) {
-//              presenter?.registerUser(kraPayload,idPayload,payload)
-//
-//            } else {
-//                Toaster.show(rootView, getString(R.string.no_internet_connection))
-//            }
-//        }
+        if (areFieldsValidated()) {
+            val payload = ClientUserRegisterPayload()
+            val idPayload= IdentifierPayload("1")
+            val kraPayload = IdentifierPayload("15")
+            idPayload.documentKey=idNumber?.text.toString()
+            kraPayload.documentKey = kraPin?.text.toString()
+            payload.email = etEmail?.text.toString()
+            payload.firstname = etFirstName?.text.toString()
+            payload.lastname = etLastName?.text.toString()
+            payload.mobileNo = etPhoneNumber?.text.toString()
+            if (etPassword?.text.toString() != etConfirmPassword?.text.toString()) {
+                Toaster.show(rootView, getString(R.string.error_password_not_match))
+                return
+            } else {
+                payload.password = etPassword?.text.toString()
+            }
+            payload.password = etPassword?.text.toString()
+            payload.repeatPassword= etPassword?.text.toString()
+            payload.username = etUsername?.text.toString().replace(" ", "")
+            if (Network.isConnected(context)) {
+                BaseApiManager.createService(
+                    BaseURL.PROTOCOL_HTTPS+ BaseURL.API_ENDPOINT,
+                    SelfServiceInterceptor.DEFAULT_TENANT,
+                    SelfServiceInterceptor.DEFAULT_TOKEN
+                )
+              presenter?.registerUser(kraPayload,idPayload,payload)
+            } else {
+                Toaster.show(rootView, getString(R.string.no_internet_connection))
+            }
+        }
     }
 
 
@@ -214,8 +222,8 @@ class RegistrationFragment : BaseFragment(), RegistrationView {
         return true
     }
 
-    override fun showRegisteredSuccessfully() {
-        (activity as BaseActivity?)?.replaceFragment(PassportPhotoUploadFragment.newInstance(), true, R.id.container)
+    override fun showRegisteredSuccessfully(clientId: Long) {
+        (activity as BaseActivity?)?.replaceFragment(PassportPhotoUploadFragment.newInstance(clientId), true, R.id.container)
     }
 
     override fun showError(msg: String?) {

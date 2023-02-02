@@ -18,6 +18,7 @@ import org.mifos.mobile.ui.views.ClientIdUploadView
 import org.mifos.mobile.ui.views.PassportUploadView
 import org.mifos.mobile.ui.views.RegistrationView
 import org.mifos.mobile.utils.MFErrorParser
+import java.io.File
 
 import javax.inject.Inject
 
@@ -37,8 +38,10 @@ class ClientIdUploadPresenter @Inject constructor(
         super.detachView()
         compositeDisposables.clear()
     }
-    fun uploadPhoto(){
+
+    fun uploadDocument(clientId: Long, idFrontFile: File?, idBackFile: File?) {
 
     }
+
 
 }

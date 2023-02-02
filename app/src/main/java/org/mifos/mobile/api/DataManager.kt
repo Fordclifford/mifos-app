@@ -5,6 +5,7 @@ import io.reactivex.ObservableSource
 import io.reactivex.functions.Function
 
 import okhttp3.MediaType
+import okhttp3.MultipartBody
 import okhttp3.ResponseBody
 
 import org.mifos.mobile.FakeRemoteDataSource
@@ -23,6 +24,7 @@ import org.mifos.mobile.models.beneficiary.BeneficiaryPayload
 import org.mifos.mobile.models.beneficiary.BeneficiaryUpdatePayload
 import org.mifos.mobile.models.client.Client
 import org.mifos.mobile.models.client.ClientAccounts
+import org.mifos.mobile.models.client.ClientResp
 import org.mifos.mobile.models.guarantor.GuarantorApplicationPayload
 import org.mifos.mobile.models.guarantor.GuarantorPayload
 import org.mifos.mobile.models.guarantor.GuarantorTemplatePayload
@@ -32,6 +34,7 @@ import org.mifos.mobile.models.notification.NotificationUserDetail
 import org.mifos.mobile.models.payload.LoansPayload
 import org.mifos.mobile.models.payload.LoginPayload
 import org.mifos.mobile.models.payload.TransferPayload
+import org.mifos.mobile.models.register.ClientUserRegisterPayload
 import org.mifos.mobile.models.register.IdentifierPayload
 import org.mifos.mobile.models.register.RegisterPayload
 import org.mifos.mobile.models.register.UserVerify
@@ -39,6 +42,7 @@ import org.mifos.mobile.models.templates.account.AccountOptionsTemplate
 import org.mifos.mobile.models.templates.beneficiary.BeneficiaryTemplate
 import org.mifos.mobile.models.templates.loans.LoanTemplate
 import org.mifos.mobile.models.templates.savings.SavingsAccountTemplate
+import java.util.ArrayList
 
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -195,7 +199,12 @@ class DataManager @Inject constructor(
         return baseApiManager.registrationApi?.registerUser(registerPayload)
     }
 
-    fun createIdentifier(clientIdentifier: Long?,identifierPayload: IdentifierPayload?): Observable<ResponseBody?>? {
+
+    fun registerClientUser(registerPayload: ClientUserRegisterPayload?): Observable<ClientResp?>? {
+        return baseApiManager.registrationApi?.registerClientUser(registerPayload)
+    }
+
+    fun createIdentifier(clientIdentifier: Long?, identifierPayload: ArrayList<IdentifierPayload?>): Observable<ResponseBody?>? {
         return baseApiManager.clientsApi?.createIdentifier(clientIdentifier,identifierPayload)
     }
 
@@ -265,6 +274,10 @@ class DataManager @Inject constructor(
                     Observable.just(ResponseBody.create(MediaType
                             .parse("plain/text"), "Guarantor Deleted Successfully"))
                 })
+    }
+
+    fun createImage(clientId: Long,requestFileBody: MultipartBody.Part?): Observable<ResponseBody?>? {
+        return baseApiManager.clientsApi?.createImage(clientId, requestFileBody)
     }
 
 }

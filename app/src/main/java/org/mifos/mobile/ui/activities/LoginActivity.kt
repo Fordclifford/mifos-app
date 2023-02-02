@@ -15,6 +15,9 @@ import butterknife.OnClick
 import com.google.android.material.textfield.TextInputLayout
 
 import org.mifos.mobile.R
+import org.mifos.mobile.api.BaseApiManager
+import org.mifos.mobile.api.BaseURL
+import org.mifos.mobile.api.SelfServiceInterceptor
 import org.mifos.mobile.models.payload.LoginPayload
 import org.mifos.mobile.presenters.LoginPresenter
 import org.mifos.mobile.ui.activities.base.BaseActivity
@@ -52,6 +55,11 @@ class LoginActivity : BaseActivity(), LoginView {
     var llLogin: LinearLayout? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        BaseApiManager.createService(
+            BaseURL.PROTOCOL_HTTPS+ BaseURL.API_ENDPOINT,
+            SelfServiceInterceptor.DEFAULT_TENANT,
+           ""
+        )
         super.onCreate(savedInstanceState)
         activityComponent?.inject(this)
         setContentView(R.layout.activity_login)

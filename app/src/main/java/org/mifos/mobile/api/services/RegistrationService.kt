@@ -3,6 +3,8 @@ package org.mifos.mobile.api.services
 import io.reactivex.Observable
 import okhttp3.ResponseBody
 import org.mifos.mobile.api.ApiEndPoints
+import org.mifos.mobile.models.client.ClientResp
+import org.mifos.mobile.models.register.ClientUserRegisterPayload
 import org.mifos.mobile.models.register.RegisterPayload
 import org.mifos.mobile.models.register.UserVerify
 import retrofit2.http.Body
@@ -17,4 +19,7 @@ interface RegistrationService {
 
     @POST(ApiEndPoints.REGISTRATION + "/user")
     fun verifyUser(@Body userVerify: UserVerify?): Observable<ResponseBody?>?
+
+    @POST(ApiEndPoints.CLIENT_USER_REGISTRATION)
+    fun registerClientUser(@Body clientUserRegisterPayload: ClientUserRegisterPayload?): Observable<ClientResp?>?
 }

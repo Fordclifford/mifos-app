@@ -1,9 +1,12 @@
 package org.mifos.mobile.ui.fragments
 
+import android.Manifest
+import android.app.Activity
 import android.content.Intent
-import android.graphics.Bitmap
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore.*
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -14,65 +17,89 @@ import android.widget.Toast
 import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
-import com.google.gson.JsonObject
-import okhttp3.MediaType
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
+import kotlinx.android.synthetic.main.fragment_upload_passport.*
 import org.mifos.mobile.R
-import org.mifos.mobile.models.register.UserVerify
+import org.mifos.mobile.api.BaseApiManager
+import org.mifos.mobile.api.BaseURL
+import org.mifos.mobile.api.RequiredFieldException
+import org.mifos.mobile.api.SelfServiceInterceptor
 import org.mifos.mobile.presenters.PassportUploadPresenter
-import org.mifos.mobile.presenters.RegistrationVerificationPresenter
 import org.mifos.mobile.ui.activities.LoginActivity
 import org.mifos.mobile.ui.activities.base.BaseActivity
 import org.mifos.mobile.ui.fragments.base.BaseFragment
 import org.mifos.mobile.ui.views.PassportUploadView
-import org.mifos.mobile.utils.Toaster
+import org.mifos.mobile.utils.*
 import java.io.File
-import java.util.*
 import javax.inject.Inject
 
 
 /**
  * Created by dilpreet on 31/7/17.
  */
-class PassportPhotoUploadFragment : BaseFragment(), PassportUploadView {
+class PassportPhotoUploadFragment(clientId: Long) : BaseFragment(), PassportUploadView {
 
-    @kotlin.jvm.JvmField
+    @JvmField
     @BindView(R.id.buttonChoose)
     var buttonChoose: Button? = null
 
-    @kotlin.jvm.JvmField
+    @JvmField
     @BindView(R.id.photo)
-    var imageView: ImageView? = null
+     var imageView: ImageView? = null
 
-    @kotlin.jvm.JvmField
+    @JvmField
     @BindView(R.id.btn_upload)
-    var buttonUpload: Button? = null
+     var buttonUpload: Button? = null
 
-    private val PICK_IMAGE_REQUEST = 1
-    private val STORAGE_PERMISSION_CODE = 123
-    private var bitmap: Bitmap? = null
-    private var filePath: Uri? = null
+    private var fileChoosen: File? = null
+
+    private val FILE_SELECT_CODE = 9544
+    private var uri: Uri? = null
+    private var filePath: String? = null
+    var clientId: Long? = clientId
 
 
-    @kotlin.jvm.JvmField
+    @JvmField
     @Inject
     var presenter: PassportUploadPresenter? = null
     private var rootView: View? = null
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         rootView = inflater.inflate(R.layout.fragment_upload_passport, container, false)
         (activity as BaseActivity?)?.activityComponent?.inject(this)
         ButterKnife.bind(this, rootView!!)
         presenter?.attachView(this)
+        buttonUpload!!.isEnabled = false
+        BaseApiManager.createService(
+            BaseURL.PROTOCOL_HTTPS+ BaseURL.API_ENDPOINT,
+            SelfServiceInterceptor.DEFAULT_TENANT,
+            SelfServiceInterceptor.DEFAULT_TOKEN
+        )
         return rootView
     }
 
     @OnClick(R.id.btn_upload)
-    fun verifyClicked() {
-     //   fileUpload()
-        (activity as BaseActivity?)?.replaceFragment(ClientIdUploadFragment.newInstance(), true, R.id.container)
+    fun oploadClicked() {
+        //   fileUpload()
+        try {
+            validateInput()
+        } catch (e: RequiredFieldException) {
+            e.notifyUserWithToast(activity)
+        }
 
+    }
+
+    @OnClick(R.id.buttonChoose)
+    fun openFilePicker() {
+        checkPermissionAndRequest()
+    }
+
+    @Throws(RequiredFieldException::class)
+    fun validateInput() {
+        presenter?.createImage(
+            clientId!!, fileChoosen
+        )
     }
 
     override fun showUploadedSuccessfully() {
@@ -99,24 +126,110 @@ class PassportPhotoUploadFragment : BaseFragment(), PassportUploadView {
     }
 
     companion object {
-        fun newInstance(): PassportPhotoUploadFragment {
-            return PassportPhotoUploadFragment()
+        fun newInstance(clientId: Long): PassportPhotoUploadFragment {
+            return PassportPhotoUploadFragment(clientId)
         }
     }
 
-    fun fileUpload(file: File) {
-        val body: MultipartBody.Part
-        val mapRequestBody = LinkedHashMap<String, RequestBody>()
-        val arrBody: MutableList<MultipartBody.Part> = ArrayList()
-        val requestBody: RequestBody =
-            RequestBody.create(MediaType.parse("multipart/form-data"), file)
-        mapRequestBody["file\"; filename=\"" + file.name] = requestBody
-        mapRequestBody["test"] =
-            RequestBody.create(MediaType.parse("text/plain"), "gogogogogogogog")
-        body = MultipartBody.Part.createFormData("fileName", file.name, requestBody)
-        arrBody.add(body)
+    override fun checkPermissionAndRequest() {
+        if (CheckSelfPermissionAndRequest.checkSelfPermission(
+                activity,
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            )
+        ) {
+            getExternalStorageDocument()
+        } else {
+            requestPermission()
+        }
+    }
 
-           //uploadFile(mapRequestBody, arrBody)
+    /**
+     * This Method is Requesting the Permission
+     */
+    fun requestPermission() {
+        (activity as BaseActivity?)?.let {
+            CheckSelfPermissionAndRequest.requestPermission(
+                it,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Constants.PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE,
+                resources.getString(
+                    R.string.dialog_message_read_external_storage_permission_denied
+                ),
+                resources.getString(R.string.dialog_message_permission_never_ask_again_read),
+                Constants.READ_EXTERNAL_STORAGE_STATUS
+            )
+        }
+    }
 
+    /**
+     * This Method getting the Response after User Grant or denied the Permission
+     *
+     * @param requestCode  Request Code
+     * @param permissions  Permission
+     * @param grantResults GrantResults
+     */
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String?>,
+        grantResults: IntArray
+    ) {
+        when (requestCode) {
+            Constants.PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE -> {
+
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.size > 0
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED
+                ) {
+
+                    // permission was granted, yay! Do the
+                    getExternalStorageDocument()
+                } else {
+
+                    // permission denied, boo! Disable the
+                    Toaster.show(
+                        rootView, resources
+                            .getString(R.string.permission_denied_to_read_external_document)
+                    )
+                }
+            }
+        }
+    }
+
+    /**
+     * This method is to start an intent(getExternal Storage Document).
+     * If Android Version is Kitkat or greater then start intent with ACTION_OPEN_DOCUMENT,
+     * otherwise with ACTION_GET_CONTENT
+     */
+
+
+    override fun getExternalStorageDocument() {
+        val gallery = Intent(Intent.ACTION_PICK, Images.Media.INTERNAL_CONTENT_URI)
+        startActivityForResult(Intent.createChooser(gallery, "Open Gallery"), FILE_SELECT_CODE);
+    }
+    /**
+     * This Method will be called when any document will be selected from the External Storage.
+     *
+     * @param requestCode Request Code
+     * @param resultCode  Result Code ok or Cancel
+     * @param data        Intent Data
+     */
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        when (requestCode) {
+           FILE_SELECT_CODE -> if (resultCode == Activity.RESULT_OK) {
+                // Get the Uri of the selected file
+                uri = data!!.data
+                filePath = FileUtils.getPathReal(activity, uri)
+                if (filePath != null) {
+                    Log.d("FIle Url", filePath!!)
+                    fileChoosen = File(filePath!!)
+                }
+                if (fileChoosen != null) {
+                    imageView?.setImageURI(uri)
+                }
+               btn_upload.isEnabled = true
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data)
     }
 }

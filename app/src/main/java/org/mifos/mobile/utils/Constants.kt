@@ -65,4 +65,5 @@ object Constants {
     const val SAVINGS_ACCOUNT_STATE = "savingsaccountstate"
     const val OUTSTANDING_BALANCE = "outstanding_balance"
     const val LOAN_REPAYMENT = "loan_repayment"
+    const val READ_EXTERNAL_STORAGE_STATUS = "read_external_storage_status"
 }

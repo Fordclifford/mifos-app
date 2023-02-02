@@ -8,7 +8,7 @@
 
 
     <ImageView
-        android:id="@+id/id_front"
+        android:id="@+id/id_front_view_nok"
         android:layout_width="300dp"
         android:layout_height="180dp"
         android:layout_marginStart="25dp"
@@ -19,7 +19,7 @@
 
 
     <Button
-        android:id="@+id/id_front_choose"
+        android:id="@+id/id_front_choose_nok"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
@@ -30,7 +30,7 @@
         android:textColor="@color/black" />
 
     <ImageView
-        android:id="@+id/id_back"
+        android:id="@+id/id_back_view_nok"
         android:layout_width="300dp"
         android:layout_height="180dp"
         android:layout_marginStart="50dp"
@@ -40,7 +40,7 @@
 
 
     <Button
-        android:id="@+id/choose_id_back"
+        android:id="@+id/choose_id_back_nok"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
