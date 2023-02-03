@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 
 import butterknife.BindView
 import butterknife.ButterKnife
@@ -43,9 +44,6 @@ class RegistrationFragment : BaseFragment(), RegistrationView {
     @BindView(R.id.et_kra_pin)
     var kraPin: EditText? = null
 
-    @JvmField
-    @BindView(R.id.et_username)
-    var etUsername: EditText? = null
 
     @JvmField
     @BindView(R.id.et_first_name)
@@ -151,6 +149,7 @@ class RegistrationFragment : BaseFragment(), RegistrationView {
             payload.firstname = etFirstName?.text.toString()
             payload.lastname = etLastName?.text.toString()
             payload.mobileNo = etPhoneNumber?.text.toString()
+            payload.username=etPhoneNumber?.text.toString().replace(" ", "")
             if (etPassword?.text.toString() != etConfirmPassword?.text.toString()) {
                 Toaster.show(rootView, getString(R.string.error_password_not_match))
                 return
@@ -159,7 +158,6 @@ class RegistrationFragment : BaseFragment(), RegistrationView {
             }
             payload.password = etPassword?.text.toString()
             payload.repeatPassword= etPassword?.text.toString()
-            payload.username = etUsername?.text.toString().replace(" ", "")
             if (Network.isConnected(context)) {
                 BaseApiManager.createService(
                     BaseURL.PROTOCOL_HTTPS+ BaseURL.API_ENDPOINT,
@@ -181,16 +179,6 @@ class RegistrationFragment : BaseFragment(), RegistrationView {
         }
         if (idNumber?.text.toString().trim { it <= ' ' }.isEmpty()) {
             Toaster.show(rootView, getString(R.string.error_validation_blank, getString(R.string.id_number)))
-            return false
-        } else if (etUsername?.text.toString().trim { it <= ' ' }.isEmpty()) {
-            Toaster.show(rootView, getString(R.string.error_validation_blank, getString(R.string.username)))
-            return false
-        } else if (etUsername?.text.toString().trim { it <= ' ' }.length < 6) {
-            Toaster.show(rootView, getString(R.string.error_username_greater_than_six))
-            return false
-        } else if (etUsername?.text.toString().trim { it <= ' ' }.contains(" ")) {
-            Toaster.show(rootView, getString(R.string.error_validation_cannot_contain_spaces,
-                    getString(R.string.username), getString(R.string.not_contain_username)))
             return false
         } else if (etFirstName?.text?.isEmpty() == true) {
             Toaster.show(rootView, getString(R.string.error_validation_blank, getString(R.string.first_name)))
@@ -224,6 +212,7 @@ class RegistrationFragment : BaseFragment(), RegistrationView {
 
     override fun showRegisteredSuccessfully(clientId: Long) {
         (activity as BaseActivity?)?.replaceFragment(PassportPhotoUploadFragment.newInstance(clientId), true, R.id.container)
+        Toast.makeText(context, getString(R.string.successful), Toast.LENGTH_SHORT).show()
     }
 
     override fun showError(msg: String?) {
@@ -231,7 +220,7 @@ class RegistrationFragment : BaseFragment(), RegistrationView {
     }
 
     override fun showProgress() {
-        showMifosProgressDialog(getString(R.string.sign_up))
+        showMifosProgressDialog(getString(R.string.submitting))
     }
 
     override fun hideProgress() {

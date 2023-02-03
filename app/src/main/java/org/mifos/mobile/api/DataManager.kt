@@ -23,6 +23,7 @@ import org.mifos.mobile.models.beneficiary.BeneficiaryUpdatePayload
 import org.mifos.mobile.models.client.Client
 import org.mifos.mobile.models.client.ClientAccounts
 import org.mifos.mobile.models.client.ClientResp
+import org.mifos.mobile.models.client.NextOfKinPayload
 import org.mifos.mobile.models.guarantor.GuarantorApplicationPayload
 import org.mifos.mobile.models.guarantor.GuarantorPayload
 import org.mifos.mobile.models.guarantor.GuarantorTemplatePayload
@@ -38,6 +39,7 @@ import org.mifos.mobile.models.register.RegisterPayload
 import org.mifos.mobile.models.register.UserVerify
 import org.mifos.mobile.models.templates.account.AccountOptionsTemplate
 import org.mifos.mobile.models.templates.beneficiary.BeneficiaryTemplate
+import org.mifos.mobile.models.templates.client.FamilyMemberOptions
 import org.mifos.mobile.models.templates.loans.LoanTemplate
 import org.mifos.mobile.models.templates.savings.SavingsAccountTemplate
 import javax.inject.Inject
@@ -282,5 +284,15 @@ class DataManager @Inject constructor(
     ): Observable<ResponseBody?>? {
         return baseApiManager.clientsApi!!.createDocument(entityId, name, desc, file)
     }
+
+    fun loadFamilyTemplate(clientId: Long):Observable<FamilyMemberOptions?>?{
+        return baseApiManager.clientsApi?.getClientTemplate(clientId)
+    }
+
+    fun createNok(payload: NextOfKinPayload, clientId: Long?): Observable<ResponseBody?>? {
+        return  baseApiManager.clientsApi!!.createNok(clientId,payload)
+
+    }
+
 
 }

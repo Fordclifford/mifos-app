@@ -6,7 +6,13 @@
     android:layout_marginVertical="@dimen/Mifos.DesignSystem.Spacing.screenVerticalMargin"
     android:orientation="vertical">
 
-
+    <TextView
+        style="@style/TextAppearance.Material3.TitleMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginVertical="15dp"
+        android:text="@string/upload_id_title" />
     <ImageView
         android:id="@+id/id_view_front_cust"
         android:layout_width="300dp"
@@ -24,7 +30,7 @@
         android:layout_marginStart="50dp"
         android:backgroundTint="@android:color/darker_gray"
         android:fillColor="#D9D9D9"
-        android:text="@string/choose_file"
+        android:text="@string/choose_file_front"
         android:textAppearance="@style/choose_file"
         android:textColor="@color/black" />
 
@@ -35,6 +41,7 @@
         android:layout_marginStart="25dp"
         android:layout_marginTop="25dp"
         android:background="@color/gray_light"
+        android:text="@string/upload_id_back"
         android:contentDescription="@string/upload_id_back" />
 
 
@@ -45,9 +52,8 @@
         android:layout_marginStart="50dp"
         android:backgroundTint="@android:color/darker_gray"
         android:layout_marginTop="25dp"
-        android:text="@string/choose_file"
+        android:text="@string/choose_file_back"
         android:layout_marginBottom="25dp"
-        android:textAppearance="@style/choose_file"
         android:textColor="@color/black" />
 
     <LinearLayout

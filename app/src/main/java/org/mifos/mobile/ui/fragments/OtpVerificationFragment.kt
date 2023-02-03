@@ -12,6 +12,7 @@ import butterknife.ButterKnife
 import butterknife.OnClick
 import org.mifos.mobile.R
 import org.mifos.mobile.models.register.UserVerify
+import org.mifos.mobile.models.templates.client.FamilyMemberOptions
 import org.mifos.mobile.presenters.RegistrationVerificationPresenter
 import org.mifos.mobile.ui.activities.LoginActivity
 import org.mifos.mobile.ui.activities.base.BaseActivity
@@ -62,6 +63,10 @@ class OtpVerificationFragment : BaseFragment(), RegistrationVerificationView {
 
     override fun showError(msg: String?) {
         Toaster.show(rootView, msg)
+    }
+
+    override fun showClientTemplate(clientsTemplate: FamilyMemberOptions?) {
+        TODO("Not yet implemented")
     }
 
     override fun showProgress() {

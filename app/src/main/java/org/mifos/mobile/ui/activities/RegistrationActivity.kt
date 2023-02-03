@@ -6,6 +6,7 @@ import android.os.Bundle
 import org.mifos.mobile.R
 import org.mifos.mobile.ui.activities.base.BaseActivity
 import org.mifos.mobile.ui.fragments.ClientIdUploadFragment
+import org.mifos.mobile.ui.fragments.NextOfKinRegistrationFragment
 import org.mifos.mobile.ui.fragments.PassportPhotoUploadFragment
 import org.mifos.mobile.ui.fragments.RegistrationFragment
 import org.mifos.mobile.utils.MaterialDialog
@@ -15,7 +16,7 @@ class RegistrationActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration)
-        replaceFragment(ClientIdUploadFragment.newInstance(26), false, R.id.container)
+        replaceFragment(RegistrationFragment.newInstance(), false, R.id.container)
     }
 
     override fun onBackPressed() {

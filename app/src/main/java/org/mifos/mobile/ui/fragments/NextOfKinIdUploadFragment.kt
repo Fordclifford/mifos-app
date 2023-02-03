@@ -114,8 +114,7 @@ class NextOfKinIdUploadFragment(clientId: Long) : BaseFragment(), ClientIdUpload
 
     override fun showUploadedSuccessfully() {
         startActivity(Intent(activity, LoginActivity::class.java))
-        Toast.makeText(context, getString(R.string.successful_login), Toast.LENGTH_SHORT).show()
-        activity?.finish()
+        Toast.makeText(context, getString(R.string.successful_login_now), Toast.LENGTH_SHORT).show()
     }
 
     override fun showError(msg: String?) {

@@ -148,4 +148,20 @@ object DateHelper {
         val sdf = SimpleDateFormat("HH:mm a dd MMM yyyy")
         return sdf.format(timeInMillis?.let { Date(it) })
     }
+
+    fun getDateAsStringUsedForDateofBirth(date: String?): String? {
+        val builder = java.lang.StringBuilder()
+        if (date != null) {
+            val splittedDate = date.split("-".toRegex()).dropLastWhile { it.isEmpty() }
+                .toTypedArray()
+            val month = splittedDate[1].toInt()
+            builder.append(splittedDate[0])
+            builder.append('-')
+            builder.append(getMonthName(month))
+            builder.append('-')
+            builder.append(splittedDate[2])
+        }
+        return builder.toString()
+        //Return as dd-mmm-yyyy
+    }
 }

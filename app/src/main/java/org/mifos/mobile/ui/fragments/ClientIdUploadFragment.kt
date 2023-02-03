@@ -127,7 +127,7 @@ class ClientIdUploadFragment(clientId: Long) : BaseFragment(), ClientIdUploadVie
                 clientId!!
             ), true, R.id.container
         )
-        Toast.makeText(context, getString(R.string.id_submitted), Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, getString(R.string.id_uploaded), Toast.LENGTH_SHORT).show()
     }
 
     override fun showError(msg: String?) {
