@@ -12,7 +12,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import butterknife.BindView
@@ -20,15 +19,14 @@ import butterknife.ButterKnife
 import butterknife.OnClick
 import kotlinx.android.synthetic.main.fragment_upload_passport.*
 import org.mifos.mobile.R
+import org.mifos.mobile.api.BaseApiManager
+import org.mifos.mobile.api.BaseURL
 import org.mifos.mobile.api.RequiredFieldException
-import org.mifos.mobile.models.register.UserVerify
+import org.mifos.mobile.api.SelfServiceInterceptor
 import org.mifos.mobile.presenters.ClientIdUploadPresenter
-import org.mifos.mobile.presenters.RegistrationVerificationPresenter
-import org.mifos.mobile.ui.activities.LoginActivity
 import org.mifos.mobile.ui.activities.base.BaseActivity
 import org.mifos.mobile.ui.fragments.base.BaseFragment
 import org.mifos.mobile.ui.views.ClientIdUploadView
-import org.mifos.mobile.ui.views.RegistrationVerificationView
 import org.mifos.mobile.utils.CheckSelfPermissionAndRequest
 import org.mifos.mobile.utils.Constants
 import org.mifos.mobile.utils.FileUtils
@@ -87,6 +85,11 @@ class ClientIdUploadFragment(clientId: Long) : BaseFragment(), ClientIdUploadVie
         ButterKnife.bind(this, rootView!!)
         presenter?.attachView(this)
         buttonUpload!!.isEnabled = false
+        BaseApiManager.createService(
+            BaseURL.PROTOCOL_HTTPS + BaseURL.API_ENDPOINT,
+            SelfServiceInterceptor.DEFAULT_TENANT,
+            SelfServiceInterceptor.DEFAULT_TOKEN
+        )
         return rootView
     }
 
@@ -114,14 +117,17 @@ class ClientIdUploadFragment(clientId: Long) : BaseFragment(), ClientIdUploadVie
     @Throws(RequiredFieldException::class)
     fun validateInput() {
         presenter?.uploadDocument(
-            clientId!!, idFrontFile,idBackFile
+            clientId!!, idFrontFile, idBackFile, "Member"
         )
     }
 
     override fun showUploadedSuccessfully() {
-        startActivity(Intent(activity, LoginActivity::class.java))
-        Toast.makeText(context, getString(R.string.verified), Toast.LENGTH_SHORT).show()
-        activity?.finish()
+        (activity as BaseActivity?)?.replaceFragment(
+            NextOfKinRegistrationFragment.newInstance(
+                clientId!!
+            ), true, R.id.container
+        )
+        Toast.makeText(context, getString(R.string.id_submitted), Toast.LENGTH_SHORT).show()
     }
 
     override fun showError(msg: String?) {
@@ -202,7 +208,7 @@ class ClientIdUploadFragment(clientId: Long) : BaseFragment(), ClientIdUploadVie
         grantResults: IntArray
     ) {
         when (requestCode) {
-            FILE_FRONT_SELECT_CODE ->{
+            FILE_FRONT_SELECT_CODE -> {
 
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.size > 0
@@ -220,7 +226,7 @@ class ClientIdUploadFragment(clientId: Long) : BaseFragment(), ClientIdUploadVie
                     )
                 }
             }
-            FILE_BACK_SELECT_CODE ->{
+            FILE_BACK_SELECT_CODE -> {
 
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.size > 0
@@ -304,6 +310,7 @@ class ClientIdUploadFragment(clientId: Long) : BaseFragment(), ClientIdUploadVie
                 if (idFrontFile != null) {
                     imageViewFront?.setImageURI(uri)
                 }
+                frontSelected = true
                 if (backSelected) {
                     buttonUpload!!.isEnabled = true
                 }
@@ -320,6 +327,7 @@ class ClientIdUploadFragment(clientId: Long) : BaseFragment(), ClientIdUploadVie
                 if (idBackFile != null) {
                     imageViewBack?.setImageURI(uri)
                 }
+                backSelected = true
                 if (frontSelected) {
                     buttonUpload!!.isEnabled = true
                 }

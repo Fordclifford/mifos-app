@@ -11,7 +11,6 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
 import org.mifos.mobile.R
-import org.mifos.mobile.models.register.UserVerify
 import org.mifos.mobile.presenters.RegistrationVerificationPresenter
 import org.mifos.mobile.ui.activities.LoginActivity
 import org.mifos.mobile.ui.activities.base.BaseActivity
@@ -23,17 +22,19 @@ import javax.inject.Inject
 /**
  * Created by dilpreet on 31/7/17.
  */
-class NextOfKinRegistrationFragment : BaseFragment(), RegistrationVerificationView {
+class NextOfKinRegistrationFragment(clientId: Long) : BaseFragment(), RegistrationVerificationView {
 
-    @kotlin.jvm.JvmField
+    @JvmField
     @BindView(R.id.et_request_id)
     var etRequestId: EditText? = null
 
-    @kotlin.jvm.JvmField
+    @JvmField
     @BindView(R.id.et_authentication_token)
     var etToken: EditText? = null
+    var clientId: Long? = clientId
 
-    @kotlin.jvm.JvmField
+
+    @JvmField
     @Inject
     var presenter: RegistrationVerificationPresenter? = null
     private var rootView: View? = null
@@ -48,13 +49,14 @@ class NextOfKinRegistrationFragment : BaseFragment(), RegistrationVerificationVi
 
     @OnClick(R.id.next_of_kin_register)
     fun verifyClicked() {
-        (activity as BaseActivity?)?.replaceFragment(NextOfKinIdUploadFragment.newInstance(), true, R.id.container)
+        (activity as BaseActivity?)?.replaceFragment(NextOfKinIdUploadFragment.newInstance(22), true, R.id.container)
 
     }
 
     override fun showVerifiedSuccessfully() {
-        startActivity(Intent(activity, LoginActivity::class.java))
-        Toast.makeText(context, getString(R.string.verified), Toast.LENGTH_SHORT).show()
+        (activity as BaseActivity?)?.replaceFragment(NextOfKinIdUploadFragment.newInstance(clientId!!), true, R.id.container)
+
+        Toast.makeText(context, getString(R.string.id_submitted), Toast.LENGTH_SHORT).show()
         activity?.finish()
     }
 
@@ -76,8 +78,8 @@ class NextOfKinRegistrationFragment : BaseFragment(), RegistrationVerificationVi
     }
 
     companion object {
-        fun newInstance(): NextOfKinRegistrationFragment {
-            return NextOfKinRegistrationFragment()
+        fun newInstance(clientId: Long): NextOfKinRegistrationFragment {
+            return NextOfKinRegistrationFragment(clientId)
         }
     }
 }

@@ -3,11 +3,9 @@ package org.mifos.mobile.api
 import io.reactivex.Observable
 import io.reactivex.ObservableSource
 import io.reactivex.functions.Function
-
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.ResponseBody
-
 import org.mifos.mobile.FakeRemoteDataSource
 import org.mifos.mobile.api.local.DatabaseHelper
 import org.mifos.mobile.api.local.PreferencesHelper
@@ -42,8 +40,6 @@ import org.mifos.mobile.models.templates.account.AccountOptionsTemplate
 import org.mifos.mobile.models.templates.beneficiary.BeneficiaryTemplate
 import org.mifos.mobile.models.templates.loans.LoanTemplate
 import org.mifos.mobile.models.templates.savings.SavingsAccountTemplate
-import java.util.ArrayList
-
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -276,8 +272,15 @@ class DataManager @Inject constructor(
                 })
     }
 
-    fun createImage(clientId: Long,requestFileBody: MultipartBody.Part?): Observable<ResponseBody?>? {
+    fun createImage(clientId: Long, requestFileBody: MultipartBody.Part): Observable<ResponseBody?>? {
         return baseApiManager.clientsApi?.createImage(clientId, requestFileBody)
+    }
+
+    fun createDocument(
+        entityId: Long, name: String?, desc: String?,
+        file: MultipartBody.Part?
+    ): Observable<ResponseBody?>? {
+        return baseApiManager.clientsApi!!.createDocument(entityId, name, desc, file)
     }
 
 }

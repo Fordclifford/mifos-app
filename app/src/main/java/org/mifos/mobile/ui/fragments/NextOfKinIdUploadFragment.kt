@@ -108,13 +108,13 @@ class NextOfKinIdUploadFragment(clientId: Long) : BaseFragment(), ClientIdUpload
     @Throws(RequiredFieldException::class)
     fun validateInput() {
         presenter?.uploadDocument(
-            clientId!!, idFrontFile, idBackFile
+            clientId!!, idFrontFile, idBackFile, "Next of Kin"
         )
     }
 
     override fun showUploadedSuccessfully() {
         startActivity(Intent(activity, LoginActivity::class.java))
-        Toast.makeText(context, getString(R.string.verified), Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, getString(R.string.successful_login), Toast.LENGTH_SHORT).show()
         activity?.finish()
     }
 
@@ -298,6 +298,7 @@ class NextOfKinIdUploadFragment(clientId: Long) : BaseFragment(), ClientIdUpload
                 if (idFrontFile != null) {
                     imageViewFront?.setImageURI(uri)
                 }
+                frontSelected = true
                 if (backSelected) {
                     buttonUpload!!.isEnabled = true
                 }
@@ -314,6 +315,7 @@ class NextOfKinIdUploadFragment(clientId: Long) : BaseFragment(), ClientIdUpload
                 if (idBackFile != null) {
                     imageViewBack?.setImageURI(uri)
                 }
+                backSelected = true
                 if (frontSelected) {
                     buttonUpload!!.isEnabled = true
                 }

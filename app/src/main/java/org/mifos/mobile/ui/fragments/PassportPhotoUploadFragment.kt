@@ -11,6 +11,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.MimeTypeMap
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
@@ -29,6 +30,7 @@ import org.mifos.mobile.ui.activities.base.BaseActivity
 import org.mifos.mobile.ui.fragments.base.BaseFragment
 import org.mifos.mobile.ui.views.PassportUploadView
 import org.mifos.mobile.utils.*
+import org.mifos.mobile.utils.FileUtils.getMimeType
 import java.io.File
 import javax.inject.Inject
 
@@ -44,11 +46,11 @@ class PassportPhotoUploadFragment(clientId: Long) : BaseFragment(), PassportUplo
 
     @JvmField
     @BindView(R.id.photo)
-     var imageView: ImageView? = null
+    var imageView: ImageView? = null
 
     @JvmField
     @BindView(R.id.btn_upload)
-     var buttonUpload: Button? = null
+    var buttonUpload: Button? = null
 
     private var fileChoosen: File? = null
 
@@ -72,7 +74,7 @@ class PassportPhotoUploadFragment(clientId: Long) : BaseFragment(), PassportUplo
         presenter?.attachView(this)
         buttonUpload!!.isEnabled = false
         BaseApiManager.createService(
-            BaseURL.PROTOCOL_HTTPS+ BaseURL.API_ENDPOINT,
+            BaseURL.PROTOCOL_HTTPS + BaseURL.API_ENDPOINT,
             SelfServiceInterceptor.DEFAULT_TENANT,
             SelfServiceInterceptor.DEFAULT_TOKEN
         )
@@ -103,9 +105,12 @@ class PassportPhotoUploadFragment(clientId: Long) : BaseFragment(), PassportUplo
     }
 
     override fun showUploadedSuccessfully() {
-        startActivity(Intent(activity, LoginActivity::class.java))
-        Toast.makeText(context, getString(R.string.verified), Toast.LENGTH_SHORT).show()
-        activity?.finish()
+        (activity as BaseActivity?)?.replaceFragment(
+            ClientIdUploadFragment.newInstance(
+                clientId!!
+            ), true, R.id.container
+        )
+        Toast.makeText(context, getString(R.string.photo_uploaded), Toast.LENGTH_SHORT).show()
     }
 
     override fun showError(msg: String?) {
@@ -206,6 +211,7 @@ class PassportPhotoUploadFragment(clientId: Long) : BaseFragment(), PassportUplo
         val gallery = Intent(Intent.ACTION_PICK, Images.Media.INTERNAL_CONTENT_URI)
         startActivityForResult(Intent.createChooser(gallery, "Open Gallery"), FILE_SELECT_CODE);
     }
+
     /**
      * This Method will be called when any document will be selected from the External Storage.
      *
@@ -216,7 +222,7 @@ class PassportPhotoUploadFragment(clientId: Long) : BaseFragment(), PassportUplo
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         when (requestCode) {
-           FILE_SELECT_CODE -> if (resultCode == Activity.RESULT_OK) {
+            FILE_SELECT_CODE -> if (resultCode == Activity.RESULT_OK) {
                 // Get the Uri of the selected file
                 uri = data!!.data
                 filePath = FileUtils.getPathReal(activity, uri)
@@ -227,7 +233,7 @@ class PassportPhotoUploadFragment(clientId: Long) : BaseFragment(), PassportUplo
                 if (fileChoosen != null) {
                     imageView?.setImageURI(uri)
                 }
-               btn_upload.isEnabled = true
+                btn_upload.isEnabled = true
             }
         }
         super.onActivityResult(requestCode, resultCode, data)

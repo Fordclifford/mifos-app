@@ -9,7 +9,6 @@ import org.mifos.mobile.models.client.Client
 import org.mifos.mobile.models.client.ClientAccounts
 import org.mifos.mobile.models.register.IdentifierPayload
 import retrofit2.http.*
-import java.util.ArrayList
 
 /**
  * @author Vishwajeet
@@ -31,8 +30,8 @@ interface ClientService {
 
     @GET(ApiEndPoints.CLIENTS + "/{clientId}/accounts")
     fun getAccounts(
-            @Path(CLIENT_ID) clientId: Long?,
-            @Query("fields") accountType: String?
+        @Path(CLIENT_ID) clientId: Long?,
+        @Query("fields") accountType: String?
     ): Observable<ClientAccounts?>?
 
     @POST(ApiEndPoints.CLIENTS + "/{clientId}/createidentifier")
@@ -42,10 +41,20 @@ interface ClientService {
     ): Observable<ResponseBody?>?
 
     @Multipart
-    @POST(ApiEndPoints.CLIENTS + "/{clientId}/images")
-     fun createImage(
+    @POST(ApiEndPoints.CLIENTS + "/{clientId}/createimage")
+    fun createImage(
         @Path(CLIENT_ID) clientId: Long?,
-        @Part body: MultipartBody.Part?): Observable<ResponseBody?>?
+        @Part body: MultipartBody.Part
+    ): Observable<ResponseBody?>?
+
+    @POST(ApiEndPoints.CLIENTS +"/{entityId}/createdocument")
+    @Multipart
+    fun createDocument(
+        @Path("entityId") entityId: Long,
+        @Part("name") nameOfDocument: String?,
+        @Part("description") description: String?,
+        @Part typedFile: MultipartBody.Part?
+    ): Observable<ResponseBody?>?
 
     companion object {
         const val CLIENT_ID = "clientId"
