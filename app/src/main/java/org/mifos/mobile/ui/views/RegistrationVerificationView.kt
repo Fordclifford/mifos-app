@@ -1,5 +1,6 @@
 package org.mifos.mobile.ui.views
 
+import org.mifos.mobile.models.templates.client.FamilyMemberOptions
 import org.mifos.mobile.ui.views.base.MVPView
 
 /**
@@ -8,4 +9,5 @@ import org.mifos.mobile.ui.views.base.MVPView
 interface RegistrationVerificationView : MVPView {
     fun showVerifiedSuccessfully()
     fun showError(msg: String?)
+    fun showClientTemplate(clientsTemplate: FamilyMemberOptions?)
 }

@@ -5,6 +5,9 @@ import android.os.Bundle
 
 import org.mifos.mobile.R
 import org.mifos.mobile.ui.activities.base.BaseActivity
+import org.mifos.mobile.ui.fragments.ClientIdUploadFragment
+import org.mifos.mobile.ui.fragments.NextOfKinRegistrationFragment
+import org.mifos.mobile.ui.fragments.PassportPhotoUploadFragment
 import org.mifos.mobile.ui.fragments.RegistrationFragment
 import org.mifos.mobile.utils.MaterialDialog
 

@@ -122,6 +122,9 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
     implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjavaVersion"
 
+    implementation 'io.reactivex:rxandroid:1.1.0'
+    implementation 'io.reactivex:rxjava:1.1.4'
+
     //Dagger dependencies
     kapt "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
     implementation "com.google.dagger:dagger:$rootProject.daggerVersion"
@@ -161,6 +164,7 @@ dependencies {
 
     //TableView
     implementation "com.evrencoskun.library:tableview:$rootProject.tableViewVersion"
+    implementation 'com.chaos.view:pinview:1.4.3'
     implementation 'com.github.f0ris.sweetalert:library:1.5.1'
     // Unit tests dependencies
     testImplementation "junit:junit:$rootProject.jUnitVersion"

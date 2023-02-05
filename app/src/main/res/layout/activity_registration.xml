@@ -12,12 +12,12 @@
         android:layout_marginHorizontal="@dimen/Mifos.DesignSystem.Spacing.screenHorizontalMargin">
 
 
-        <ImageView
-            android:layout_height="@dimen/Mifos.DesignSystem.Size.LogoImageSize"
-            android:layout_marginVertical="@dimen/Mifos.DesignSystem.Size.LogoImageVerticalMargin"
-            android:layout_width="wrap_content"
-            android:layout_gravity="center_horizontal"
-            app:srcCompat="@drawable/mifos_logo" />
+<!--        <ImageView-->
+<!--            android:layout_height="@dimen/Mifos.DesignSystem.Size.LogoImageSize"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_marginTop="30dp"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            app:srcCompat="@drawable/mifos_logo" />-->
 
 
         <FrameLayout

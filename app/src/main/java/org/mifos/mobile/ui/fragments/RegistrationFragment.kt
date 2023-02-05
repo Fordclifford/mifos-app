@@ -9,13 +9,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 
 import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
+import kotlinx.android.synthetic.main.fragment_registration.*
 
 import org.mifos.mobile.R
-import org.mifos.mobile.models.register.RegisterPayload
+import org.mifos.mobile.api.BaseApiManager
+import org.mifos.mobile.api.BaseURL
+import org.mifos.mobile.api.SelfServiceInterceptor
+import org.mifos.mobile.models.register.ClientUserRegisterPayload
+import org.mifos.mobile.models.register.IdentifierPayload
 import org.mifos.mobile.presenters.RegistrationPresenter
 import org.mifos.mobile.ui.activities.base.BaseActivity
 import org.mifos.mobile.ui.fragments.base.BaseFragment
@@ -31,12 +37,13 @@ import javax.inject.Inject
  */
 class RegistrationFragment : BaseFragment(), RegistrationView {
     @JvmField
-    @BindView(R.id.et_account_number)
-    var etAccountNumber: EditText? = null
+    @BindView(R.id.et_id_number)
+    var idNumber: EditText? = null
 
     @JvmField
-    @BindView(R.id.et_username)
-    var etUsername: EditText? = null
+    @BindView(R.id.et_kra_pin)
+    var kraPin: EditText? = null
+
 
     @JvmField
     @BindView(R.id.et_first_name)
@@ -62,9 +69,6 @@ class RegistrationFragment : BaseFragment(), RegistrationView {
     @BindView(R.id.et_confirm_password)
     var etConfirmPassword: EditText? = null
 
-    @JvmField
-    @BindView(R.id.rg_verification_mode)
-    var rgVerificationMode: RadioGroup? = null
 
     @JvmField
     @Inject
@@ -78,6 +82,7 @@ class RegistrationFragment : BaseFragment(), RegistrationView {
     @BindView(R.id.password_strength)
     var strengthView: TextView? = null
     private var rootView: View? = null
+    var clientId:Long?=null
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
@@ -135,14 +140,16 @@ class RegistrationFragment : BaseFragment(), RegistrationView {
     @OnClick(R.id.btn_register)
     fun registerClicked() {
         if (areFieldsValidated()) {
-            val radioButton = rgVerificationMode?.checkedRadioButtonId?.let { rootView?.findViewById<RadioButton>(it) }
-            val payload = RegisterPayload()
-            payload.accountNumber = etAccountNumber?.text.toString()
-            payload.authenticationMode = radioButton?.text.toString()
+            val payload = ClientUserRegisterPayload()
+            val idPayload= IdentifierPayload("1")
+            val kraPayload = IdentifierPayload("15")
+            idPayload.documentKey=idNumber?.text.toString()
+            kraPayload.documentKey = kraPin?.text.toString()
             payload.email = etEmail?.text.toString()
-            payload.firstName = etFirstName?.text.toString()
-            payload.lastName = etLastName?.text.toString()
-            payload.mobileNumber = etPhoneNumber?.text.toString()
+            payload.firstname = etFirstName?.text.toString()
+            payload.lastname = etLastName?.text.toString()
+            payload.mobileNo = etPhoneNumber?.text.toString()
+            payload.username=etPhoneNumber?.text.toString().replace(" ", "")
             if (etPassword?.text.toString() != etConfirmPassword?.text.toString()) {
                 Toaster.show(rootView, getString(R.string.error_password_not_match))
                 return
@@ -150,28 +157,28 @@ class RegistrationFragment : BaseFragment(), RegistrationView {
                 payload.password = etPassword?.text.toString()
             }
             payload.password = etPassword?.text.toString()
-            payload.username = etUsername?.text.toString().replace(" ", "")
+            payload.repeatPassword= etPassword?.text.toString()
             if (Network.isConnected(context)) {
-                presenter?.registerUser(payload)
+                BaseApiManager.createService(
+                    BaseURL.PROTOCOL_HTTPS+ BaseURL.API_ENDPOINT,
+                    SelfServiceInterceptor.DEFAULT_TENANT,
+                    SelfServiceInterceptor.DEFAULT_TOKEN
+                )
+              presenter?.registerUser(kraPayload,idPayload,payload)
             } else {
                 Toaster.show(rootView, getString(R.string.no_internet_connection))
             }
         }
     }
 
+
     private fun areFieldsValidated(): Boolean {
-        if (etAccountNumber?.text.toString().trim { it <= ' ' }.isEmpty()) {
-            Toaster.show(rootView, getString(R.string.error_validation_blank, getString(R.string.account_number)))
+        if (kraPin?.text.toString().trim { it <= ' ' }.isEmpty()) {
+            Toaster.show(rootView, getString(R.string.error_validation_blank, getString(R.string.kra_pin)))
             return false
-        } else if (etUsername?.text.toString().trim { it <= ' ' }.isEmpty()) {
-            Toaster.show(rootView, getString(R.string.error_validation_blank, getString(R.string.username)))
-            return false
-        } else if (etUsername?.text.toString().trim { it <= ' ' }.length < 6) {
-            Toaster.show(rootView, getString(R.string.error_username_greater_than_six))
-            return false
-        } else if (etUsername?.text.toString().trim { it <= ' ' }.contains(" ")) {
-            Toaster.show(rootView, getString(R.string.error_validation_cannot_contain_spaces,
-                    getString(R.string.username), getString(R.string.not_contain_username)))
+        }
+        if (idNumber?.text.toString().trim { it <= ' ' }.isEmpty()) {
+            Toaster.show(rootView, getString(R.string.error_validation_blank, getString(R.string.id_number)))
             return false
         } else if (etFirstName?.text?.isEmpty() == true) {
             Toaster.show(rootView, getString(R.string.error_validation_blank, getString(R.string.first_name)))
@@ -203,8 +210,9 @@ class RegistrationFragment : BaseFragment(), RegistrationView {
         return true
     }
 
-    override fun showRegisteredSuccessfully() {
-        (activity as BaseActivity?)?.replaceFragment(RegistrationVerificationFragment.newInstance(), true, R.id.container)
+    override fun showRegisteredSuccessfully(clientId: Long) {
+        (activity as BaseActivity?)?.replaceFragment(PassportPhotoUploadFragment.newInstance(clientId), true, R.id.container)
+        Toast.makeText(context, getString(R.string.successful), Toast.LENGTH_SHORT).show()
     }
 
     override fun showError(msg: String?) {
@@ -212,7 +220,7 @@ class RegistrationFragment : BaseFragment(), RegistrationView {
     }
 
     override fun showProgress() {
-        showMifosProgressDialog(getString(R.string.sign_up))
+        showMifosProgressDialog(getString(R.string.submitting))
     }
 
     override fun hideProgress() {

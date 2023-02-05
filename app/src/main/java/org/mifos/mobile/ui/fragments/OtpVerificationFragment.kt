@@ -24,7 +24,7 @@ import javax.inject.Inject
 /**
  * Created by dilpreet on 31/7/17.
  */
-class RegistrationVerificationFragment : BaseFragment(), RegistrationVerificationView {
+class OtpVerificationFragment : BaseFragment(), RegistrationVerificationView {
 
     @kotlin.jvm.JvmField
     @BindView(R.id.et_request_id)
@@ -40,14 +40,14 @@ class RegistrationVerificationFragment : BaseFragment(), RegistrationVerificatio
     private var rootView: View? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        rootView = inflater.inflate(R.layout.fragment_registration_verification, container, false)
+        rootView = inflater.inflate(R.layout.fragment_registration_otp_verification, container, false)
         (activity as BaseActivity?)?.activityComponent?.inject(this)
         ButterKnife.bind(this, rootView!!)
         presenter?.attachView(this)
         return rootView
     }
 
-    @OnClick(R.id.btn_verify)
+    @OnClick(R.id.verify_otp)
     fun verifyClicked() {
         val userVerify = UserVerify()
         userVerify.authenticationToken = etToken?.text.toString()
@@ -83,8 +83,8 @@ class RegistrationVerificationFragment : BaseFragment(), RegistrationVerificatio
     }
 
     companion object {
-        fun newInstance(): RegistrationVerificationFragment {
-            return RegistrationVerificationFragment()
+        fun newInstance(): OtpVerificationFragment {
+            return OtpVerificationFragment()
         }
     }
 }
