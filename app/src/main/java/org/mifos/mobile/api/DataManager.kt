@@ -37,6 +37,7 @@ import org.mifos.mobile.models.register.ClientUserRegisterPayload
 import org.mifos.mobile.models.register.IdentifierPayload
 import org.mifos.mobile.models.register.RegisterPayload
 import org.mifos.mobile.models.register.UserVerify
+import org.mifos.mobile.models.stkpush.StkpushRequestPayload
 import org.mifos.mobile.models.templates.account.AccountOptionsTemplate
 import org.mifos.mobile.models.templates.beneficiary.BeneficiaryTemplate
 import org.mifos.mobile.models.templates.client.FamilyMemberOptions
@@ -51,8 +52,8 @@ import javax.inject.Singleton
  */
 @Singleton
 class DataManager @Inject constructor(
-        val preferencesHelper: PreferencesHelper, private val baseApiManager: BaseApiManager,
-        private val databaseHelper: DatabaseHelper
+    val preferencesHelper: PreferencesHelper, private val baseApiManager: BaseApiManager,
+    private val databaseHelper: DatabaseHelper
 ) {
     var clientId: Long? = preferencesHelper.clientId
     fun login(loginPayload: LoginPayload?): Observable<User?>? {
@@ -74,12 +75,12 @@ class DataManager @Inject constructor(
 
     fun getRecentTransactions(offset: Int, limit: Int): Observable<Page<Transaction?>?>? {
         return baseApiManager.recentTransactionsApi
-                ?.getRecentTransactionsList(clientId, offset, limit)
+            ?.getRecentTransactionsList(clientId, offset, limit)
     }
 
     fun getClientCharges(clientId: Long): Observable<Page<Charge?>?>? {
         return baseApiManager.clientChargeApi?.getClientChargeList(clientId)
-                ?.concatMap { chargePage -> databaseHelper.syncCharges(chargePage) }
+            ?.concatMap { chargePage -> databaseHelper.syncCharges(chargePage) }
     }
 
     fun getLoanCharges(loanId: Long): Observable<List<Charge?>?>? {
@@ -91,11 +92,11 @@ class DataManager @Inject constructor(
     }
 
     fun getSavingsWithAssociations(
-            accountId: Long?,
-            associationType: String?
+        accountId: Long?,
+        associationType: String?
     ): Observable<SavingsWithAssociations?>? {
         return baseApiManager
-                .savingAccountsListApi?.getSavingsWithAssociations(accountId, associationType)
+            .savingAccountsListApi?.getSavingsWithAssociations(accountId, associationType)
     }
 
     val accountTransferTemplate: Observable<AccountOptionsTemplate?>?
@@ -107,31 +108,35 @@ class DataManager @Inject constructor(
 
     fun getSavingAccountApplicationTemplate(client: Long?): Observable<SavingsAccountTemplate?>? {
         return baseApiManager.savingAccountsListApi
-                ?.getSavingsAccountApplicationTemplate(client)
+            ?.getSavingsAccountApplicationTemplate(client)
     }
 
     fun submitSavingAccountApplication(
-            payload: SavingsAccountApplicationPayload?
+        payload: SavingsAccountApplicationPayload?
     ): Observable<ResponseBody?>? {
         return baseApiManager.savingAccountsListApi?.submitSavingAccountApplication(payload)
     }
 
     fun updateSavingsAccount(
-            accountId: Long?, payload: SavingsAccountUpdatePayload?
+        accountId: Long?, payload: SavingsAccountUpdatePayload?
     ): Observable<ResponseBody?>? {
         return baseApiManager.savingAccountsListApi
-                ?.updateSavingsAccountUpdate(accountId, payload)
+            ?.updateSavingsAccountUpdate(accountId, payload)
     }
 
     fun submitWithdrawSavingsAccount(
-            accountId: String?, payload: SavingsAccountWithdrawPayload?
+        accountId: String?, payload: SavingsAccountWithdrawPayload?
     ): Observable<ResponseBody?>? {
         return baseApiManager.savingAccountsListApi
-                ?.submitWithdrawSavingsAccount(accountId, payload)
-                ?.onErrorResumeNext(Function<Throwable?, ObservableSource<out ResponseBody>> {
-                    Observable.just(ResponseBody.create(MediaType.parse("text/parse"),
-                            "Saving Account Withdrawn Successfully"))
-                })
+            ?.submitWithdrawSavingsAccount(accountId, payload)
+            ?.onErrorResumeNext(Function<Throwable?, ObservableSource<out ResponseBody>> {
+                Observable.just(
+                    ResponseBody.create(
+                        MediaType.parse("text/parse"),
+                        "Saving Account Withdrawn Successfully"
+                    )
+                )
+            })
     }
 
     fun getLoanAccountDetails(loanId: Long): Observable<LoanAccount?>? {
@@ -139,11 +144,11 @@ class DataManager @Inject constructor(
     }
 
     fun getLoanWithAssociations(
-            associationType: String?,
-            loanId: Long?
+        associationType: String?,
+        loanId: Long?
     ): Observable<LoanWithAssociations?>? {
         return baseApiManager.loanAccountsListApi
-                ?.getLoanWithAssociations(loanId, associationType)
+            ?.getLoanWithAssociations(loanId, associationType)
     }
 
     val loanTemplate: Observable<LoanTemplate?>?
@@ -151,7 +156,7 @@ class DataManager @Inject constructor(
 
     fun getLoanTemplateByProduct(productId: Int?): Observable<LoanTemplate?>? {
         return baseApiManager.loanAccountsListApi
-                ?.getLoanTemplateByProduct(clientId, productId)
+            ?.getLoanTemplateByProduct(clientId, productId)
     }
 
     fun createLoansAccount(loansPayload: LoansPayload?): Observable<ResponseBody?>? {
@@ -162,7 +167,10 @@ class DataManager @Inject constructor(
         return baseApiManager.loanAccountsListApi?.updateLoanAccount(loanId, loansPayload)
     }
 
-    fun withdrawLoanAccount(loanId: Long?, loanWithdraw: LoanWithdraw?): Observable<ResponseBody?>? {
+    fun withdrawLoanAccount(
+        loanId: Long?,
+        loanWithdraw: LoanWithdraw?
+    ): Observable<ResponseBody?>? {
         return baseApiManager.loanAccountsListApi?.withdrawLoanAccount(loanId, loanWithdraw)
     }
 
@@ -176,8 +184,8 @@ class DataManager @Inject constructor(
     }
 
     fun updateBeneficiary(
-            beneficiaryId: Long?,
-            payload: BeneficiaryUpdatePayload?
+        beneficiaryId: Long?,
+        payload: BeneficiaryUpdatePayload?
     ): Observable<ResponseBody?>? {
         return baseApiManager.beneficiaryApi?.updateBeneficiary(beneficiaryId, payload)
     }
@@ -202,8 +210,11 @@ class DataManager @Inject constructor(
         return baseApiManager.registrationApi?.registerClientUser(registerPayload)
     }
 
-    fun createIdentifier(clientIdentifier: Long?, identifierPayload: ArrayList<IdentifierPayload?>): Observable<ResponseBody?>? {
-        return baseApiManager.clientsApi?.createIdentifier(clientIdentifier,identifierPayload)
+    fun createIdentifier(
+        clientIdentifier: Long?,
+        identifierPayload: ArrayList<IdentifierPayload?>
+    ): Observable<ResponseBody?>? {
+        return baseApiManager.clientsApi?.createIdentifier(clientIdentifier, identifierPayload)
     }
 
     fun verifyUser(userVerify: UserVerify?): Observable<ResponseBody?>? {
@@ -221,7 +232,10 @@ class DataManager @Inject constructor(
         return baseApiManager.notificationApi?.registerNotification(payload)
     }
 
-    fun updateRegisterNotification(id: Long, payload: NotificationRegisterPayload?): Observable<ResponseBody?>? {
+    fun updateRegisterNotification(
+        id: Long,
+        payload: NotificationRegisterPayload?
+    ): Observable<ResponseBody?>? {
         return baseApiManager.notificationApi?.updateRegisterNotification(id, payload)
     }
 
@@ -235,46 +249,67 @@ class DataManager @Inject constructor(
 
     fun getGuarantorTemplate(loanId: Long?): Observable<GuarantorTemplatePayload?>? {
         return baseApiManager.guarantorApi?.getGuarantorTemplate(loanId)
-                ?.onErrorResumeNext(Function<Throwable?, ObservableSource<out GuarantorTemplatePayload>> { Observable.just(FakeRemoteDataSource.guarantorTemplatePayload) })
+            ?.onErrorResumeNext(Function<Throwable?, ObservableSource<out GuarantorTemplatePayload>> {
+                Observable.just(
+                    FakeRemoteDataSource.guarantorTemplatePayload
+                )
+            })
     }
 
     fun getGuarantorList(loanId: Long): Observable<List<GuarantorPayload?>?>? {
         return baseApiManager.guarantorApi?.getGuarantorList(loanId)
-                ?.onErrorResumeNext(Function<Throwable?, ObservableSource<out List<GuarantorPayload>>> { Observable.just(FakeRemoteDataSource.guarantorsList) })
+            ?.onErrorResumeNext(Function<Throwable?, ObservableSource<out List<GuarantorPayload>>> {
+                Observable.just(
+                    FakeRemoteDataSource.guarantorsList
+                )
+            })
     }
 
     fun createGuarantor(
-            loanId: Long?,
-            payload: GuarantorApplicationPayload?
+        loanId: Long?,
+        payload: GuarantorApplicationPayload?
     ): Observable<ResponseBody?>? {
         return baseApiManager.guarantorApi?.createGuarantor(loanId, payload)
-                ?.onErrorResumeNext(Function<Throwable?, ObservableSource<out ResponseBody>> {
-                    val responseBody = ResponseBody.create(MediaType
-                            .parse("text/plain"), "Guarantor Added Successfully")
-                    Observable.just(responseBody)
-                })
+            ?.onErrorResumeNext(Function<Throwable?, ObservableSource<out ResponseBody>> {
+                val responseBody = ResponseBody.create(
+                    MediaType
+                        .parse("text/plain"), "Guarantor Added Successfully"
+                )
+                Observable.just(responseBody)
+            })
     }
 
     fun updateGuarantor(
-            payload: GuarantorApplicationPayload?,
-            loanId: Long?, guarantorId: Long?
+        payload: GuarantorApplicationPayload?,
+        loanId: Long?, guarantorId: Long?
     ): Observable<ResponseBody?>? {
         return baseApiManager.guarantorApi?.updateGuarantor(payload, loanId, guarantorId)
-                ?.onErrorResumeNext(Function<Throwable?, ObservableSource<out ResponseBody>> {
-                    Observable.just(ResponseBody.create(MediaType
-                            .parse("plain/text"), "Guarantor Updated Successfully"))
-                })
+            ?.onErrorResumeNext(Function<Throwable?, ObservableSource<out ResponseBody>> {
+                Observable.just(
+                    ResponseBody.create(
+                        MediaType
+                            .parse("plain/text"), "Guarantor Updated Successfully"
+                    )
+                )
+            })
     }
 
     fun deleteGuarantor(loanId: Long?, guarantorId: Long?): Observable<ResponseBody?>? {
         return baseApiManager.guarantorApi?.deleteGuarantor(loanId, guarantorId)
-                ?.onErrorResumeNext(Function<Throwable?, ObservableSource<out ResponseBody>> {
-                    Observable.just(ResponseBody.create(MediaType
-                            .parse("plain/text"), "Guarantor Deleted Successfully"))
-                })
+            ?.onErrorResumeNext(Function<Throwable?, ObservableSource<out ResponseBody>> {
+                Observable.just(
+                    ResponseBody.create(
+                        MediaType
+                            .parse("plain/text"), "Guarantor Deleted Successfully"
+                    )
+                )
+            })
     }
 
-    fun createImage(clientId: Long, requestFileBody: MultipartBody.Part): Observable<ResponseBody?>? {
+    fun createImage(
+        clientId: Long,
+        requestFileBody: MultipartBody.Part
+    ): Observable<ResponseBody?>? {
         return baseApiManager.clientsApi?.createImage(clientId, requestFileBody)
     }
 
@@ -285,13 +320,21 @@ class DataManager @Inject constructor(
         return baseApiManager.clientsApi!!.createDocument(entityId, name, desc, file)
     }
 
-    fun loadFamilyTemplate(clientId: Long):Observable<FamilyMemberOptions?>?{
+    fun loadFamilyTemplate(clientId: Long): Observable<FamilyMemberOptions?>? {
         return baseApiManager.clientsApi?.getClientTemplate(clientId)
     }
 
     fun createNok(payload: NextOfKinPayload, clientId: Long?): Observable<ResponseBody?>? {
-        return  baseApiManager.clientsApi!!.createNok(clientId,payload)
+        return baseApiManager.clientsApi!!.createNok(clientId, payload)
 
+    }
+
+    fun stkPush(payload: StkpushRequestPayload): Observable<StkpushResponse?>? {
+        return baseApiManager.clientsApi!!.stkPush(payload)
+    }
+
+    fun stkPushStatus(payload: StkpushResponse): Observable<StkpushStatusResponse?>? {
+        return baseApiManager.clientsApi!!.stkPushStatus(payload)
     }
 
 

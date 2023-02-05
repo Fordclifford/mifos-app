@@ -76,13 +76,6 @@ class RegistrationVerificationPresenter @Inject constructor(
             })?.let { compositeDisposables.add(it) }
     }
 
-    fun filterOptions(options: List<Options>?): List<String> {
-        val filterValues: MutableList<String> = ArrayList()
-        rx.Observable.from(options)
-            .subscribe { options -> filterValues.add(options.name!!) }
-        return filterValues
-    }
-
     fun createNok(payload: NextOfKinPayload, clientId: Long?) {
         checkViewAttached()
         mvpView?.showProgress()

@@ -5,10 +5,13 @@ import okhttp3.MultipartBody
 import okhttp3.ResponseBody
 import org.mifos.mobile.api.ApiEndPoints
 import org.mifos.mobile.models.Page
+import org.mifos.mobile.models.StkpushResponse
+import org.mifos.mobile.models.StkpushStatusResponse
 import org.mifos.mobile.models.client.Client
 import org.mifos.mobile.models.client.ClientAccounts
 import org.mifos.mobile.models.client.NextOfKinPayload
 import org.mifos.mobile.models.register.IdentifierPayload
+import org.mifos.mobile.models.stkpush.StkpushRequestPayload
 import org.mifos.mobile.models.templates.client.FamilyMemberOptions
 import retrofit2.http.*
 
@@ -66,6 +69,16 @@ interface ClientService {
         @Path(CLIENT_ID) clientId: Long?,
         @Body payload: NextOfKinPayload?
     ): Observable<ResponseBody?>?
+
+    @POST(ApiEndPoints.CLIENTS + "/stkpush")
+    fun stkPush(
+        @Body payload: StkpushRequestPayload?
+    ): Observable<StkpushResponse?>?
+
+    @POST(ApiEndPoints.CLIENTS + "/stkpushsttus")
+    fun stkPushStatus(
+        @Body payload: StkpushResponse?
+    ): Observable<StkpushStatusResponse?>?
 
     companion object {
         const val CLIENT_ID = "clientId"

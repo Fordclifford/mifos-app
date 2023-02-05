@@ -62,4 +62,5 @@ interface ActivityComponent {
     fun inject ( nextOfKinIdUploadFragment: NextOfKinIdUploadFragment)
     fun inject (nextOfKinRegistrationFragment: NextOfKinRegistrationFragment)
     fun inject(otpVerificationFragment: OtpVerificationFragment)
+    fun inject(stkPushFragment: StkPushFragment)
 }

@@ -629,6 +629,9 @@
     <string name="choose_file_front">Choose Front Side</string>
     <string name="next_of_kin_upload_title">Upload Next of Kin ID Front and Back Side</string>
     <string name="choose_file_back">Choose Back Side</string>
+    <string name="accounttobepaidfor">for acccount</string>
+    <string name="enterphoneno1">Enter Phone Number</string>
+    <string name="not_successful">Request not Completed</string>
 
     <string-array name="languages" translatable="false">
         <item>English</item>
