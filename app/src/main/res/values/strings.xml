@@ -632,6 +632,8 @@
     <string name="accounttobepaidfor">for acccount</string>
     <string name="enterphoneno1">Enter Phone Number</string>
     <string name="not_successful">Request not Completed</string>
+    <string name="accounttobepaid1">for account</string>
+    <string name="string_proceedtopay">Pay</string>
 
     <string-array name="languages" translatable="false">
         <item>English</item>

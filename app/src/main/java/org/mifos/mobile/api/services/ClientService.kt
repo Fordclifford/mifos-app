@@ -75,7 +75,7 @@ interface ClientService {
         @Body payload: StkpushRequestPayload?
     ): Observable<StkpushResponse?>?
 
-    @POST(ApiEndPoints.CLIENTS + "/stkpushsttus")
+    @POST(ApiEndPoints.CLIENTS + "/stkpushstatus")
     fun stkPushStatus(
         @Body payload: StkpushResponse?
     ): Observable<StkpushStatusResponse?>?

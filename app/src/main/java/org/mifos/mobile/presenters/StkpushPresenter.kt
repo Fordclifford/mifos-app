@@ -13,6 +13,7 @@ import org.mifos.mobile.models.stkpush.StkpushRequestPayload
 import org.mifos.mobile.presenters.base.BasePresenter
 import org.mifos.mobile.ui.fragments.StkPushFragment
 import org.mifos.mobile.ui.views.StkpushView
+import org.mifos.mobile.utils.MFErrorParser
 import javax.inject.Inject
 
 
@@ -36,15 +37,20 @@ class StkpushPresenter @Inject constructor(
 
 
     fun stkPush(payload: StkpushRequestPayload) {
+        checkViewAttached()
+        mvpView?.showProgress()
         dataManager?.stkPush(payload)
             ?.observeOn(AndroidSchedulers.mainThread())
             ?.subscribeOn(Schedulers.io())
             ?.subscribeWith(object : DisposableObserver<StkpushResponse?>() {
                 override fun onComplete() {}
                 override fun onError(e: Throwable) {
+                    mvpView?.hideProgress()
+                    mvpView?.showError(MFErrorParser.errorMessage(e))
                 }
 
                 override fun onNext(responseBody: StkpushResponse) {
+                    Thread.sleep(30000)
                   stkPushStatus(responseBody)
                 }
             })?.let { compositeDisposables.add(it) }
@@ -57,6 +63,8 @@ class StkpushPresenter @Inject constructor(
             ?.subscribeWith(object : DisposableObserver<StkpushStatusResponse?>() {
                 override fun onComplete() {}
                 override fun onError(e: Throwable) {
+                    mvpView?.hideProgress()
+                    mvpView?.showError(MFErrorParser.errorMessage(e))
                 }
 
                 override fun onNext(responseBody: StkpushStatusResponse) {

@@ -3,6 +3,7 @@ package org.mifos.mobile.ui.fragments
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -112,11 +113,13 @@ class StkPushFragment : BaseFragment(), StkpushView {
             ).show()
         } else {
             val payload = StkpushRequestPayload()
-            val phoneNo = if (phoneTxt.toString().length >= 9) phoneTxt.toString()
-                .substring(phoneTxt.toString().length - 9) else ""
+            Log.d("Phone", phoneTxt!!.text.toString())
+            val obj2: String = phoneTxt!!.text.toString()
+            val phoneNo = if (obj2.length >= 9) obj2.substring(obj2.length - 9) else ""
+            Log.d("Phone Input",phoneNo)
             payload.amount = amountTxt!!.text.toString()
             payload.accountReference = accountId
-            payload.phone = phoneNo.toLong()
+            payload.phone = "254$phoneNo".toLong()
             presenter!!.stkPush(payload)
         }
     }
