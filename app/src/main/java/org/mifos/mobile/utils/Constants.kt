@@ -5,6 +5,7 @@ package org.mifos.mobile.utils
  * @since 21/06/16.
  */
 object Constants {
+    const val LOANBAL="loanbal"
     const val CLIENT_NAME = "clientName"
     const val CLIENT_ID = "clientId"
     const val ACCOUNT_ID = "accountId"

@@ -153,10 +153,17 @@ class SavingAccountsDetailFragment : BaseFragment(), SavingAccountsDetailView {
      */
     @OnClick(R.id.tv_deposit)
     fun deposit() {
+        setToolbarTitle("Paying with mpesa")
         if (status?.active == true) {
-            (activity as BaseActivity?)?.replaceFragment(SavingsMakeTransferFragment.newInstance(savingsId, Constants.TRANSFER_PAY_TO), true, R.id.container)
-        } else {
+            (activity as BaseActivity?)?.replaceFragment(
+                StkPushFragment.newInstance("S#" + savingsId.toString(), 0.0),
+                true,
+                R.id.container
+            )
+            return
+        }else{
             Toaster.show(rootView, getString(R.string.account_not_active_to_perform_deposit))
+
         }
     }
 

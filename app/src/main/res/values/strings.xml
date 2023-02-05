@@ -587,6 +587,10 @@
     <string name="no_app_to_support_action">There is no application that support this action</string>
     <string name="theme">Theme</string>
     <string name="change_app_theme">Change the application theme</string>
+    <string name="accounttobepaid1">Account Number</string>
+    <string name="proceedwithpay">Proceed to Pay</string>
+    <string name="accounttobepaidfor">Account Number</string>
+    <string name="enterphoneno1">Enter Phone Number</string>
 
     <string-array name="languages" translatable="false">
         <item>English</item>
