@@ -1,8 +1,6 @@
 package org.enkasacco.mobile.ui.fragments
 
 import android.annotation.SuppressLint
-import android.app.AlertDialog
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -120,11 +118,11 @@ class StkPushFragment : BaseFragment(), StkpushView {
             Log.d("Phone", phoneTxt!!.text.toString())
             val obj2: String = phoneTxt!!.text.toString()
             val phoneNo = if (obj2.length >= 9) obj2.substring(obj2.length - 9) else ""
-            Log.d("Phone Input",phoneNo)
+            Log.d("Phone Input", phoneNo)
             payload.amount = amountTxt!!.text.toString()
             payload.accountReference = accountId
             payload.phone = "254$phoneNo".toLong()
-           val statusResponse= presenter!!.stkPush(payload)
+            val statusResponse = presenter!!.stkPush(payload)
 
 
         }
@@ -160,23 +158,12 @@ class StkPushFragment : BaseFragment(), StkpushView {
     }
 
     override fun showSuccessfulStatus(responseBody: StkpushResponse) {
-        if(nonNull(responseBody.ResponseCode) && responseBody.ResponseCode!! == "0"){
-            val builder: AlertDialog.Builder = AlertDialog.Builder(context)
-            builder.setMessage(R.string.prompt_sent)
-                .setCancelable(false)
-                .setPositiveButton("OK", DialogInterface.OnClickListener { dialog, id ->
-                    startActivity(Intent(activity, HomeActivity::class.java))
-                })
-            val alert: AlertDialog = builder.create()
-            alert.show()
+        (activity as BaseActivity?)?.replaceFragment(
+            SuccessFragment.newInstance(responseBody),
+            true,
+            R.id.container
+        )
 
-        }else{
-            Toast.makeText(
-                context,
-                getString(R.string.not_successful),
-                Toast.LENGTH_SHORT
-            ).show()
-        }
     }
 //        val payload= StkpushStatusRequest()
 //        payload.checkoutRequestId=responseBody.CheckoutRequestID
@@ -188,14 +175,14 @@ class StkPushFragment : BaseFragment(), StkpushView {
 
 
     override fun showFinalStatus(responseBody: StkpushStatusResponse) {
-        if(nonNull(responseBody.ResultCode) && responseBody.ResultCode!! == "0"){
+        if (nonNull(responseBody.ResultCode) && responseBody.ResultCode!! == "0") {
             startActivity(Intent(activity, HomeActivity::class.java))
             Toast.makeText(
                 context,
                 getString(R.string.successful),
                 Toast.LENGTH_SHORT
             ).show()
-        }else{
+        } else {
             Toast.makeText(
                 context,
                 getString(R.string.not_successful),

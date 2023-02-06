@@ -73,7 +73,8 @@
     <dimen name="row_header_width">55dp</dimen>
     <dimen name="text_size">14sp</dimen>
     <dimen name="table_header_line">1dp</dimen>
-
+    <dimen name="ui_horizontal_safety_area">24dp</dimen>
+    <dimen name="ui_padding_vertical">14dp</dimen>
     <dimen name="value_100dp">100dp</dimen>
     <dimen name="app_bar_elevation">4dp</dimen>
 
@@ -87,4 +88,7 @@
     <style name="ThemeOverlay.Toolbar.Popup.Primary" parent="">
         <item name="colorControlNormal">?attr/colorOnSurface</item>
     </style>
+    <dimen name="ui_corners_continue_btn">30dp</dimen>
+    <dimen name="ui_corners_dialog_bg">12dp</dimen>
+
 </resources>

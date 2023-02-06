@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt" android:shape="rectangle">
+    <corners android:radius="@dimen/ui_corners_continue_btn"/>
+    <solid android:color="@color/primary"/>
+    <stroke android:width="1dp" android:color="@color/ui_bottom_continue_bg_enabled_border"/>
+</shape>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt" android:gravity="center_horizontal" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent">
+    <ImageView android:layout_width="80dp" android:layout_height="80dp" android:layout_marginTop="128dp" android:src="@drawable/logo"/>
+    <org.enkasacco.mobile.widget.FirstFontMediumTextView android:textSize="24sp" android:textColor="@color/ui_text_first" android:id="@+id/tv_status" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="32dp" android:minHeight="36dp" android:text="@string/confirmation"/>
+    <org.enkasacco.mobile.widget.FirstFontRegularTextView android:textSize="16sp" android:textColor="@color/ui_text_second" android:gravity="center" android:id="@+id/tv_success_des" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:minHeight="48dp" android:text="@string/setup_change_pin_success_des"/>
+    <org.enkasacco.mobile.widget.FirstFontMediumButton  android:gravity="center" android:enabled="true" android:id="@+id/btn_ok" android:layout_marginTop="68dp" android:text="@string/basic_ok" style="@style/UIBottomContinueView"/>
+</LinearLayout>
