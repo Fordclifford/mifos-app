@@ -1,4 +1,4 @@
-package org.mifos.mobile
+package org.enkasacco.mobile
 
 import android.content.Context
 import io.reactivex.Observable
@@ -10,13 +10,13 @@ import org.junit.Rule
 import org.junit.Test
 
 import org.junit.runner.RunWith
-import org.mifos.mobile.api.DataManager
-import org.mifos.mobile.models.beneficiary.BeneficiaryPayload
-import org.mifos.mobile.models.beneficiary.BeneficiaryUpdatePayload
-import org.mifos.mobile.models.templates.beneficiary.BeneficiaryTemplate
-import org.mifos.mobile.presenters.BeneficiaryApplicationPresenter
-import org.mifos.mobile.ui.views.BeneficiaryApplicationView
-import org.mifos.mobile.util.RxSchedulersOverrideRule
+import org.enkasacco.mobile.api.DataManager
+import org.enkasacco.mobile.models.beneficiary.BeneficiaryPayload
+import org.enkasacco.mobile.models.beneficiary.BeneficiaryUpdatePayload
+import org.enkasacco.mobile.models.templates.beneficiary.BeneficiaryTemplate
+import org.enkasacco.mobile.presenters.BeneficiaryApplicationPresenter
+import org.enkasacco.mobile.ui.views.BeneficiaryApplicationView
+import org.enkasacco.mobile.util.RxSchedulersOverrideRule
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.junit.MockitoJUnitRunner

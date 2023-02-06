@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:622027757397:android:29f731fdcd3a65a6",
         "android_client_info": {
-          "package_name": "org.mifos.mobile"
+          "package_name": "org.enkasacco.mobile"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "622027757397-ju1gahmo27fjfc39v5drlnn3838rleiq.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "org.mifos.mobile",
+            "package_name": "org.enkasacco.mobile",
             "certificate_hash": "2f8ce9c728acf6b9c50750b328742d5391c0b303"
           }
         },

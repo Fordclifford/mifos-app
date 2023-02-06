@@ -35,7 +35,7 @@
                     android:layout_width="wrap_content"
                     android:orientation="vertical">
 
-                    <org.mifos.mobile.utils.ProcessView
+                    <org.enkasacco.mobile.utils.ProcessView
                         android:id="@+id/process_one"
                         android:layout_height="@dimen/Mifos.DesignSystem.Size.ListItemsIconSize"
                         android:layout_width="@dimen/Mifos.DesignSystem.Size.ListItemsIconSize"
@@ -92,7 +92,7 @@
                     android:layout_width="wrap_content"
                     android:orientation="vertical">
 
-                    <org.mifos.mobile.utils.ProcessView
+                    <org.enkasacco.mobile.utils.ProcessView
                         android:id="@+id/process_two"
                         android:layout_height="@dimen/Mifos.DesignSystem.Size.ListItemsIconSize"
                         android:layout_width="@dimen/Mifos.DesignSystem.Size.ListItemsIconSize"
@@ -157,7 +157,7 @@
                     android:layout_width="wrap_content"
                     android:orientation="vertical">
 
-                    <org.mifos.mobile.utils.ProcessView
+                    <org.enkasacco.mobile.utils.ProcessView
                         android:id="@+id/process_three"
                         android:layout_height="@dimen/Mifos.DesignSystem.Size.ListItemsIconSize"
                         android:layout_width="@dimen/Mifos.DesignSystem.Size.ListItemsIconSize"
@@ -217,7 +217,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <org.mifos.mobile.utils.ProcessView
+                <org.enkasacco.mobile.utils.ProcessView
                     android:id="@+id/process_four"
                     android:layout_height="@dimen/Mifos.DesignSystem.Size.ListItemsIconSize"
                     android:layout_width="@dimen/Mifos.DesignSystem.Size.ListItemsIconSize"

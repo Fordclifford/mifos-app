@@ -1,4 +1,4 @@
-package org.mifos.mobile
+package org.enkasacco.mobile
 
 import androidx.test.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4
@@ -16,6 +16,6 @@ class ApplicationTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getTargetContext()
-        Assert.assertEquals("org.mifos.mobile", appContext.packageName)
+        Assert.assertEquals("org.enkasacco.mobile", appContext.packageName)
     }
 }

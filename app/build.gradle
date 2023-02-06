@@ -12,18 +12,15 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     
     defaultConfig {
-        applicationId "org.mifos.mobile"
+        applicationId 'org.enkasacco.mobile'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "1.0.1"
         // A test runner provided by https://code.google.com/p/android-test-kit/
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
-
-        ndk {
-            abiFilters "armeabi-v7a", "x86", "x86_64"
-        }
+        ndk.abiFilters 'armeabi-v7a','arm64-v8a','x86','x86_64'
 
         multiDexEnabled true
     }

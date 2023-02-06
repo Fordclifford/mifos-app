@@ -35,7 +35,7 @@
             android:title="@string/theme"/>
 
 
-        <org.mifos.mobile.utils.ConfigurationPreference
+        <org.enkasacco.mobile.utils.ConfigurationPreference
             android:key="@string/pref_configuration"
             android:icon="@drawable/ic_update"
             android:summary="@string/pref_base_url_desc"

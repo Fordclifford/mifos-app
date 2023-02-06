@@ -1,4 +1,4 @@
-package org.mifos.mobile
+package org.enkasacco.mobile
 
 /**
  * Created by dilpreet on 26/6/17.

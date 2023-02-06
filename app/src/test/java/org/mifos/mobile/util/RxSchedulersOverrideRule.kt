@@ -1,4 +1,4 @@
-package org.mifos.mobile.util
+package org.enkasacco.mobile.util
 
 import io.reactivex.Scheduler
 import io.reactivex.android.plugins.RxAndroidPlugins
