@@ -19,7 +19,7 @@ class ForgotActivity : BaseActivity() {
     override fun onBackPressed() {
         MaterialDialog.Builder().init(this)
                 .setTitle(getString(R.string.dialog_cancel_registration_title))
-                .setMessage(getString(R.string.dialog_cancel_registration_message))
+                .setMessage(getString(R.string.dialog_cancel_reset))
                 .setPositiveButton(getString(R.string.cancel),
                         DialogInterface.OnClickListener { _, _ -> super.onBackPressed() })
                 .setNegativeButton(R.string.continue_str,
