@@ -30,6 +30,8 @@ import org.mifos.mobile.models.guarantor.GuarantorTemplatePayload
 import org.mifos.mobile.models.notification.MifosNotification
 import org.mifos.mobile.models.notification.NotificationRegisterPayload
 import org.mifos.mobile.models.notification.NotificationUserDetail
+import org.mifos.mobile.models.passwordreset.NewpasswordPayload
+import org.mifos.mobile.models.passwordreset.ResetPayload
 import org.mifos.mobile.models.payload.LoansPayload
 import org.mifos.mobile.models.payload.LoginPayload
 import org.mifos.mobile.models.payload.TransferPayload
@@ -38,6 +40,9 @@ import org.mifos.mobile.models.register.IdentifierPayload
 import org.mifos.mobile.models.register.RegisterPayload
 import org.mifos.mobile.models.register.UserVerify
 import org.mifos.mobile.models.stkpush.StkpushRequestPayload
+import org.mifos.mobile.models.stkpush.StkpushResponse
+import org.mifos.mobile.models.stkpush.StkpushStatusRequest
+import org.mifos.mobile.models.stkpush.StkpushStatusResponse
 import org.mifos.mobile.models.templates.account.AccountOptionsTemplate
 import org.mifos.mobile.models.templates.beneficiary.BeneficiaryTemplate
 import org.mifos.mobile.models.templates.client.FamilyMemberOptions
@@ -333,8 +338,16 @@ class DataManager @Inject constructor(
         return baseApiManager.clientsApi!!.stkPush(payload)
     }
 
-    fun stkPushStatus(payload: StkpushResponse): Observable<StkpushStatusResponse?>? {
+    fun stkPushStatus(payload: StkpushStatusRequest): Observable<StkpushStatusResponse?>? {
         return baseApiManager.clientsApi!!.stkPushStatus(payload)
+    }
+
+    fun requestToken(payload: ResetPayload): Observable<ResponseBody?>? {
+        return baseApiManager.userDetailsService!!.requestToken(payload)
+    }
+
+    fun resetPass(payload: NewpasswordPayload): Observable<ResponseBody?>? {
+        return this.baseApiManager.userDetailsService!!.newPassword(payload)
     }
 
 

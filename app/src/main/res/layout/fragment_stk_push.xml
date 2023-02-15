@@ -16,7 +16,7 @@
             <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
                 <ImageView android:layout_gravity="center" android:layout_width="100dp" android:layout_height="100dp" android:layout_marginTop="5dp" android:src="@drawable/mpesa_logo"/>
                 <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="10dp" android:layout_marginTop="20dp" android:layout_marginRight="10dp" >
-                    <EditText android:textColorHint="@color/black" android:id="@+id/phoneno" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Phone Number" android:inputType="phone"/>
+                    <EditText android:textColorHint="@color/black" android:id="@+id/phoneno" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="@string/enterphoneno1" android:inputType="phone"/>
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="10dp" android:layout_marginTop="20dp" android:layout_marginRight="10dp">
                     <EditText android:textColorHint="@color/black" android:id="@+id/amount" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="30dp" android:hint="Amount" android:inputType="number"/>

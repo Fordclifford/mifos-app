@@ -1,4 +1,4 @@
-package org.mifos.mobile.models
+package org.mifos.mobile.models.stkpush
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

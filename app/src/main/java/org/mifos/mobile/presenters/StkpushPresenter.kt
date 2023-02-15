@@ -7,9 +7,10 @@ import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
 import org.mifos.mobile.api.DataManager
 import org.mifos.mobile.injection.ApplicationContext
-import org.mifos.mobile.models.StkpushResponse
-import org.mifos.mobile.models.StkpushStatusResponse
+import org.mifos.mobile.models.stkpush.StkpushResponse
+import org.mifos.mobile.models.stkpush.StkpushStatusResponse
 import org.mifos.mobile.models.stkpush.StkpushRequestPayload
+import org.mifos.mobile.models.stkpush.StkpushStatusRequest
 import org.mifos.mobile.presenters.base.BasePresenter
 import org.mifos.mobile.ui.fragments.StkPushFragment
 import org.mifos.mobile.ui.views.StkpushView
@@ -48,15 +49,14 @@ class StkpushPresenter @Inject constructor(
                     mvpView?.hideProgress()
                     mvpView?.showError(MFErrorParser.errorMessage(e))
                 }
-
                 override fun onNext(responseBody: StkpushResponse) {
-                    Thread.sleep(30000)
-                  stkPushStatus(responseBody)
+                    mvpView?.hideProgress()
+                    mvpView?.showSuccessfulStatus(responseBody)
                 }
             })?.let { compositeDisposables.add(it) }
     }
 
-    fun stkPushStatus(payload: StkpushResponse) {
+    fun stkPushStatus(payload: StkpushStatusRequest) {
         dataManager?.stkPushStatus(payload)
             ?.observeOn(AndroidSchedulers.mainThread())
             ?.subscribeOn(Schedulers.io())
@@ -69,7 +69,7 @@ class StkpushPresenter @Inject constructor(
 
                 override fun onNext(responseBody: StkpushStatusResponse) {
                     mvpView?.hideProgress()
-                    mvpView?.showSuccessfulStatus(responseBody)
+                    mvpView?.showFinalStatus(responseBody)
                 }
             })?.let { compositeDisposables.add(it) }
     }

@@ -1,7 +1,7 @@
 package org.mifos.mobile.ui.views
 
-import org.mifos.mobile.models.StkpushResponse
-import org.mifos.mobile.models.StkpushStatusResponse
+import org.mifos.mobile.models.stkpush.StkpushResponse
+import org.mifos.mobile.models.stkpush.StkpushStatusResponse
 import org.mifos.mobile.ui.views.base.MVPView
 
 /**
@@ -9,5 +9,6 @@ import org.mifos.mobile.ui.views.base.MVPView
  */
 interface StkpushView : MVPView {
     fun showError(msg: String?)
-    fun showSuccessfulStatus(responseBody: StkpushStatusResponse)
+    fun showSuccessfulStatus(responseBody: StkpushResponse)
+    fun showFinalStatus(responseBody: StkpushStatusResponse)
 }

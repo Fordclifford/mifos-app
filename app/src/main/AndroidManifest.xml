@@ -66,6 +66,10 @@
                   android:windowSoftInputMode="adjustResize"/>
 
         <activity android:configChanges="orientation|screenSize"
+            android:name="org.mifos.mobile.ui.activities.ForgotActivity"
+            android:windowSoftInputMode="adjustResize"/>
+
+        <activity android:configChanges="orientation|screenSize"
                   android:name="org.mifos.mobile.ui.activities.UserProfileActivity"
                   android:windowSoftInputMode="adjustResize"/>
 

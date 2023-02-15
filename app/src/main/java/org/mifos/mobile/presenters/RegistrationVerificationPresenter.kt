@@ -10,6 +10,8 @@ import okhttp3.ResponseBody
 import org.mifos.mobile.api.DataManager
 import org.mifos.mobile.injection.ApplicationContext
 import org.mifos.mobile.models.client.NextOfKinPayload
+import org.mifos.mobile.models.passwordreset.NewpasswordPayload
+import org.mifos.mobile.models.passwordreset.ResetPayload
 import org.mifos.mobile.models.register.UserVerify
 import org.mifos.mobile.models.templates.client.FamilyMemberOptions
 import org.mifos.mobile.models.templates.client.Options
@@ -80,6 +82,46 @@ class RegistrationVerificationPresenter @Inject constructor(
         checkViewAttached()
         mvpView?.showProgress()
         dataManager?.createNok(payload,clientId)
+            ?.observeOn(AndroidSchedulers.mainThread())
+            ?.subscribeOn(Schedulers.io())
+            ?.subscribeWith(object : DisposableObserver<ResponseBody?>() {
+                override fun onComplete() {}
+                override fun onError(e: Throwable) {
+                    mvpView?.hideProgress()
+                    mvpView?.showError(errorMessage(e))
+                }
+
+                override fun onNext(responseBody: ResponseBody) {
+                    mvpView?.hideProgress()
+                    mvpView?.showVerifiedSuccessfully()
+                }
+            })?.let { compositeDisposables.add(it) }
+    }
+
+    fun requestToken(payload: ResetPayload) {
+        checkViewAttached()
+        mvpView?.showProgress()
+        dataManager?.requestToken(payload)
+            ?.observeOn(AndroidSchedulers.mainThread())
+            ?.subscribeOn(Schedulers.io())
+            ?.subscribeWith(object : DisposableObserver<ResponseBody?>() {
+                override fun onComplete() {}
+                override fun onError(e: Throwable) {
+                    mvpView?.hideProgress()
+                    mvpView?.showError(errorMessage(e))
+                }
+
+                override fun onNext(responseBody: ResponseBody) {
+                    mvpView?.hideProgress()
+                    mvpView?.showVerifiedSuccessfully()
+                }
+            })?.let { compositeDisposables.add(it) }
+    }
+
+    fun resetPassword(payload: NewpasswordPayload) {
+        checkViewAttached()
+        mvpView?.showProgress()
+        dataManager?.resetPass(payload)
             ?.observeOn(AndroidSchedulers.mainThread())
             ?.subscribeOn(Schedulers.io())
             ?.subscribeWith(object : DisposableObserver<ResponseBody?>() {

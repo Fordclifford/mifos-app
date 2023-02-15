@@ -1,6 +1,8 @@
 package org.mifos.mobile.ui.fragments
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -15,8 +17,9 @@ import butterknife.ButterKnife
 import butterknife.OnClick
 import okhttp3.*
 import org.mifos.mobile.R
-import org.mifos.mobile.models.StkpushStatusResponse
 import org.mifos.mobile.models.stkpush.StkpushRequestPayload
+import org.mifos.mobile.models.stkpush.StkpushResponse
+import org.mifos.mobile.models.stkpush.StkpushStatusResponse
 import org.mifos.mobile.presenters.StkpushPresenter
 import org.mifos.mobile.ui.activities.HomeActivity
 import org.mifos.mobile.ui.activities.base.BaseActivity
@@ -24,6 +27,7 @@ import org.mifos.mobile.ui.fragments.base.BaseFragment
 import org.mifos.mobile.ui.views.StkpushView
 import org.mifos.mobile.utils.Constants
 import org.mifos.mobile.utils.Toaster
+import java.util.Objects.nonNull
 import javax.inject.Inject
 
 
@@ -76,7 +80,7 @@ class StkPushFragment : BaseFragment(), StkpushView {
             ) + " " + accountId
             sharedPreferences.getString("phonenoIndividual", null as String?)
             val string2 =
-                sharedPreferences.getString("phonenoIndividual", getString(R.string.enterphoneno1))
+                sharedPreferences.getString("phonenoIndividual", "")
             phoneTxt!!.setText(string2)
             amountTxt!!.setText("" + loanBal!!.toInt())
 
@@ -120,7 +124,9 @@ class StkPushFragment : BaseFragment(), StkpushView {
             payload.amount = amountTxt!!.text.toString()
             payload.accountReference = accountId
             payload.phone = "254$phoneNo".toLong()
-            presenter!!.stkPush(payload)
+           val statusResponse= presenter!!.stkPush(payload)
+
+
         }
     }
 
@@ -153,8 +159,36 @@ class StkPushFragment : BaseFragment(), StkpushView {
         presenter?.detachView()
     }
 
-    override fun showSuccessfulStatus(responseBody: StkpushStatusResponse) {
-        if(responseBody.ResultCode!! == "0"){
+    override fun showSuccessfulStatus(responseBody: StkpushResponse) {
+        if(nonNull(responseBody.ResponseCode) && responseBody.ResponseCode!! == "0"){
+            val builder: AlertDialog.Builder = AlertDialog.Builder(context)
+            builder.setMessage(R.string.prompt_sent)
+                .setCancelable(false)
+                .setPositiveButton("OK", DialogInterface.OnClickListener { dialog, id ->
+                    startActivity(Intent(activity, HomeActivity::class.java))
+                })
+            val alert: AlertDialog = builder.create()
+            alert.show()
+
+        }else{
+            Toast.makeText(
+                context,
+                getString(R.string.not_successful),
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
+//        val payload= StkpushStatusRequest()
+//        payload.checkoutRequestId=responseBody.CheckoutRequestID
+//        payload.merchantRequestId=responseBody.MerchantRequestID
+//        payload.customerMessage=responseBody.CustomerMessage
+//        payload.responseDescription=payload.responseDescription
+//        SystemClock.sleep(20000)
+//        presenter!!.stkPushStatus(payload)
+
+
+    override fun showFinalStatus(responseBody: StkpushStatusResponse) {
+        if(nonNull(responseBody.ResultCode) && responseBody.ResultCode!! == "0"){
             startActivity(Intent(activity, HomeActivity::class.java))
             Toast.makeText(
                 context,
@@ -171,4 +205,4 @@ class StkPushFragment : BaseFragment(), StkpushView {
     }
 
 
-    }
+}

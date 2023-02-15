@@ -21,6 +21,9 @@ import org.mifos.mobile.api.SelfServiceInterceptor
 import org.mifos.mobile.models.payload.LoginPayload
 import org.mifos.mobile.presenters.LoginPresenter
 import org.mifos.mobile.ui.activities.base.BaseActivity
+import org.mifos.mobile.ui.fragments.ForgotPasswordFragment
+import org.mifos.mobile.ui.fragments.RegistrationFragment
+import org.mifos.mobile.ui.fragments.ResetPasswordFragment
 import org.mifos.mobile.ui.views.LoginView
 import org.mifos.mobile.utils.Constants
 import org.mifos.mobile.utils.Network
@@ -143,6 +146,11 @@ class LoginActivity : BaseActivity(), LoginView {
     @OnClick(R.id.btn_register)
     fun onRegisterClicked() {
         startActivity(Intent(this@LoginActivity, RegistrationActivity::class.java))
+    }
+
+    @OnClick(R.id.btn_forgot)
+    fun onForgotClicked() {
+        startActivity(Intent(this, ForgotActivity::class.java))
     }
 
     override fun onDestroy() {

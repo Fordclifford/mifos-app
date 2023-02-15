@@ -63,4 +63,6 @@ interface ActivityComponent {
     fun inject (nextOfKinRegistrationFragment: NextOfKinRegistrationFragment)
     fun inject(otpVerificationFragment: OtpVerificationFragment)
     fun inject(stkPushFragment: StkPushFragment)
+    fun inject(sResetPasswordFragment: ResetPasswordFragment)
+    fun inject(forgot: ForgotPasswordFragment)
 }

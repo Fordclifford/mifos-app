@@ -5,13 +5,14 @@ import okhttp3.MultipartBody
 import okhttp3.ResponseBody
 import org.mifos.mobile.api.ApiEndPoints
 import org.mifos.mobile.models.Page
-import org.mifos.mobile.models.StkpushResponse
-import org.mifos.mobile.models.StkpushStatusResponse
+import org.mifos.mobile.models.stkpush.StkpushResponse
+import org.mifos.mobile.models.stkpush.StkpushStatusResponse
 import org.mifos.mobile.models.client.Client
 import org.mifos.mobile.models.client.ClientAccounts
 import org.mifos.mobile.models.client.NextOfKinPayload
 import org.mifos.mobile.models.register.IdentifierPayload
 import org.mifos.mobile.models.stkpush.StkpushRequestPayload
+import org.mifos.mobile.models.stkpush.StkpushStatusRequest
 import org.mifos.mobile.models.templates.client.FamilyMemberOptions
 import retrofit2.http.*
 
@@ -77,7 +78,7 @@ interface ClientService {
 
     @POST(ApiEndPoints.CLIENTS + "/stkpushstatus")
     fun stkPushStatus(
-        @Body payload: StkpushResponse?
+        @Body payload: StkpushStatusRequest
     ): Observable<StkpushStatusResponse?>?
 
     companion object {
