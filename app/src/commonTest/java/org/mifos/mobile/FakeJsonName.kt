@@ -1,4 +1,4 @@
-package org.enkasacco.mobile
+package org.lspl.mobile
 
 /**
  * Created by dilpreet on 26/6/17.

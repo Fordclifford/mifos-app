@@ -1,4 +1,4 @@
-package org.enkasacco.mobile
+package org.lspl.mobile
 
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken

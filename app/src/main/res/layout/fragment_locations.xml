@@ -13,13 +13,13 @@
     <TextView
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:text="@string/mifos_initiative"
+        android:text="@string/lspl"
         style="@style/Mifos.DesignSystem.TextStyle.PrimaryColorBodyLarger"/>
 
     <TextView
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:text="@string/mifos_location"
+        android:text="@string/lspl_location"
         style="@style/Mifos.DesignSystem.TextStyle.Body"/>
 
     <com.google.android.gms.maps.MapView

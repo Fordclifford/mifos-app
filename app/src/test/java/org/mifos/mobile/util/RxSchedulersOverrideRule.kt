@@ -1,4 +1,4 @@
-package org.enkasacco.mobile.util
+package org.lspl.mobile.util
 
 import io.reactivex.Scheduler
 import io.reactivex.android.plugins.RxAndroidPlugins

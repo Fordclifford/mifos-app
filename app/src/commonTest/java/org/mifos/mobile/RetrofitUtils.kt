@@ -1,4 +1,4 @@
-package org.enkasacco.mobile
+package org.lspl.mobile
 
 import okhttp3.MediaType
 import okhttp3.ResponseBody
