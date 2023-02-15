@@ -1,4 +1,4 @@
-package org.mifos.mobile
+package org.enkasacco.mobile
 
 import android.content.Context
 
@@ -12,11 +12,11 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
-import org.mifos.mobile.api.DataManager
-import org.mifos.mobile.models.register.UserVerify
-import org.mifos.mobile.presenters.RegistrationVerificationPresenter
-import org.mifos.mobile.ui.views.RegistrationVerificationView
-import org.mifos.mobile.util.RxSchedulersOverrideRule
+import org.enkasacco.mobile.api.DataManager
+import org.enkasacco.mobile.models.register.UserVerify
+import org.enkasacco.mobile.presenters.RegistrationVerificationPresenter
+import org.enkasacco.mobile.ui.views.RegistrationVerificationView
+import org.enkasacco.mobile.util.RxSchedulersOverrideRule
 
 import org.mockito.Mock
 import org.mockito.Mockito

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Legacy Summit Properties Ltd</string>
+    <string name="app_name">Enka Sacco</string>
     <string name="login">Login</string>
     <string name="toast_welcome">Welcome %1$s</string>
     <string name="unable_to_connect">Not connected to internet</string>
@@ -640,6 +640,16 @@
     <string name="reset_token">Reset Token</string>
     <string name="password_reset_success">Password Reset Successful</string>
     <string name="forgot_password">Forgot Password?</string>
+    <string name="ui_successful">Successful</string>
+    <string name="setup_change_mobile_number_success">Success</string>
+    <string name="basic_ok">Ok</string>
+    <string name="setup_change_pin_success_des">Success</string>
+    <string name="confirmation">Confirmation</string>
+    <string name="success_prompt">A prompt has been sent to your phone. Kindly confirm your pin then click Ok</string>
+    <string name="error_prompt">For some reason we could not complete your request. kindly try gain.</string>
+    <string name="username_mobile">Username | Mobile Number</string>
+    <string name="diaog_cancel_reset">Do you want to cancel?</string>
+    <string name="dialog_cancel_reset">Do you want to cancel?</string>
 
     <string-array name="languages" translatable="false">
         <item>English</item>

@@ -62,6 +62,19 @@
     <color name="header_line_color">@color/blue_light</color>
     <color name="background_default_darker">#EEEEEE</color>
     <color name="transparent">#00000000</color>
+    <color name="ui_bottom_continue_text_enabled">@android:color/white</color>
+    <color name="ui_bottom_continue_text_unabled">#ffffff</color>
+    <color name="ui_bottom_continue_bg_enabled_border">#14003840</color>
+    <color name="ui_bottom_continue_bg_enabled_end">#48b1bf</color>
+    <color name="ui_bottom_continue_bg_enabled_start">#06beb6</color>
+    <color name="ui_bottom_continue_bg_unabled">#c1c1c1</color>
+    <color name="ui_bottom_continue_bg_unabled_border">#14003840</color>
+    <color name="ui_text_first">#e6002140</color>
+    <color name="ui_text_fourth">#444444</color>
+    <color name="ui_text_second">#99002140</color>
+    <color name="ui_text_third">#803c605e</color>
+    <color name="setup_color042C51_66">#a8042c52</color>
+    <color name="ui_primary">#ff5f00</color>
 
     <!--Swipe Refresh Colors-->
     <array name="swipeRefreshColors">

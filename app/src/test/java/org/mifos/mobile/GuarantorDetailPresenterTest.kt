@@ -1,4 +1,4 @@
-package org.mifos.mobile
+package org.enkasacco.mobile
 
 import android.content.Context
 
@@ -12,10 +12,10 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
-import org.mifos.mobile.api.DataManager
-import org.mifos.mobile.presenters.GuarantorDetailPresenter
-import org.mifos.mobile.ui.views.GuarantorDetailView
-import org.mifos.mobile.util.RxSchedulersOverrideRule
+import org.enkasacco.mobile.api.DataManager
+import org.enkasacco.mobile.presenters.GuarantorDetailPresenter
+import org.enkasacco.mobile.ui.views.GuarantorDetailView
+import org.enkasacco.mobile.util.RxSchedulersOverrideRule
 
 import org.mockito.Mock
 import org.mockito.Mockito

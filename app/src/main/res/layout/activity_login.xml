@@ -28,7 +28,7 @@
             app:startIconDrawable="@drawable/ic_person_black_24dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:hint="@string/username"
+                android:hint="@string/username_mobile"
                 android:id="@+id/et_username"
                 android:inputType="textEmailAddress"
                 android:layout_height="wrap_content"

@@ -1,27 +1,27 @@
-package org.mifos.mobile
+package org.enkasacco.mobile
 
 import com.google.gson.reflect.TypeToken
 
-import org.mifos.mobile.models.*
-import org.mifos.mobile.models.accounts.loan.LoanAccount
-import org.mifos.mobile.models.accounts.loan.LoanWithAssociations
-import org.mifos.mobile.models.accounts.savings.SavingsWithAssociations
-import org.mifos.mobile.models.beneficiary.Beneficiary
-import org.mifos.mobile.models.beneficiary.BeneficiaryPayload
-import org.mifos.mobile.models.beneficiary.BeneficiaryUpdatePayload
-import org.mifos.mobile.models.client.Client
-import org.mifos.mobile.models.client.ClientAccounts
-import org.mifos.mobile.models.guarantor.GuarantorPayload
-import org.mifos.mobile.models.guarantor.GuarantorTemplatePayload
-import org.mifos.mobile.models.payload.LoansPayload
-import org.mifos.mobile.models.payload.LoginPayload
-import org.mifos.mobile.models.payload.TransferPayload
-import org.mifos.mobile.models.register.RegisterPayload
-import org.mifos.mobile.models.register.UserVerify
-import org.mifos.mobile.models.templates.account.AccountOptionsTemplate
-import org.mifos.mobile.models.templates.beneficiary.BeneficiaryTemplate
-import org.mifos.mobile.models.templates.loans.LoanTemplate
-import org.mifos.mobile.models.templates.savings.SavingsAccountTemplate
+import org.enkasacco.mobile.models.*
+import org.enkasacco.mobile.models.accounts.loan.LoanAccount
+import org.enkasacco.mobile.models.accounts.loan.LoanWithAssociations
+import org.enkasacco.mobile.models.accounts.savings.SavingsWithAssociations
+import org.enkasacco.mobile.models.beneficiary.Beneficiary
+import org.enkasacco.mobile.models.beneficiary.BeneficiaryPayload
+import org.enkasacco.mobile.models.beneficiary.BeneficiaryUpdatePayload
+import org.enkasacco.mobile.models.client.Client
+import org.enkasacco.mobile.models.client.ClientAccounts
+import org.enkasacco.mobile.models.guarantor.GuarantorPayload
+import org.enkasacco.mobile.models.guarantor.GuarantorTemplatePayload
+import org.enkasacco.mobile.models.payload.LoansPayload
+import org.enkasacco.mobile.models.payload.LoginPayload
+import org.enkasacco.mobile.models.payload.TransferPayload
+import org.enkasacco.mobile.models.register.RegisterPayload
+import org.enkasacco.mobile.models.register.UserVerify
+import org.enkasacco.mobile.models.templates.account.AccountOptionsTemplate
+import org.enkasacco.mobile.models.templates.beneficiary.BeneficiaryTemplate
+import org.enkasacco.mobile.models.templates.loans.LoanTemplate
+import org.enkasacco.mobile.models.templates.savings.SavingsAccountTemplate
 
 /**
  * Created by dilpreet on 26/6/17.

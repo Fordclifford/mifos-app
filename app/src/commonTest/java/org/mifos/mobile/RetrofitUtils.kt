@@ -1,4 +1,4 @@
-package org.mifos.mobile
+package org.enkasacco.mobile
 
 import okhttp3.MediaType
 import okhttp3.ResponseBody

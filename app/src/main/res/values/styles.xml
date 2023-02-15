@@ -31,4 +31,20 @@
         <item name="colorAccent">@color/primary</item>
     </style>
 
+    <style name="UIBottomContinueView">
+        <item name="android:enabled">false</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/ui_bottom_continue_color</item>
+        <item name="android:gravity">left|center_horizontal|clip_horizontal</item>
+        <item name="android:background">@drawable/ui_selector_bottom_continue_bg</item>
+        <item name="android:paddingTop">@dimen/ui_padding_vertical</item>
+        <item name="android:paddingBottom">@dimen/ui_padding_vertical</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/ui_horizontal_safety_area</item>
+        <item name="android:layout_marginRight">@dimen/ui_horizontal_safety_area</item>
+        <item name="android:minHeight">25dp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
 </resources>
