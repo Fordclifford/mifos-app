@@ -16,6 +16,6 @@ class ApplicationTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getTargetContext()
-        Assert.assertEquals("org.enkasacco.mobile", appContext.packageName)
+        Assert.assertEquals("org.lspl.mobile", appContext.packageName)
     }
 }

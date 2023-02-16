@@ -1,4 +1,4 @@
-package org.lspl.mobile
+package org.mifos.mobile
 
 import okhttp3.MediaType
 import okhttp3.ResponseBody

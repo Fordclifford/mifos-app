@@ -15,6 +15,7 @@ import org.lspl.mobile.presenters.SavingAccountsDetailPresenter
 import org.lspl.mobile.ui.views.SavingAccountsDetailView
 import org.lspl.mobile.util.RxSchedulersOverrideRule
 import org.lspl.mobile.utils.Constants
+import org.mifos.mobile.FakeRemoteDataSource
 
 import org.mockito.Mock
 import org.mockito.Mockito

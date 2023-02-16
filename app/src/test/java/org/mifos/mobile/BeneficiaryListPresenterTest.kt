@@ -14,6 +14,7 @@ import org.lspl.mobile.models.beneficiary.Beneficiary
 import org.lspl.mobile.presenters.BeneficiaryListPresenter
 import org.lspl.mobile.ui.views.BeneficiariesView
 import org.lspl.mobile.util.RxSchedulersOverrideRule
+import org.mifos.mobile.FakeRemoteDataSource
 
 import org.mockito.Mock
 import org.mockito.Mockito

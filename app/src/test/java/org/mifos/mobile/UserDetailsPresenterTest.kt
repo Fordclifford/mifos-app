@@ -19,6 +19,7 @@ import org.lspl.mobile.models.notification.NotificationRegisterPayload
 import org.lspl.mobile.presenters.UserDetailsPresenter
 import org.lspl.mobile.ui.views.UserDetailsView
 import org.lspl.mobile.util.RxSchedulersOverrideRule
+import org.mifos.mobile.FakeRemoteDataSource
 
 import org.mockito.ArgumentMatchers
 import org.mockito.Mock

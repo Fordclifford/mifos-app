@@ -16,6 +16,7 @@ import org.lspl.mobile.presenters.LoanRepaymentSchedulePresenter
 import org.lspl.mobile.ui.views.LoanRepaymentScheduleMvpView
 import org.lspl.mobile.util.RxSchedulersOverrideRule
 import org.lspl.mobile.utils.Constants
+import org.mifos.mobile.FakeRemoteDataSource
 
 import org.mockito.Mock
 import org.mockito.Mockito

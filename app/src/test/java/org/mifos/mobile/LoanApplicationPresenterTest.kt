@@ -19,6 +19,7 @@ import org.lspl.mobile.presenters.LoanApplicationPresenter
 import org.lspl.mobile.ui.enums.LoanState
 import org.lspl.mobile.ui.views.LoanApplicationMvpView
 import org.lspl.mobile.util.RxSchedulersOverrideRule
+import org.mifos.mobile.FakeRemoteDataSource
 
 import org.mockito.Mock
 import org.mockito.Mockito

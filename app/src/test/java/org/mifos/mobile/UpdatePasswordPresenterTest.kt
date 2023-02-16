@@ -21,6 +21,7 @@ import org.lspl.mobile.presenters.UpdatePasswordPresenter
 import org.lspl.mobile.ui.views.UpdatePasswordView
 import org.lspl.mobile.util.RxSchedulersOverrideRule
 import org.lspl.mobile.utils.MFErrorParser.errorMessage
+import org.mifos.mobile.FakeRemoteDataSource
 
 import org.mockito.Mock
 import org.mockito.Mockito

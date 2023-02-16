@@ -15,6 +15,7 @@ import org.lspl.mobile.models.templates.account.AccountOptionsTemplate
 import org.lspl.mobile.presenters.SavingsMakeTransferPresenter
 import org.lspl.mobile.ui.views.SavingsMakeTransferMvpView
 import org.lspl.mobile.util.RxSchedulersOverrideRule
+import org.mifos.mobile.FakeRemoteDataSource
 
 import org.mockito.Mock
 import org.mockito.Mockito

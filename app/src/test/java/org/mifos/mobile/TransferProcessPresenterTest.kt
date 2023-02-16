@@ -17,6 +17,7 @@ import org.lspl.mobile.models.payload.TransferPayload
 import org.lspl.mobile.presenters.TransferProcessPresenter
 import org.lspl.mobile.ui.views.TransferProcessView
 import org.lspl.mobile.util.RxSchedulersOverrideRule
+import org.mifos.mobile.FakeRemoteDataSource
 
 import org.mockito.Mock
 import org.mockito.Mockito
