@@ -85,11 +85,6 @@ class ClientIdUploadFragment(clientId: Long) : BaseFragment(), ClientIdUploadVie
         ButterKnife.bind(this, rootView!!)
         presenter?.attachView(this)
         buttonUpload!!.isEnabled = false
-        BaseApiManager.createService(
-            BaseURL.PROTOCOL_HTTPS + BaseURL.API_ENDPOINT,
-            SelfServiceInterceptor.DEFAULT_TENANT,
-            SelfServiceInterceptor.DEFAULT_TOKEN
-        )
         return rootView
     }
 

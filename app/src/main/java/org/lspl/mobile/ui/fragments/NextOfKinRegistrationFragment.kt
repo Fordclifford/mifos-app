@@ -127,11 +127,6 @@ class NextOfKinRegistrationFragment(clientId: Long) : BaseFragment(),
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        BaseApiManager.createService(
-            BaseURL.PROTOCOL_HTTPS + BaseURL.API_ENDPOINT,
-            SelfServiceInterceptor.DEFAULT_TENANT,
-            SelfServiceInterceptor.DEFAULT_TOKEN
-        )
         rootView = inflater.inflate(R.layout.fragment_next_of_kin_registration, container, false)
         (activity as BaseActivity?)?.activityComponent?.inject(this)
         ButterKnife.bind(this, rootView!!)

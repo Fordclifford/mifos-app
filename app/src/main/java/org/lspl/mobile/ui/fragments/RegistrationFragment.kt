@@ -158,11 +158,6 @@ class RegistrationFragment : BaseFragment(), RegistrationView {
             payload.password = etPassword?.text.toString()
             payload.repeatPassword= etPassword?.text.toString()
             if (Network.isConnected(context)) {
-                BaseApiManager.createService(
-                    BaseURL.PROTOCOL_HTTPS+ BaseURL.API_ENDPOINT,
-                    SelfServiceInterceptor.DEFAULT_TENANT,
-                    SelfServiceInterceptor.DEFAULT_TOKEN
-                )
               presenter?.registerUser(kraPayload,idPayload,payload)
             } else {
                 Toaster.show(rootView, getString(R.string.no_internet_connection))
