@@ -16,6 +16,7 @@ import org.lspl.mobile.models.Page
 import org.lspl.mobile.presenters.ClientChargePresenter
 import org.lspl.mobile.ui.views.ClientChargeView
 import org.lspl.mobile.util.RxSchedulersOverrideRule
+import org.mifos.mobile.FakeRemoteDataSource
 
 import org.mockito.Mock
 import org.mockito.Mockito

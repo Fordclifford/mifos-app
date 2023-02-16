@@ -15,6 +15,7 @@ import org.lspl.mobile.models.guarantor.GuarantorPayload
 import org.lspl.mobile.presenters.GuarantorListPresenter
 import org.lspl.mobile.ui.views.GuarantorListView
 import org.lspl.mobile.util.RxSchedulersOverrideRule
+import org.mifos.mobile.FakeRemoteDataSource
 
 import org.mockito.Mock
 import org.mockito.Mockito

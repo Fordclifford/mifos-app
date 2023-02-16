@@ -6,7 +6,7 @@ import io.reactivex.functions.Function
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.ResponseBody
-import org.lspl.mobile.FakeRemoteDataSource
+import org.mifos.mobile.FakeRemoteDataSource
 import org.lspl.mobile.api.local.DatabaseHelper
 import org.lspl.mobile.api.local.PreferencesHelper
 import org.lspl.mobile.models.*

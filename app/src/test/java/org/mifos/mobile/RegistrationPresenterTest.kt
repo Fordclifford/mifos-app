@@ -17,6 +17,7 @@ import org.lspl.mobile.models.register.RegisterPayload
 import org.lspl.mobile.presenters.RegistrationPresenter
 import org.lspl.mobile.ui.views.RegistrationView
 import org.lspl.mobile.util.RxSchedulersOverrideRule
+import org.mifos.mobile.FakeRemoteDataSource
 
 import org.mockito.Mock
 import org.mockito.Mockito

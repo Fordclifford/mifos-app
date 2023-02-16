@@ -1,4 +1,4 @@
-package org.lspl.mobile
+package org.mifos.mobile
 
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken

@@ -7,9 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import butterknife.BindView
 import butterknife.ButterKnife
-import com.google.android.gms.maps.*
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.MapView
+import com.google.android.gms.maps.MapsInitializer
+import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import org.lspl.mobile.R
 import org.lspl.mobile.ui.fragments.base.BaseFragment
 
 /*
@@ -19,7 +24,7 @@ import org.lspl.mobile.ui.fragments.base.BaseFragment
  * Created by dilpreet on 25/2/17.
  */
 class LocationsFragment : BaseFragment(), OnMapReadyCallback {
-    @kotlin.jvm.JvmField
+    @JvmField
     @BindView(R.id.map)
     var mapView: MapView? = null
     private var rootView: View? = null

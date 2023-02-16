@@ -1,4 +1,4 @@
-package org.lspl.mobile
+package org.mifos.mobile
 
 /**
  * Created by dilpreet on 26/6/17.
