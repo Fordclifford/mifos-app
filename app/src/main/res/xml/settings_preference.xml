@@ -34,11 +34,5 @@
             android:summary="@string/change_app_theme"
             android:title="@string/theme"/>
 
-
-        <org.lspl.mobile.utils.ConfigurationPreference
-            android:key="@string/pref_configuration"
-            android:icon="@drawable/ic_update"
-            android:summary="@string/pref_base_url_desc"
-            android:title="@string/pref_base_url_title"/>
     </PreferenceCategory>
 </androidx.preference.PreferenceScreen>
