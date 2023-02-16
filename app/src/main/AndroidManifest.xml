@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
-          package="org.enkasacco.mobile">
+          package="org.lspl.mobile">
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.CAMERA"/>
@@ -13,7 +13,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:name="org.enkasacco.mobile.MifosSelfServiceApp"
+        android:name="org.lspl.mobile.MifosSelfServiceApp"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon"
@@ -29,11 +29,11 @@
 
         <activity
             android:configChanges="orientation|screenSize"
-            android:name="org.enkasacco.mobile.ui.activities.LoginActivity"
+            android:name="org.lspl.mobile.ui.activities.LoginActivity"
             android:windowSoftInputMode="adjustResize"/>
 
         <activity
-            android:name="org.enkasacco.mobile.ui.activities.SplashActivity"
+            android:name="org.lspl.mobile.ui.activities.SplashActivity"
             android:theme="@style/SplashTheme"
             android:exported="true">
             <intent-filter>
@@ -46,46 +46,46 @@
         <activity
             android:configChanges="screenLayout|screenSize"
             android:label="@string/home"
-            android:name="org.enkasacco.mobile.ui.activities.HomeActivity"
+            android:name="org.lspl.mobile.ui.activities.HomeActivity"
             android:windowSoftInputMode="adjustResize"/>
         <activity
             android:configChanges="orientation|screenSize"
             android:label="@string/saving_account_details"
-            android:name="org.enkasacco.mobile.ui.activities.SavingsAccountContainerActivity"
+            android:name="org.lspl.mobile.ui.activities.SavingsAccountContainerActivity"
             android:windowSoftInputMode="adjustResize"/>
 
         <activity android:configChanges="orientation|screenSize"
                   android:launchMode="singleTask"
-                  android:name="org.enkasacco.mobile.ui.activities.PassCodeActivity"
+                  android:name="org.lspl.mobile.ui.activities.PassCodeActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize"/>
 
         <activity android:configChanges="orientation|screenSize"
-                  android:name="org.enkasacco.mobile.ui.activities.LoanAccountContainerActivity"
+                  android:name="org.lspl.mobile.ui.activities.LoanAccountContainerActivity"
                   android:windowSoftInputMode="adjustResize"/>
 
         <activity android:configChanges="orientation|screenSize"
-            android:name="org.enkasacco.mobile.ui.activities.ForgotActivity"
+            android:name="org.lspl.mobile.ui.activities.ForgotActivity"
             android:windowSoftInputMode="adjustResize"/>
 
         <activity android:configChanges="orientation|screenSize"
-                  android:name="org.enkasacco.mobile.ui.activities.UserProfileActivity"
+                  android:name="org.lspl.mobile.ui.activities.UserProfileActivity"
                   android:windowSoftInputMode="adjustResize"/>
 
         <activity android:configChanges="orientation|screenSize"
-            android:name=".ui.activities.mpesa.MpesaActivity"
+            android:name="org.lspl.mobile.ui.activities.mpesa.MpesaActivity"
             android:windowSoftInputMode="adjustResize"/>
 
         <activity android:configChanges="orientation|screenSize"
-                  android:name="org.enkasacco.mobile.ui.activities.RegistrationActivity"
+                  android:name="org.lspl.mobile.ui.activities.RegistrationActivity"
                   android:windowSoftInputMode="adjustResize"/>
 
         <activity android:configChanges="orientation|screenSize"
-                  android:name="org.enkasacco.mobile.ui.activities.LoanApplicationActivity"
+                  android:name="org.lspl.mobile.ui.activities.LoanApplicationActivity"
                   android:windowSoftInputMode="adjustResize"/>
 
         <activity android:configChanges="orientation|screenSize"
-                  android:name="org.enkasacco.mobile.ui.activities.AccountOverviewActivity"
+                  android:name="org.lspl.mobile.ui.activities.AccountOverviewActivity"
                   android:windowSoftInputMode="adjustResize"/>
 
         <activity android:configChanges="orientation|screenSize"
@@ -97,29 +97,29 @@
                   android:windowSoftInputMode="adjustResize"/>
 
         <activity android:configChanges="orientation|screenSize"
-                  android:name="org.enkasacco.mobile.ui.activities.NotificationActivity"
+                  android:name="org.lspl.mobile.ui.activities.NotificationActivity"
                   android:windowSoftInputMode="adjustResize"/>
 
         <activity android:configChanges="orientation|screenSize"
-                  android:name="org.enkasacco.mobile.ui.activities.AddBeneficiaryActivity"
+                  android:name="org.lspl.mobile.ui.activities.AddBeneficiaryActivity"
                   android:windowSoftInputMode="adjustResize"/>
 
-        <activity android:name="org.enkasacco.mobile.ui.activities.EditUserDetailActivity"
+        <activity android:name="org.lspl.mobile.ui.activities.EditUserDetailActivity"
                   android:windowSoftInputMode="adjustResize"/>
 
-        <activity android:name="org.enkasacco.mobile.ui.activities.SavingsAccountApplicationActivity"
+        <activity android:name="org.lspl.mobile.ui.activities.SavingsAccountApplicationActivity"
                   android:windowSoftInputMode="adjustResize"/>
 
-        <activity android:name="org.enkasacco.mobile.ui.activities.AboutUsActivity"
+        <activity android:name="org.lspl.mobile.ui.activities.AboutUsActivity"
                   android:windowSoftInputMode="adjustResize"/>
 
-        <activity android:name="org.enkasacco.mobile.ui.activities.HelpActivity"
+        <activity android:name="org.lspl.mobile.ui.activities.HelpActivity"
                   android:windowSoftInputMode="adjustResize"/>
 
-        <activity android:name="org.enkasacco.mobile.ui.activities.PrivacyPolicyActivity"
+        <activity android:name="org.lspl.mobile.ui.activities.PrivacyPolicyActivity"
                   android:windowSoftInputMode="adjustResize"/>
 
-        <receiver android:name="org.enkasacco.mobile.ui.widgets.ChargeAppWidget"
+        <receiver android:name="org.lspl.mobile.ui.widgets.ChargeAppWidget"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
@@ -130,11 +130,11 @@
                 android:resource="@xml/charge_app_widget_info"/>
         </receiver>
 
-        <service android:name="org.enkasacco.mobile.ui.widgets.ChargeWidgetService"
+        <service android:name="org.lspl.mobile.ui.widgets.ChargeWidgetService"
                  android:permission="android.permission.BIND_REMOTEVIEWS"/>
 
         <provider
-            android:authorities="org.enkasacco.mobile.fileprovider"
+            android:authorities="org.lspl.mobile.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true"
             android:name="androidx.core.content.FileProvider">
@@ -145,7 +145,7 @@
 
         <service
             android:exported="false"
-            android:name=".utils.fcm.MifosFirebaseMessagingService">
+            android:name="org.lspl.mobile.utils.fcm.MifosFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>
@@ -153,10 +153,10 @@
 
         <service
             android:exported="false"
-            android:name="org.enkasacco.mobile.utils.fcm.RegistrationIntentService">
+            android:name="org.lspl.mobile.utils.fcm.RegistrationIntentService">
         </service>
 
-        <activity android:name="org.enkasacco.mobile.ui.activities.SettingsActivity"/>
+        <activity android:name="org.lspl.mobile.ui.activities.SettingsActivity"/>
     </application>
 
 </manifest>

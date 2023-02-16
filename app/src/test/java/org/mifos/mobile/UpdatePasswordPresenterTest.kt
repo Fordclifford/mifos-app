@@ -1,4 +1,4 @@
-package org.enkasacco.mobile
+package org.lspl.mobile
 
 import android.content.Context
 
@@ -13,14 +13,14 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
-import org.enkasacco.mobile.api.BaseURL
-import org.enkasacco.mobile.api.DataManager
-import org.enkasacco.mobile.api.local.PreferencesHelper
-import org.enkasacco.mobile.models.UpdatePasswordPayload
-import org.enkasacco.mobile.presenters.UpdatePasswordPresenter
-import org.enkasacco.mobile.ui.views.UpdatePasswordView
-import org.enkasacco.mobile.util.RxSchedulersOverrideRule
-import org.enkasacco.mobile.utils.MFErrorParser.errorMessage
+import org.lspl.mobile.api.BaseURL
+import org.lspl.mobile.api.DataManager
+import org.lspl.mobile.api.local.PreferencesHelper
+import org.lspl.mobile.models.UpdatePasswordPayload
+import org.lspl.mobile.presenters.UpdatePasswordPresenter
+import org.lspl.mobile.ui.views.UpdatePasswordView
+import org.lspl.mobile.util.RxSchedulersOverrideRule
+import org.lspl.mobile.utils.MFErrorParser.errorMessage
 
 import org.mockito.Mock
 import org.mockito.Mockito

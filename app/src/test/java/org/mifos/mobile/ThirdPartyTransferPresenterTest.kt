@@ -1,4 +1,4 @@
-package org.enkasacco.mobile
+package org.lspl.mobile
 
 import android.content.Context
 
@@ -10,12 +10,12 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
-import org.enkasacco.mobile.api.DataManager
-import org.enkasacco.mobile.models.beneficiary.Beneficiary
-import org.enkasacco.mobile.models.templates.account.AccountOptionsTemplate
-import org.enkasacco.mobile.presenters.ThirdPartyTransferPresenter
-import org.enkasacco.mobile.ui.views.ThirdPartyTransferView
-import org.enkasacco.mobile.util.RxSchedulersOverrideRule
+import org.lspl.mobile.api.DataManager
+import org.lspl.mobile.models.beneficiary.Beneficiary
+import org.lspl.mobile.models.templates.account.AccountOptionsTemplate
+import org.lspl.mobile.presenters.ThirdPartyTransferPresenter
+import org.lspl.mobile.ui.views.ThirdPartyTransferView
+import org.lspl.mobile.util.RxSchedulersOverrideRule
 
 import org.mockito.Mock
 import org.mockito.Mockito

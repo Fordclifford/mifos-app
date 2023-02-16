@@ -1,4 +1,4 @@
-package org.enkasacco.mobile
+package org.lspl.mobile
 
 import android.content.Context
 
@@ -12,11 +12,11 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
-import org.enkasacco.mobile.api.DataManager
-import org.enkasacco.mobile.models.register.UserVerify
-import org.enkasacco.mobile.presenters.RegistrationVerificationPresenter
-import org.enkasacco.mobile.ui.views.RegistrationVerificationView
-import org.enkasacco.mobile.util.RxSchedulersOverrideRule
+import org.lspl.mobile.api.DataManager
+import org.lspl.mobile.models.register.UserVerify
+import org.lspl.mobile.presenters.RegistrationVerificationPresenter
+import org.lspl.mobile.ui.views.RegistrationVerificationView
+import org.lspl.mobile.util.RxSchedulersOverrideRule
 
 import org.mockito.Mock
 import org.mockito.Mockito

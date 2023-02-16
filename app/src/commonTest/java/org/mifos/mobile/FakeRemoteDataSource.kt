@@ -1,27 +1,27 @@
-package org.enkasacco.mobile
+package org.lspl.mobile
 
 import com.google.gson.reflect.TypeToken
 
-import org.enkasacco.mobile.models.*
-import org.enkasacco.mobile.models.accounts.loan.LoanAccount
-import org.enkasacco.mobile.models.accounts.loan.LoanWithAssociations
-import org.enkasacco.mobile.models.accounts.savings.SavingsWithAssociations
-import org.enkasacco.mobile.models.beneficiary.Beneficiary
-import org.enkasacco.mobile.models.beneficiary.BeneficiaryPayload
-import org.enkasacco.mobile.models.beneficiary.BeneficiaryUpdatePayload
-import org.enkasacco.mobile.models.client.Client
-import org.enkasacco.mobile.models.client.ClientAccounts
-import org.enkasacco.mobile.models.guarantor.GuarantorPayload
-import org.enkasacco.mobile.models.guarantor.GuarantorTemplatePayload
-import org.enkasacco.mobile.models.payload.LoansPayload
-import org.enkasacco.mobile.models.payload.LoginPayload
-import org.enkasacco.mobile.models.payload.TransferPayload
-import org.enkasacco.mobile.models.register.RegisterPayload
-import org.enkasacco.mobile.models.register.UserVerify
-import org.enkasacco.mobile.models.templates.account.AccountOptionsTemplate
-import org.enkasacco.mobile.models.templates.beneficiary.BeneficiaryTemplate
-import org.enkasacco.mobile.models.templates.loans.LoanTemplate
-import org.enkasacco.mobile.models.templates.savings.SavingsAccountTemplate
+import org.lspl.mobile.models.*
+import org.lspl.mobile.models.accounts.loan.LoanAccount
+import org.lspl.mobile.models.accounts.loan.LoanWithAssociations
+import org.lspl.mobile.models.accounts.savings.SavingsWithAssociations
+import org.lspl.mobile.models.beneficiary.Beneficiary
+import org.lspl.mobile.models.beneficiary.BeneficiaryPayload
+import org.lspl.mobile.models.beneficiary.BeneficiaryUpdatePayload
+import org.lspl.mobile.models.client.Client
+import org.lspl.mobile.models.client.ClientAccounts
+import org.lspl.mobile.models.guarantor.GuarantorPayload
+import org.lspl.mobile.models.guarantor.GuarantorTemplatePayload
+import org.lspl.mobile.models.payload.LoansPayload
+import org.lspl.mobile.models.payload.LoginPayload
+import org.lspl.mobile.models.payload.TransferPayload
+import org.lspl.mobile.models.register.RegisterPayload
+import org.lspl.mobile.models.register.UserVerify
+import org.lspl.mobile.models.templates.account.AccountOptionsTemplate
+import org.lspl.mobile.models.templates.beneficiary.BeneficiaryTemplate
+import org.lspl.mobile.models.templates.loans.LoanTemplate
+import org.lspl.mobile.models.templates.savings.SavingsAccountTemplate
 
 /**
  * Created by dilpreet on 26/6/17.

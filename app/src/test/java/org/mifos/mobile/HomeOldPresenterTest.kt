@@ -1,4 +1,4 @@
-package org.enkasacco.mobile
+package org.lspl.mobile
 
 import android.content.Context
 
@@ -10,15 +10,15 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
-import org.enkasacco.mobile.api.DataManager
-import org.enkasacco.mobile.api.local.PreferencesHelper
-import org.enkasacco.mobile.models.accounts.loan.LoanAccount
-import org.enkasacco.mobile.models.accounts.savings.SavingAccount
-import org.enkasacco.mobile.models.client.Client
-import org.enkasacco.mobile.models.client.ClientAccounts
-import org.enkasacco.mobile.presenters.HomeOldPresenter
-import org.enkasacco.mobile.ui.views.HomeOldView
-import org.enkasacco.mobile.util.RxSchedulersOverrideRule
+import org.lspl.mobile.api.DataManager
+import org.lspl.mobile.api.local.PreferencesHelper
+import org.lspl.mobile.models.accounts.loan.LoanAccount
+import org.lspl.mobile.models.accounts.savings.SavingAccount
+import org.lspl.mobile.models.client.Client
+import org.lspl.mobile.models.client.ClientAccounts
+import org.lspl.mobile.presenters.HomeOldPresenter
+import org.lspl.mobile.ui.views.HomeOldView
+import org.lspl.mobile.util.RxSchedulersOverrideRule
 
 import org.mockito.Mock
 import org.mockito.Mockito
