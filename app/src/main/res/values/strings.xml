@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Legal Summit Properties LTD</string>
+    <string name="app_name">Legacy Summit Properties LTD</string>
     <string name="login">Login</string>
     <string name="toast_welcome">Welcome %1$s</string>
     <string name="unable_to_connect">Not connected to internet</string>
@@ -7,8 +7,8 @@
     <string name="username">Username</string>
     <string name="progress_message_login">Logging In</string>
     <string name="progress_message_loading">Loading</string>
-    <string name="password">Password</string>
-    <string name="email">Email</string>
+    <string name="password">Password *</string>
+    <string name="email">Email *</string>
     <string name="accounts">Accounts</string>
     <string name="clients">Clients</string>
     <string name="funds_transfer">Funds Transfer</string>
@@ -107,14 +107,14 @@
     <string name="pending">Pending</string>
     <string name="matured">Matured</string>
     <string name="create_an_account">Create an account</string>
-    <string name="first_name">First Name</string>
-    <string name="last_name">Last Name</string>
-    <string name="phone_number">Phone Number</string>
+    <string name="first_name">First Name *</string>
+    <string name="last_name">Last Name *</string>
+    <string name="phone_number">Phone Number *</string>
     <string name="register">Register</string>
     <string name="request_id">Request Id</string>
     <string name="authentication_token">Authentication Token</string>
     <string name="verify">Verify</string>
-    <string name="verifying">Verifying</string>
+    <string name="verifying">Processing</string>
     <string name="sign_up">Signing up</string>
     <string name="verified">User has been verified successfully</string>
     <string name="rb_mobile">mobile</string>
@@ -532,7 +532,7 @@
     </string>
     <string name="cancel_transfer">Are you sure you want to cancel the transfer?</string>
     <string name="yes">Yes</string>
-    <string name="confirm_password">Confirm Password</string>
+    <string name="confirm_password">Confirm Password *</string>
     <string name="error_password_not_match">Password does not match.</string>
     <string name="app_version">Version %1$s</string>
     <string name="copy_right_mifos">©2016-%1$s LSPS.</string>
@@ -587,8 +587,8 @@
     <string name="no_app_to_support_action">There is no application that support this action</string>
     <string name="theme">Theme</string>
     <string name="change_app_theme">Change the application theme</string>
-    <string name="id_number">ID Number</string>
-    <string name="kra_pin">KRA Pin No.</string>
+    <string name="id_number">ID Number *</string>
+    <string name="kra_pin">KRA Pin No. *</string>
     <string name="next">Next</string>
     <string name="choose_file">Choose File</string>
     <string name="uploadDescription">Profile Photo</string>
@@ -614,7 +614,7 @@
     <string name="error_should_contain_only">should contain only</string>
     <string name="family_meber_added">Family Member Added Successfully</string>
     <string name="select_gender">Select Gender</string>
-    <string name="select_relationship">Select Relationship</string>
+    <string name="select_relationship">Select Relationship *</string>
     <string name="select_marital_status">Select Marital Status</string>
     <string name="select_occupation">Select Occupation</string>
     <string name="submitting">Processing</string>
@@ -647,9 +647,12 @@
     <string name="confirmation">Confirmation</string>
     <string name="success_prompt">A prompt has been sent to your phone. Kindly confirm your pin then click Ok</string>
     <string name="error_prompt">For some reason we could not complete your request. kindly try gain.</string>
-    <string name="username_mobile">Username | Mobile Number</string>
+    <string name="username_mobile">Username | Mobile Number *</string>
     <string name="diaog_cancel_reset">Do you want to cancel?</string>
     <string name="dialog_cancel_reset">Do you want to cancel?</string>
+    <string name="relationship">Relationship</string>
+    <string name="mobile_no">Mobile Number</string>
+    <string name="no_activation_date">No Activation Date</string>
 
     <string-array name="languages" translatable="false">
         <item>English</item>

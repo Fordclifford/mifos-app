@@ -38,15 +38,15 @@ import javax.inject.Inject
 class PassportPhotoUploadFragment(clientId: Long) : BaseFragment(), PassportUploadView {
 
     @JvmField
-    @BindView(R.id.buttonChoose)
+    @BindView(R.id.buttonChoosePassport)
     var buttonChoose: Button? = null
 
     @JvmField
-    @BindView(R.id.photo)
+    @BindView(R.id.passport_photo)
     var imageView: ImageView? = null
 
     @JvmField
-    @BindView(R.id.btn_upload)
+    @BindView(R.id.btn_upload_passport)
     var buttonUpload: Button? = null
 
     private var fileChoosen: File? = null
@@ -73,7 +73,7 @@ class PassportPhotoUploadFragment(clientId: Long) : BaseFragment(), PassportUplo
         return rootView
     }
 
-    @OnClick(R.id.btn_upload)
+    @OnClick(R.id.btn_upload_passport)
     fun oploadClicked() {
         //   fileUpload()
         try {
@@ -84,7 +84,7 @@ class PassportPhotoUploadFragment(clientId: Long) : BaseFragment(), PassportUplo
 
     }
 
-    @OnClick(R.id.buttonChoose)
+    @OnClick(R.id.buttonChoosePassport)
     fun openFilePicker() {
         checkPermissionAndRequest()
     }
@@ -225,7 +225,7 @@ class PassportPhotoUploadFragment(clientId: Long) : BaseFragment(), PassportUplo
                 if (fileChoosen != null) {
                     imageView?.setImageURI(uri)
                 }
-                btn_upload.isEnabled = true
+                btn_upload_passport.isEnabled = true
             }
         }
         super.onActivityResult(requestCode, resultCode, data)

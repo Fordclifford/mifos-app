@@ -1,5 +1,6 @@
 package org.lspl.mobile.ui.fragments
 
+import android.Manifest
 import android.graphics.PorterDuff
 import android.os.Bundle
 import android.text.Editable
@@ -25,6 +26,8 @@ import org.lspl.mobile.presenters.RegistrationPresenter
 import org.lspl.mobile.ui.activities.base.BaseActivity
 import org.lspl.mobile.ui.fragments.base.BaseFragment
 import org.lspl.mobile.ui.views.RegistrationView
+import org.lspl.mobile.utils.CheckSelfPermissionAndRequest
+import org.lspl.mobile.utils.Constants
 import org.lspl.mobile.utils.Network
 import org.lspl.mobile.utils.PasswordStrength
 import org.lspl.mobile.utils.Toaster
@@ -82,6 +85,10 @@ class RegistrationFragment : BaseFragment(), RegistrationView {
     var strengthView: TextView? = null
     private var rootView: View? = null
     var clientId:Long?=null
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        requestPermission()
+    }
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
@@ -229,6 +236,20 @@ class RegistrationFragment : BaseFragment(), RegistrationView {
     companion object {
         fun newInstance(): RegistrationFragment {
             return RegistrationFragment()
+        }
+    }
+    fun requestPermission() {
+        (activity as BaseActivity?)?.let {
+            CheckSelfPermissionAndRequest.requestPermission(
+                it,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Constants.PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE,
+                resources.getString(
+                    R.string.dialog_message_read_external_storage_permission_denied
+                ),
+                resources.getString(R.string.dialog_message_permission_never_ask_again_read),
+                Constants.READ_EXTERNAL_STORAGE_STATUS
+            )
         }
     }
 }
