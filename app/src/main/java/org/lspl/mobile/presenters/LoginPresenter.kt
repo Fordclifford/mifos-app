@@ -1,6 +1,7 @@
 package org.lspl.mobile.presenters
 
 import android.content.Context
+import android.util.Log
 
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -14,9 +15,12 @@ import org.lspl.mobile.api.DataManager
 import org.lspl.mobile.api.local.PreferencesHelper
 import org.lspl.mobile.injection.ApplicationContext
 import org.lspl.mobile.models.Page
+import org.lspl.mobile.models.Question
 import org.lspl.mobile.models.User
 import org.lspl.mobile.models.client.Client
 import org.lspl.mobile.models.payload.LoginPayload
+import org.lspl.mobile.models.payload.QuestionPayload
+import org.lspl.mobile.models.templates.client.SecurityQuestionOptions
 import org.lspl.mobile.presenters.base.BasePresenter
 import org.lspl.mobile.ui.views.LoginView
 import org.lspl.mobile.utils.Constants
@@ -39,6 +43,40 @@ class LoginPresenter @Inject constructor(private val dataManager: DataManager?, 
     override fun detachView() {
         super.detachView()
         compositeDisposable.clear()
+    }
+
+    fun loadQuestions() {
+        checkViewAttached()
+        dataManager?.loadQuestions()
+            ?.observeOn(AndroidSchedulers.mainThread())
+            ?.subscribeOn(Schedulers.io())
+            ?.subscribeWith(object : DisposableObserver<List<SecurityQuestionOptions>?>() {
+                override fun onError(e: Throwable) {
+                    val errorMessage: String
+                    try {
+                        if (e is HttpException) {
+                            if (e.code() == 503) {
+                                mvpView?.showMessage(context?.getString(R.string.error_server_down))
+                            } else {
+                                errorMessage = e.response().errorBody().string()
+                                mvpView
+                                    ?.showMessage(MFErrorParser.parseError(errorMessage)
+                                        .developerMessage)
+                            }
+                        }
+                    } catch (throwable: Throwable) {
+                        RxJavaPlugins.getErrorHandler()
+                    }
+                }
+
+                override fun onComplete() {
+                }
+
+                override fun onNext(t: List<SecurityQuestionOptions>) {
+                    Log.d("Options Fetched",t.toString())
+                    mvpView!!.showQuestions(t)
+                }
+            })?.let { compositeDisposable.add(it) }
     }
 
     /**
@@ -87,6 +125,40 @@ class LoginPresenter @Inject constructor(private val dataManager: DataManager?, 
                     })
             )
         }
+    }
+
+    fun addQuestion(questionPayload: QuestionPayload) {
+        checkViewAttached()
+            mvpView?.showProgress()
+            compositeDisposable.add(dataManager?.addQuestion(questionPayload)
+                ?.observeOn(AndroidSchedulers.mainThread())
+                ?.subscribeOn(Schedulers.io())!!
+                .subscribeWith(object : DisposableObserver<Question?>() {
+                    override fun onComplete() {}
+                    override fun onError(e: Throwable) {
+                        mvpView?.hideProgress()
+                        val errorMessage: String
+                        try {
+                            if (e is HttpException) {
+                                if (e.code() == 503) {
+                                    mvpView?.showMessage(context?.getString(R.string.error_server_down))
+                                } else {
+                                    errorMessage = e.response().errorBody().string()
+                                    mvpView
+                                        ?.showMessage(MFErrorParser.parseError(errorMessage)
+                                            .developerMessage)
+                                }
+                            }
+                        } catch (throwable: Throwable) {
+                            RxJavaPlugins.getErrorHandler()
+                        }
+                    }
+
+                    override fun onNext(question: Question) {
+                        mvpView?.onLoginSuccess()
+                    }
+                })
+            )
     }
 
     /**

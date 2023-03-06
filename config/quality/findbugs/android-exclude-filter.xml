@@ -29,12 +29,20 @@
 
     <!-- Ignore DM_DEFAULT_ENCODING in TestDataFactory-->
     <Match>
+<<<<<<< HEAD
         <Class name="org.lspl.mobile.TestDataFactory" />
+=======
+        <Class name="org.mifos.mobile.TestDataFactory" />
+>>>>>>> 1fea8c461ffd9e5ad3acc64efd9af8145187cd91
         <Method name="getObjectTypePojo" />
         <Bug pattern="DM_DEFAULT_ENCODING" />
     </Match>
     <Match>
+<<<<<<< HEAD
         <Class name="org.lspl.mobile.TestDataFactory" />
+=======
+        <Class name="org.mifos.mobile.TestDataFactory" />
+>>>>>>> 1fea8c461ffd9e5ad3acc64efd9af8145187cd91
         <Method name="getListTypePojo" />
         <Bug pattern="DM_DEFAULT_ENCODING" />
     </Match>

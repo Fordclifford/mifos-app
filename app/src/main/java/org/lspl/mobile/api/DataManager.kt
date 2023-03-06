@@ -6,7 +6,6 @@ import io.reactivex.functions.Function
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.ResponseBody
-import org.lspl.mobile.FakeRemoteDataSource
 import org.lspl.mobile.api.local.DatabaseHelper
 import org.lspl.mobile.api.local.PreferencesHelper
 import org.lspl.mobile.models.*
@@ -32,8 +31,10 @@ import org.lspl.mobile.models.notification.NotificationRegisterPayload
 import org.lspl.mobile.models.notification.NotificationUserDetail
 import org.lspl.mobile.models.passwordreset.NewpasswordPayload
 import org.lspl.mobile.models.passwordreset.ResetPayload
+import org.lspl.mobile.models.passwordreset.TokenPayload
 import org.lspl.mobile.models.payload.LoansPayload
 import org.lspl.mobile.models.payload.LoginPayload
+import org.lspl.mobile.models.payload.QuestionPayload
 import org.lspl.mobile.models.payload.TransferPayload
 import org.lspl.mobile.models.register.ClientUserRegisterPayload
 import org.lspl.mobile.models.register.IdentifierPayload
@@ -46,8 +47,10 @@ import org.lspl.mobile.models.stkpush.StkpushStatusResponse
 import org.lspl.mobile.models.templates.account.AccountOptionsTemplate
 import org.lspl.mobile.models.templates.beneficiary.BeneficiaryTemplate
 import org.lspl.mobile.models.templates.client.FamilyMemberOptions
+import org.lspl.mobile.models.templates.client.SecurityQuestionOptions
 import org.lspl.mobile.models.templates.loans.LoanTemplate
 import org.lspl.mobile.models.templates.savings.SavingsAccountTemplate
+import org.mifos.mobile.FakeRemoteDataSource
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -63,6 +66,10 @@ class DataManager @Inject constructor(
     var clientId: Long? = preferencesHelper.clientId
     fun login(loginPayload: LoginPayload?): Observable<User?>? {
         return baseApiManager.authenticationApi?.authenticate(loginPayload)
+    }
+
+    fun addQuestion(questionPayload: QuestionPayload?): Observable<Question?>? {
+        return baseApiManager.authenticationApi?.addQuestion(questionPayload)
     }
 
     val clients: Observable<Page<Client?>?>?
@@ -329,6 +336,10 @@ class DataManager @Inject constructor(
         return baseApiManager.clientsApi?.getClientTemplate(clientId)
     }
 
+    fun loadQuestions(): Observable<List<SecurityQuestionOptions>?>? {
+        return baseApiManager.clientsApi?.loadQuestions()
+    }
+
     fun createNok(payload: NextOfKinPayload, clientId: Long?): Observable<ResponseBody?>? {
         return baseApiManager.clientsApi!!.createNok(clientId, payload)
 
@@ -346,7 +357,11 @@ class DataManager @Inject constructor(
         return baseApiManager.userDetailsService!!.requestToken(payload)
     }
 
-    fun resetPass(payload: NewpasswordPayload): Observable<ResponseBody?>? {
+    fun token(payload: TokenPayload): Observable<ResponseBody?>? {
+        return this.baseApiManager.clientsApi!!.token(payload)
+    }
+
+    fun newPassword(payload: NewpasswordPayload): Observable<ResponseBody?>? {
         return this.baseApiManager.userDetailsService!!.newPassword(payload)
     }
 

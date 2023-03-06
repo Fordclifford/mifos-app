@@ -24,7 +24,7 @@ import org.lspl.mobile.ui.fragments.base.BaseFragment
  * Created by dilpreet on 25/2/17.
  */
 class LocationsFragment : BaseFragment(), OnMapReadyCallback {
-    @kotlin.jvm.JvmField
+    @JvmField
     @BindView(R.id.map)
     var mapView: MapView? = null
     private var rootView: View? = null

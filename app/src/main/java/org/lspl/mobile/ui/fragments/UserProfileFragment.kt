@@ -153,8 +153,14 @@ class UserProfileFragment : BaseFragment(), UserDetailsView {
         tvUsername?.text = nullFieldCheck(getString(R.string.username), client?.displayName)
         tvAccountNumber?.text = nullFieldCheck(getString(R.string.account_number),
                 client?.accountNo)
-        tvActivationDate?.text = nullFieldCheck(getString(R.string.activation_date),
-                DateHelper.getDateAsString(client?.activationDate))
+        if (client?.activationDate?.size == 3) {
+            tvActivationDate?.text = nullFieldCheck(
+                getString(R.string.activation_date),
+                DateHelper.getDateAsString(client.activationDate)
+            )
+        }else{
+            tvActivationDate?.text = getString(R.string.no_activation_date)
+        }
         tvOfficeName?.text = nullFieldCheck(getString(R.string.office_name),
                 client?.officeName)
         tvClientType?.text = nullFieldCheck(getString(R.string.client_type),

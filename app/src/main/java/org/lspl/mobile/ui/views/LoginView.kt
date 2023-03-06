@@ -1,5 +1,6 @@
 package org.lspl.mobile.ui.views
 
+import org.lspl.mobile.models.templates.client.SecurityQuestionOptions
 import org.lspl.mobile.ui.views.base.MVPView
 
 /**
@@ -31,6 +32,7 @@ interface LoginView : MVPView {
     fun showPasswordError(error: String?)
     fun clearUsernameError()
     fun clearPasswordError()
+    fun showQuestions(clientsTemplate: List<SecurityQuestionOptions>?)
 
     /**
      * Should be called when the client is fetched successfully from API.

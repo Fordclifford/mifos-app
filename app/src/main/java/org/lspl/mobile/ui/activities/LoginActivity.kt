@@ -1,5 +1,6 @@
 package org.lspl.mobile.ui.activities
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -19,6 +20,7 @@ import org.lspl.mobile.api.BaseApiManager
 import org.lspl.mobile.api.BaseURL
 import org.lspl.mobile.api.SelfServiceInterceptor
 import org.lspl.mobile.models.payload.LoginPayload
+import org.lspl.mobile.models.templates.client.SecurityQuestionOptions
 import org.lspl.mobile.presenters.LoginPresenter
 import org.lspl.mobile.ui.activities.base.BaseActivity
 import org.lspl.mobile.ui.views.LoginView
@@ -93,7 +95,21 @@ class LoginActivity : BaseActivity(), LoginView {
      */
     override fun showPassCodeActivity(clientName: String?) {
         showToast(getString(R.string.toast_welcome, clientName))
-        startPassCodeActivity()
+
+        val pref = getSharedPreferences("LOGIN_PREFERENCE", Context.MODE_PRIVATE)
+        if (pref.contains("QUESTION_ANSWERED")){
+            val intent = Intent(this, PassCodeActivity::class.java)
+            intent.putExtra(Constants.INTIAL_LOGIN, true)
+            startActivity(intent)
+            finish()
+        }else{
+            val editor = pref.edit()
+            editor.putBoolean("QUESTION_ANSWERED", true)
+            editor.apply()
+            startActivity(Intent(this, QuestionsActivity::class.java))
+            finish()
+        }
+
     }
 
     /**
@@ -120,6 +136,10 @@ class LoginActivity : BaseActivity(), LoginView {
 
     override fun clearPasswordError() {
         tilPassword?.isErrorEnabled = false
+    }
+
+    override fun showQuestions(clientsTemplate: List<SecurityQuestionOptions>?) {
+        TODO("Not yet implemented")
     }
 
     /**
@@ -153,16 +173,5 @@ class LoginActivity : BaseActivity(), LoginView {
     override fun onDestroy() {
         super.onDestroy()
         loginPresenter?.detachView()
-    }
-
-    /**
-     * Starts [PassCodeActivity] with `Constans.INTIAL_LOGIN` as true
-     */
-
-    private fun startPassCodeActivity() {
-        val intent = Intent(this@LoginActivity, PassCodeActivity::class.java)
-        intent.putExtra(Constants.INTIAL_LOGIN, true)
-        startActivity(intent)
-        finish()
     }
 }

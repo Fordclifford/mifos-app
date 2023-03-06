@@ -30,5 +30,6 @@
 
 
     <View
+        android:layout_width="1dp"
         style="@style/Mifos.DesignSystem.Components.VerticalSpacer"/>
 </RelativeLayout>

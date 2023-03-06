@@ -5,6 +5,7 @@ package org.lspl.mobile.models.passwordreset
  */
 
 data class NewpasswordPayload(
-        var token: String? = null,
-        var newPassword: String? = null
+        var username: String? = null,
+        var newPassword: String? = null,
+        var securityQuestionAnswers: List<PasswordPayload>? = null
 )

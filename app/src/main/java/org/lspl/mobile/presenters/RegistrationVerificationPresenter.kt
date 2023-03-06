@@ -12,8 +12,10 @@ import org.lspl.mobile.injection.ApplicationContext
 import org.lspl.mobile.models.client.NextOfKinPayload
 import org.lspl.mobile.models.passwordreset.NewpasswordPayload
 import org.lspl.mobile.models.passwordreset.ResetPayload
+import org.lspl.mobile.models.passwordreset.TokenPayload
 import org.lspl.mobile.models.register.UserVerify
 import org.lspl.mobile.models.templates.client.FamilyMemberOptions
+import org.lspl.mobile.models.templates.client.SecurityQuestionOptions
 import org.lspl.mobile.presenters.base.BasePresenter
 import org.lspl.mobile.ui.views.RegistrationVerificationView
 import org.lspl.mobile.utils.MFErrorParser.errorMessage
@@ -77,6 +79,26 @@ class RegistrationVerificationPresenter @Inject constructor(
             })?.let { compositeDisposables.add(it) }
     }
 
+    fun loadQuestions() {
+        checkViewAttached()
+        dataManager?.loadQuestions()
+            ?.observeOn(AndroidSchedulers.mainThread())
+            ?.subscribeOn(Schedulers.io())
+            ?.subscribeWith(object : DisposableObserver<List<SecurityQuestionOptions>?>() {
+                override fun onError(e: Throwable) {
+                    mvpView?.showError(errorMessage(e))
+                }
+
+                override fun onComplete() {
+                }
+
+                override fun onNext(t: List<SecurityQuestionOptions>) {
+                    Log.d("Options Fetched",t.toString())
+                    mvpView!!.showQuestions(t)
+                }
+            })?.let { compositeDisposables.add(it) }
+    }
+
     fun createNok(payload: NextOfKinPayload, clientId: Long?) {
         checkViewAttached()
         mvpView?.showProgress()
@@ -120,7 +142,27 @@ class RegistrationVerificationPresenter @Inject constructor(
     fun resetPassword(payload: NewpasswordPayload) {
         checkViewAttached()
         mvpView?.showProgress()
-        dataManager?.resetPass(payload)
+        dataManager?.newPassword(payload)
+            ?.observeOn(AndroidSchedulers.mainThread())
+            ?.subscribeOn(Schedulers.io())
+            ?.subscribeWith(object : DisposableObserver<ResponseBody?>() {
+                override fun onComplete() {}
+                override fun onError(e: Throwable) {
+                    mvpView?.hideProgress()
+                    mvpView?.showError(errorMessage(e))
+                }
+
+                override fun onNext(responseBody: ResponseBody) {
+                    mvpView?.hideProgress()
+                    mvpView?.showVerifiedSuccessfully()
+                }
+            })?.let { compositeDisposables.add(it) }
+    }
+
+    fun token(payload: TokenPayload) {
+        checkViewAttached()
+        mvpView?.showProgress()
+        dataManager?.token(payload)
             ?.observeOn(AndroidSchedulers.mainThread())
             ?.subscribeOn(Schedulers.io())
             ?.subscribeWith(object : DisposableObserver<ResponseBody?>() {

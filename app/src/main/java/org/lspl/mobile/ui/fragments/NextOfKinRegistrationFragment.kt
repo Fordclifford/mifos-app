@@ -21,6 +21,7 @@ import org.lspl.mobile.api.SelfServiceInterceptor
 import org.lspl.mobile.exceptions.InvalidTextInputException
 import org.lspl.mobile.models.client.NextOfKinPayload
 import org.lspl.mobile.models.templates.client.FamilyMemberOptions
+import org.lspl.mobile.models.templates.client.SecurityQuestionOptions
 import org.lspl.mobile.presenters.RegistrationVerificationPresenter
 import org.lspl.mobile.ui.activities.base.BaseActivity
 import org.lspl.mobile.ui.fragments.base.BaseFragment
@@ -112,7 +113,7 @@ class NextOfKinRegistrationFragment(clientId: Long) : BaseFragment(),
         getDatePickerDialog(selectedDob, DatePickerConstrainType.ONLY_PAST_DAYS) {
             val formattedDate = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(it)
             tvDateOfBirth?.text = formattedDate
-                dateOfBirthString = formattedDate
+            dateOfBirthString = formattedDate
 
             setSubmissionDisburseDate()
         }
@@ -127,11 +128,6 @@ class NextOfKinRegistrationFragment(clientId: Long) : BaseFragment(),
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        BaseApiManager.createService(
-            BaseURL.PROTOCOL_HTTPS + BaseURL.API_ENDPOINT,
-            SelfServiceInterceptor.DEFAULT_TENANT,
-            SelfServiceInterceptor.DEFAULT_TOKEN
-        )
         rootView = inflater.inflate(R.layout.fragment_next_of_kin_registration, container, false)
         (activity as BaseActivity?)?.activityComponent?.inject(this)
         ButterKnife.bind(this, rootView!!)
@@ -205,21 +201,22 @@ class NextOfKinRegistrationFragment(clientId: Long) : BaseFragment(),
 
     @OnClick(R.id.next_of_kin_register)
     fun verifyClicked() {
-
-        dateOfBirthString = tvDateOfBirth!!.text.toString()
-        dateOfBirthString =
-            DateHelper.getDateAsStringUsedForDateofBirth(dateOfBirthString)
-                ?.replace("-", " ")
-
         val payload = NextOfKinPayload()
+
+        if (tvDateOfBirth!!.text.toString()!!.isNotEmpty()) {
+            dateOfBirthString = tvDateOfBirth!!.text.toString()
+            dateOfBirthString =
+                DateHelper.getDateAsStringUsedForDateofBirth(dateOfBirthString)
+                    ?.replace("-", " ")
+            payload.dateOfBirth = dateOfBirthString
+        }
+
 
         payload.firstName = etFirstName?.text.toString()
         payload.middleName = etMiddleName?.text.toString()
         payload.lastName = etLastName?.text.toString()
         payload.mobileNumber = etPhoneNumber?.text.toString()
         payload.isDependent = cbIsDependent!!.isChecked
-        payload.dateOfBirth=dateOfBirthString
-
 
         if (!TextUtils.isEmpty(etMiddleName!!.editableText.toString())) {
             payload.middleName = etMiddleName!!.editableText.toString()
@@ -230,23 +227,32 @@ class NextOfKinRegistrationFragment(clientId: Long) : BaseFragment(),
         if (!TextUtils.isEmpty(etIdNumber!!.editableText.toString())) {
             payload.qualification = etIdNumber!!.editableText.toString()
         }
-        if (genderIdOptions!!.isNotEmpty()) {
+        if (genderIdOptions!!.isNotEmpty() && genderId != 0) {
             payload.genderId = genderId
         }
 
-        if (maritalStatusIdOptions!!.isNotEmpty()) {
+        if (maritalStatusIdOptions!!.isNotEmpty() && maritalStatusId != 0) {
             payload.maritalStatusId = maritalStatusId
         }
 
-        if (professionIdOptions!!.isNotEmpty()) {
+        if (professionIdOptions!!.isNotEmpty() && occupationId != 0) {
             payload.professionId = occupationId
         }
-        if (relationshipIdOptions!!.isNotEmpty()) {
+        if (relationshipIdOptions!!.isNotEmpty() && relationshipId != 0) {
             payload.relationshipId = relationshipId
         }
 
 
         if (!isFirstNameValid) {
+            return
+        }
+        if (!isValidMobile) {
+            return
+        }
+        if (!isValidRelationship) {
+            return
+        }
+        if (!isIdValid) {
             return
         }
         if (!isMiddleNameValid) {
@@ -264,7 +270,8 @@ class NextOfKinRegistrationFragment(clientId: Long) : BaseFragment(),
     fun setSubmissionDisburseDate() {
         dateOfBirthString = tvDateOfBirth?.text.toString()
         dateOfBirthString = DateHelper.getSpecificFormat(
-            DateHelper.FORMAT_dd_MMMM_yyyy, dateOfBirthString)
+            DateHelper.FORMAT_dd_MMMM_yyyy, dateOfBirthString
+        )
     }
 
     override fun onItemSelected(
@@ -354,6 +361,56 @@ class NextOfKinRegistrationFragment(clientId: Long) : BaseFragment(),
             return result
         }
 
+    val isIdValid: Boolean
+        get() {
+            result = true
+            try {
+                if (TextUtils.isEmpty(etIdNumber!!.editableText.toString())) {
+                    throw RequiredFieldException(
+                        resources.getString(R.string.id_number),
+                        resources.getString(R.string.error_cannot_be_empty)
+                    )
+                }
+            } catch (e: RequiredFieldException) {
+                e.notifyUserWithToast(activity)
+                result = false
+            }
+            return result
+        }
+
+
+    val isValidRelationship: Boolean
+        get() {
+            result = true
+            try {
+                if (TextUtils.isEmpty(relationshipId.toString()) || relationshipId==0) {
+                    throw RequiredFieldException(
+                        resources.getString(R.string.relationship),
+                        resources.getString(R.string.error_cannot_be_empty)
+                    )
+                }
+            } catch (e: RequiredFieldException) {
+                e.notifyUserWithToast(activity)
+                result = false
+            }
+            return result
+        }
+    val isValidMobile: Boolean
+        get() {
+            result = true
+            try {
+                if (TextUtils.isEmpty(etPhoneNumber?.text.toString())) {
+                    throw RequiredFieldException(
+                        resources.getString(R.string.mobile_no),
+                        resources.getString(R.string.error_cannot_be_empty)
+                    )
+                }
+            } catch (e: RequiredFieldException) {
+                e.notifyUserWithToast(activity)
+                result = false
+            }
+            return result
+        }
     override fun showVerifiedSuccessfully() {
         (activity as BaseActivity?)?.replaceFragment(
             NextOfKinIdUploadFragment.newInstance(clientId!!),
@@ -372,38 +429,44 @@ class NextOfKinRegistrationFragment(clientId: Long) : BaseFragment(),
         Log.d("We passed this", clientsTemplate.toString())
         this.familyMembersTemplate = clientsTemplate
 
-        if (familyMembersTemplate?.genderIdOptions != null)
+        if (familyMembersTemplate?.genderIdOptions != null) {
             for ((_, name) in familyMembersTemplate!!.genderIdOptions!!) {
                 genderIdOptions!!.add(name!!)
             }
-        spGender?.setSimpleItems(genderIdOptions!!.toTypedArray())
-
+            spGender?.setSimpleItems(genderIdOptions!!.toTypedArray())
+        }
         //Marital Status
 
-        if (familyMembersTemplate?.maritalStatusIdOptions != null)
+        if (familyMembersTemplate?.maritalStatusIdOptions != null) {
             for ((_, name) in familyMembersTemplate!!.maritalStatusIdOptions!!) {
                 maritalStatusIdOptions!!.add(name!!)
             }
-        spMarital?.setSimpleItems(maritalStatusIdOptions!!.toTypedArray())
+            spMarital?.setSimpleItems(maritalStatusIdOptions!!.toTypedArray())
 
-
+        }
         //Profession
 
-        if (familyMembersTemplate?.professionIdOptions != null)
+        if (familyMembersTemplate?.professionIdOptions != null) {
             for ((_, name) in familyMembersTemplate!!.professionIdOptions!!) {
                 professionIdOptions!!.add(name!!)
             }
-        spOccupation?.setSimpleItems(professionIdOptions!!.toTypedArray())
+            spOccupation?.setSimpleItems(professionIdOptions!!.toTypedArray())
+        }
 
         //Repationship
 
 
-        if (familyMembersTemplate?.relationshipIdOptions != null)
+        if (familyMembersTemplate?.relationshipIdOptions != null) {
             for ((_, name) in familyMembersTemplate!!.relationshipIdOptions!!) {
                 relationshipIdOptions!!.add(name!!)
             }
-        spRelationship?.setSimpleItems(relationshipIdOptions!!.toTypedArray())
+            spRelationship?.setSimpleItems(relationshipIdOptions!!.toTypedArray())
+        }
 
+    }
+
+    override fun showQuestions(clientsTemplate: List<SecurityQuestionOptions>?) {
+        TODO("Not yet implemented")
     }
 
     override fun showError(msg: String?) {

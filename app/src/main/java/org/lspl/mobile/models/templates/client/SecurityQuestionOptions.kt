@@ -10,10 +10,11 @@ import kotlinx.android.parcel.Parcelize
  * Created by rajan on 13/3/16.
  */
 @Parcelize
-data class FamilyMemberOptions(
-    var genderIdOptions: List<Options>? = null,
-    var maritalStatusIdOptions: List<Options>? = null,
-    var professionIdOptions: List<Options>? = null,
-    var relationshipIdOptions: List<Options>? = null,
-    var securityQuestionOptions:  List<Options>? = null,
+data class SecurityQuestionOptions(
+    var id: Int = 0,
+    var name: String? = null,
+    var position: Int = 0,
+    var description: String? = null,
+    var active: Boolean = false,
+    var mandatory: Boolean = false,
 ) : Parcelable

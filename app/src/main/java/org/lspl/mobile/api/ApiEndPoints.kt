@@ -8,6 +8,7 @@ object ApiEndPoints {
     //This class contains all the Constants for API End Points
     const val AUTHENTICATION = "authentication"
     const val CLIENTS = "clients"
+    const val CODES = "codes"
     const val SAVINGS_ACCOUNTS = "savingsaccounts"
     const val LOAN_ACCOUNTS = "loanAccounts"
     const val RECURRING_ACCOUNTS = "recurringdepositaccounts"
@@ -18,4 +19,5 @@ object ApiEndPoints {
     const val CLIENT_USER_REGISTRATION = "clients/createuser"
     const val DEVICE = "device"
     const val USER = "user"
+    const val FORGOT = "forgot"
 }

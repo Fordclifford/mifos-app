@@ -10,10 +10,12 @@ import org.lspl.mobile.models.stkpush.StkpushStatusResponse
 import org.lspl.mobile.models.client.Client
 import org.lspl.mobile.models.client.ClientAccounts
 import org.lspl.mobile.models.client.NextOfKinPayload
+import org.lspl.mobile.models.passwordreset.TokenPayload
 import org.lspl.mobile.models.register.IdentifierPayload
 import org.lspl.mobile.models.stkpush.StkpushRequestPayload
 import org.lspl.mobile.models.stkpush.StkpushStatusRequest
 import org.lspl.mobile.models.templates.client.FamilyMemberOptions
+import org.lspl.mobile.models.templates.client.SecurityQuestionOptions
 import retrofit2.http.*
 
 /**
@@ -64,6 +66,13 @@ interface ClientService {
 
     @GET(ApiEndPoints.CLIENTS + "/{clientId}/gettemplate")
     fun getClientTemplate( @Path(CLIENT_ID) clientId: Long?): Observable<FamilyMemberOptions?>?
+
+    @GET(ApiEndPoints.CODES+"/34/codevalues")
+    fun loadQuestions(): Observable<List<SecurityQuestionOptions>?>?
+
+
+    @POST(ApiEndPoints.FORGOT+"/validate-token")
+    fun token(@Body payload: TokenPayload): Observable<ResponseBody?>?
 
     @POST(ApiEndPoints.CLIENTS + "/{clientId}/createnok")
     fun createNok(

@@ -1,5 +1,6 @@
 package org.lspl.mobile.ui.fragments
 
+import android.Manifest
 import android.content.*
 import android.graphics.Bitmap
 import android.os.Bundle
@@ -344,4 +345,5 @@ class HomeFragment : BaseFragment(), HomeView, OnRefreshListener {
             return fragment
         }
     }
+
 }

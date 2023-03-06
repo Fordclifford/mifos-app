@@ -4,10 +4,7 @@ import dagger.Component
 
 import org.lspl.mobile.injection.PerActivity
 import org.lspl.mobile.injection.module.ActivityModule
-import org.lspl.mobile.ui.activities.HomeActivity
-import org.lspl.mobile.ui.activities.LoginActivity
-import org.lspl.mobile.ui.activities.PassCodeActivity
-import org.lspl.mobile.ui.activities.SplashActivity
+import org.lspl.mobile.ui.activities.*
 import org.lspl.mobile.ui.fragments.*
 
 /**
@@ -18,6 +15,7 @@ import org.lspl.mobile.ui.fragments.*
 @Component(dependencies = [ApplicationComponent::class], modules = [ActivityModule::class])
 interface ActivityComponent {
     fun inject(loginActivity: LoginActivity?)
+    fun inject(questionsActivity: QuestionsActivity?)
     fun inject(homeActivity: HomeActivity?)
     fun inject(passCodeActivity: PassCodeActivity?)
     fun inject(homeFragment: HomeFragment?)
@@ -63,7 +61,8 @@ interface ActivityComponent {
     fun inject (nextOfKinRegistrationFragment: NextOfKinRegistrationFragment)
     fun inject(otpVerificationFragment: OtpVerificationFragment)
     fun inject(stkPushFragment: StkPushFragment)
-    fun inject(sResetPasswordFragment: ResetPasswordFragment)
+    fun inject(sTokenFragment: TokenFragment)
     fun inject(forgot: ForgotPasswordFragment)
+    fun inject(newPassword: NewPasswordFragment)
     fun inject(successFragment: SuccessFragment)
 }

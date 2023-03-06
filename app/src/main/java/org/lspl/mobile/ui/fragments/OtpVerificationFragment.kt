@@ -13,6 +13,7 @@ import butterknife.OnClick
 import org.lspl.mobile.R
 import org.lspl.mobile.models.register.UserVerify
 import org.lspl.mobile.models.templates.client.FamilyMemberOptions
+import org.lspl.mobile.models.templates.client.SecurityQuestionOptions
 import org.lspl.mobile.presenters.RegistrationVerificationPresenter
 import org.lspl.mobile.ui.activities.LoginActivity
 import org.lspl.mobile.ui.activities.base.BaseActivity
@@ -66,6 +67,10 @@ class OtpVerificationFragment : BaseFragment(), RegistrationVerificationView {
     }
 
     override fun showClientTemplate(clientsTemplate: FamilyMemberOptions?) {
+        TODO("Not yet implemented")
+    }
+
+    override fun showQuestions(clientsTemplate: List<SecurityQuestionOptions>?) {
         TODO("Not yet implemented")
     }
 

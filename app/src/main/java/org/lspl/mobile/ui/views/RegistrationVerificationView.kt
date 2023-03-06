@@ -1,6 +1,7 @@
 package org.lspl.mobile.ui.views
 
 import org.lspl.mobile.models.templates.client.FamilyMemberOptions
+import org.lspl.mobile.models.templates.client.SecurityQuestionOptions
 import org.lspl.mobile.ui.views.base.MVPView
 
 /**
@@ -10,4 +11,5 @@ interface RegistrationVerificationView : MVPView {
     fun showVerifiedSuccessfully()
     fun showError(msg: String?)
     fun showClientTemplate(clientsTemplate: FamilyMemberOptions?)
+    fun showQuestions(clientsTemplate: List<SecurityQuestionOptions>?)
 }

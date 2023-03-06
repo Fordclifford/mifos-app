@@ -5,8 +5,7 @@ import android.os.Bundle
 
 import org.lspl.mobile.R
 import org.lspl.mobile.ui.activities.base.BaseActivity
-import org.lspl.mobile.ui.fragments.ForgotPasswordFragment
-import org.lspl.mobile.ui.fragments.RegistrationFragment
+import org.lspl.mobile.ui.fragments.*
 import org.lspl.mobile.utils.MaterialDialog
 
 class ForgotActivity : BaseActivity() {
@@ -20,7 +19,7 @@ class ForgotActivity : BaseActivity() {
     override fun onBackPressed() {
         MaterialDialog.Builder().init(this)
                 .setTitle(getString(R.string.dialog_cancel_registration_title))
-                .setMessage(getString(R.string.dialog_cancel_registration_message))
+                .setMessage(getString(R.string.dialog_cancel_reset))
                 .setPositiveButton(getString(R.string.cancel),
                         DialogInterface.OnClickListener { _, _ -> super.onBackPressed() })
                 .setNegativeButton(R.string.continue_str,

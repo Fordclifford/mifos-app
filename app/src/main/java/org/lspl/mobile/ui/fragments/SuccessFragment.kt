@@ -11,6 +11,7 @@ import butterknife.OnClick
 import org.lspl.mobile.R
 import org.lspl.mobile.models.stkpush.StkpushResponse
 import org.lspl.mobile.models.templates.client.FamilyMemberOptions
+import org.lspl.mobile.models.templates.client.SecurityQuestionOptions
 import org.lspl.mobile.presenters.RegistrationVerificationPresenter
 import org.lspl.mobile.ui.activities.HomeActivity
 import org.lspl.mobile.ui.activities.base.BaseActivity
@@ -85,6 +86,10 @@ class SuccessFragment : BaseFragment(),
     }
 
     override fun showClientTemplate(clientsTemplate: FamilyMemberOptions?) {
+        TODO("Not yet implemented")
+    }
+
+    override fun showQuestions(clientsTemplate: List<SecurityQuestionOptions>?) {
         TODO("Not yet implemented")
     }
 
