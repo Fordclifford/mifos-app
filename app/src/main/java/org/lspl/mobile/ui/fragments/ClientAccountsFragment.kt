@@ -107,6 +107,7 @@ import javax.inject.Inject
             AccountType.SAVINGS -> viewPager?.currentItem = 0
             AccountType.LOAN -> viewPager?.currentItem = 1
             AccountType.SHARE -> viewPager?.currentItem = 2
+            else -> {}
         }
         tabLayout?.setupWithViewPager(viewPager)
         viewPager?.addOnPageChangeListener(object : OnPageChangeListener {

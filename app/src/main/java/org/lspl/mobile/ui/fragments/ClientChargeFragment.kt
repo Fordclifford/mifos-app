@@ -112,6 +112,7 @@ class ClientChargeFragment : BaseFragment(), ClientChargeView {
             ChargeType.CLIENT -> id?.let { clientChargePresenter?.loadClientCharges(it) }
             ChargeType.SAVINGS -> id?.let { clientChargePresenter?.loadSavingsAccountCharges(it) }
             ChargeType.LOAN -> id?.let { clientChargePresenter?.loadLoanAccountCharges(it) }
+            else -> {}
         }
     }
 
