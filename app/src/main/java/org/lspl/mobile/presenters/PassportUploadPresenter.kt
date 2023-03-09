@@ -13,9 +13,9 @@ import org.lspl.mobile.api.DataManager
 import org.lspl.mobile.injection.ApplicationContext
 import org.lspl.mobile.presenters.base.BasePresenter
 import org.lspl.mobile.ui.views.PassportUploadView
-import org.lspl.mobile.utils.FileUtils.getMimeType
 import org.lspl.mobile.utils.MFErrorParser
 import java.io.File
+import java.net.URLConnection
 import javax.inject.Inject
 
 
@@ -59,7 +59,7 @@ class PassportUploadPresenter @Inject constructor(
     private fun getRequestFileBody(file: File): MultipartBody.Part {
         // create RequestBody instance from file
 
-        val requestFile = RequestBody.create(MediaType.parse(getMimeType(file.path)), file)
+        val requestFile = RequestBody.create(MediaType.parse(URLConnection.guessContentTypeFromName(file.name)), file)
 
 //      return MultipartBody.create(MediaType.parse("multipart/form-data"),file)
         // MultipartBody.Part is used to send also the actual file name

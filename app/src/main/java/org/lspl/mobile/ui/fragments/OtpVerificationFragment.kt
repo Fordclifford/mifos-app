@@ -27,15 +27,15 @@ import javax.inject.Inject
  */
 class OtpVerificationFragment : BaseFragment(), RegistrationVerificationView {
 
-    @kotlin.jvm.JvmField
+    @JvmField
     @BindView(R.id.et_request_id)
     var etRequestId: EditText? = null
 
-    @kotlin.jvm.JvmField
+    @JvmField
     @BindView(R.id.et_authentication_token)
     var etToken: EditText? = null
 
-    @kotlin.jvm.JvmField
+    @JvmField
     @Inject
     var presenter: RegistrationVerificationPresenter? = null
     private var rootView: View? = null

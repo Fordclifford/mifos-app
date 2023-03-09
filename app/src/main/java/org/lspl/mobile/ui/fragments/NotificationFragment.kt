@@ -35,23 +35,23 @@ import javax.inject.Inject
  */
 class NotificationFragment : BaseFragment(), NotificationView, OnRefreshListener {
 
-    @kotlin.jvm.JvmField
+    @JvmField
     @BindView(R.id.rv_notifications)
     var rvNotification: RecyclerView? = null
 
-    @kotlin.jvm.JvmField
+    @JvmField
     @BindView(R.id.swipe_notification_container)
     var swipeNotificationContainer: SwipeRefreshLayout? = null
 
-    @kotlin.jvm.JvmField
+    @JvmField
     @BindView(R.id.layout_error)
     var layoutError: View? = null
 
-    @kotlin.jvm.JvmField
+    @JvmField
     @Inject
     var presenter: NotificationPresenter? = null
 
-    @kotlin.jvm.JvmField
+    @JvmField
     @Inject
     var adapter: NotificationAdapter? = null
     private var rootView: View? = null
@@ -130,7 +130,7 @@ class NotificationFragment : BaseFragment(), NotificationView, OnRefreshListener
     }
 
     companion object {
-        @kotlin.jvm.JvmStatic
+        @JvmStatic
         fun newInstance(): NotificationFragment {
             return NotificationFragment()
         }

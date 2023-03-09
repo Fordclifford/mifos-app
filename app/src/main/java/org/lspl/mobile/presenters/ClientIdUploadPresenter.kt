@@ -1,7 +1,6 @@
 package org.lspl.mobile.presenters
 
 import android.content.Context
-
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
@@ -9,17 +8,14 @@ import io.reactivex.schedulers.Schedulers
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-
 import okhttp3.ResponseBody
-
 import org.lspl.mobile.api.DataManager
 import org.lspl.mobile.injection.ApplicationContext
 import org.lspl.mobile.presenters.base.BasePresenter
 import org.lspl.mobile.ui.views.ClientIdUploadView
-import org.lspl.mobile.utils.FileUtils
 import org.lspl.mobile.utils.MFErrorParser
 import java.io.File
-
+import java.net.URLConnection
 import javax.inject.Inject
 
 /**
@@ -80,7 +76,8 @@ class ClientIdUploadPresenter @Inject constructor(
 
     private fun getRequestFileBody(file: File): MultipartBody.Part? {
         // create RequestBody instance from file
-        val requestFile = RequestBody.create(MediaType.parse(FileUtils.getMimeType(file.path)), file)
+        val requestFile = RequestBody.create(MediaType.parse(URLConnection.guessContentTypeFromName(file.name)), file)
+
 
         // MultipartBody.Part is used to send also the actual file name
         return MultipartBody.Part.createFormData("file", file.name, requestFile)
