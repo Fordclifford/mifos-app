@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package org.lspl.mobile.utils.fcm
 
 import android.app.IntentService
@@ -20,22 +21,22 @@ import android.content.Intent
 import android.util.Log
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.iid.FirebaseInstanceId
+import com.google.firebase.messaging.FirebaseMessaging
 import org.lspl.mobile.utils.Constants
 
 class RegistrationIntentService : IntentService(TAG) {
     override fun onHandleIntent(intent: Intent?) {
-        FirebaseInstanceId.getInstance().instanceId
-                .addOnCompleteListener(OnCompleteListener { task ->
-                    if (!task.isSuccessful) {
-                        Log.w(TAG, "getInstanceId failed", task.exception)
-                        return@OnCompleteListener
-                    }
+        FirebaseMessaging.getInstance().token
+            .addOnCompleteListener(OnCompleteListener { task ->
+                if (!task.isSuccessful) {
+                    Log.w(TAG, "getInstanceId failed", task.exception)
+                    return@OnCompleteListener
+                }
 
-                    // Get new Instance ID token
-                    val token = task.result?.token
-                    sendRegistrationToServer(token)
-                })
+                // Get new Instance ID token
+                val token = task.result
+                sendRegistrationToServer(token)
+            })
     }
 
     private fun sendRegistrationToServer(token: String?) {

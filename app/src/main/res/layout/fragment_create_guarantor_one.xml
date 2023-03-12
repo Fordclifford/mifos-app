@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt" android:orientation="vertical" android:id="@+id/AddGuarantorLayout" android:layout_width="match_parent" android:layout_height="match_parent">
+    <androidx.appcompat.widget.Toolbar android:id="@+id/toolbar" android:background="@color/background"  android:layout_width="match_parent" android:layout_height="@dimen/toolbar_height" app:title="Create Guarantors" app:titleTextColor="@color/black"/>
+    <ScrollView android:scrollbars="none" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_margin="10dp" android:layout_below="@+id/toolbar">
+        <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10dp">
+            <TextView android:textSize="14sp" android:textColor="@color/black" android:layout_gravity="center" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="10dp" android:layout_marginBottom="10dp" android:text=" To add guarantor, input his | her phone number e.g 0722000000 then submit."/>
+            <com.google.android.material.textfield.TextInputLayout android:id="@+id/GuarantorMobile" android:layout_width="match_parent" android:layout_height="wrap_content" app:errorEnabled="true" style="@style/Widget.Design.TextInputLayout">
+                <com.google.android.material.textfield.TextInputEditText android:textSize="15sp" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="@string/guarantor_apos_s_phone_number" android:inputType="phone"/>
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+    </ScrollView>
+    <Button android:textSize="15sp" android:id="@+id/submitButton" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="5dp" android:layout_marginTop="20dp" android:layout_marginBottom="15dp" android:text="Submit" android:layout_alignParentBottom="true"/>
+</RelativeLayout>

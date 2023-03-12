@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt" android:id="@+id/ViewPatient" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="5dp" app:cardCornerRadius="6dp" app:cardElevation="1dp" app:contentPadding="10dp">
+    <RelativeLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="10dp">
+            <TextView android:textSize="15sp" android:textColor="@color/black" android:id="@+id/GuarantorName" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Name"/>
+            <TextView android:textSize="15sp" android:textColor="@color/black" android:id="@+id/GuarantorPhone" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="Phone"/>
+            <TextView android:textSize="15sp" android:textColor="@color/black" android:id="@+id/GuarantorID" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="ID Number"/>
+        </LinearLayout>
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

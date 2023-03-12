@@ -176,7 +176,22 @@
                 android:id="@+id/btn_loan_review"
                 android:text="@string/review" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginStart="200dp"
+                android:layout_height="match_parent">
+
+                <Button
+                    style="@style/Mifos.DesignSystem.Components.Button.Text"
+                    android:id="@+id/btn_nominate"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/nominate_guarantors"/>
+
+            </LinearLayout>
         </LinearLayout>
+
 
     </androidx.core.widget.NestedScrollView>
 

@@ -25,6 +25,7 @@ import org.lspl.mobile.ui.activities.base.BaseActivity
 import org.lspl.mobile.ui.enums.LoanState
 import org.lspl.mobile.ui.fragments.ReviewLoanApplicationFragment.Companion.newInstance
 import org.lspl.mobile.ui.fragments.base.BaseFragment
+import org.lspl.mobile.ui.fragments.guarantors.GuarantorFragment
 import org.lspl.mobile.ui.views.LoanApplicationMvpView
 import org.lspl.mobile.utils.*
 import java.text.SimpleDateFormat
@@ -305,6 +306,14 @@ class LoanApplicationFragment : BaseFragment(), LoanApplicationMvpView {
         llError?.visibility = View.GONE
         llAddLoan?.visibility = View.VISIBLE
         loadLoanTemplate()
+    }
+
+    @OnClick(R.id.btn_nominate)
+    fun nominateGuarantors(){
+        (activity as BaseActivity?)?.replaceFragment(
+            GuarantorFragment.newInstance(
+            ), true, R.id.container
+        )
     }
 
     /**

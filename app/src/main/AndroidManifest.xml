@@ -81,6 +81,10 @@
                   android:windowSoftInputMode="adjustResize"/>
 
         <activity android:configChanges="orientation|screenSize"
+            android:name="org.lspl.mobile.ui.activities.CreateGuarantorActivity"
+            android:windowSoftInputMode="adjustResize"/>
+
+        <activity android:configChanges="orientation|screenSize"
                   android:name="org.lspl.mobile.ui.activities.LoanApplicationActivity"
                   android:windowSoftInputMode="adjustResize"/>
 

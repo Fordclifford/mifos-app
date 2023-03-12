@@ -656,6 +656,9 @@
     <string name="security_question">Security Question</string>
     <string name="mobile_no">Mobile Number</string>
     <string name="no_activation_date">No Activation Date</string>
+    <string name="guarantor_apos_s_phone_number">Guarantor\'s Phone Number</string>
+    <string name="no_guarantor_available_please_click_the_button_to_add_at_least_3_guarantors">No guarantor available, Please click the + button to add at least 3 guarantors</string>
+    <string name="nominate_guarantors">Nominate Guarantors</string>
 
     <string-array name="languages" translatable="false">
         <item>English</item>

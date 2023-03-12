@@ -16,6 +16,7 @@ class BaseURL {
     }
 
     companion object {
+        const val VIEW_GUARANTOR = "https://techsavanna.net:8181/enka/api/read_guarantor.php"
         const val API_ENDPOINT = "apps.kibeti.co.ke:8443"
         const val API_PATH = "/fineract-provider/api/v1/self/"
         const val PROTOCOL_HTTPS = "https://"

@@ -348,8 +348,8 @@ class HomeActivity : BaseActivity(), UserDetailsView, NavigationView.OnNavigatio
         val resultCode = apiAvailability.isGooglePlayServicesAvailable(this)
         if (resultCode != ConnectionResult.SUCCESS) {
             if (apiAvailability.isUserResolvableError(resultCode)) {
-                apiAvailability.getErrorDialog(this, resultCode, PLAY_SERVICES_RESOLUTION_REQUEST)
-                        .show()
+                val errorDialog = apiAvailability.getErrorDialog(this, resultCode, PLAY_SERVICES_RESOLUTION_REQUEST)
+                errorDialog!!.show()
             } else {
                 Log.i(HomeActivity::class.java.name, "This device is not supported.")
                 finish()
